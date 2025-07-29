@@ -125,8 +125,8 @@
 </head>
 <body>
     <div id="organization" hidden></div>
-    <header id="header" class="w-100 d-flex flex-column position p-0">   
-        <div class="w-100 py-2 py-sm-2 header-color">
+    <header id="header" class="w-100 d-flex flex-column position p-0 mt-2">   
+        <div class="w-100 py-2 py-sm-2 bg-transparent">
             <div class="container m-auto d-flex align-items-center justify-content-between flex-row">
                 <div class="logo-img px-3 py-2 rounded-2 d-flex justify-content-start align-items-center">
                     <a href="{{route('blog')}}">

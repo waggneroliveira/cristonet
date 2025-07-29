@@ -57,7 +57,8 @@ Route::middleware([AuthClientMiddleware::class])->group(function () {
 
     Route::get('logout', [AuthClientController::class, 'logout'])->name('client.user.logout');
 });
-
+Route::get('/', [HomePageController::class, 'index'])
+->name('index');
 Route::get('contato', [ContactPageController::class, 'index'])
 ->name('contact');
 Route::post('send-contact', [FormIndexController::class, 'store'])->name('send-contact');
