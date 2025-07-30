@@ -521,9 +521,10 @@
      --cta-background-color: #091DFF;
      --nav-hover-color: #ffffff;
      --background-color-white: #ffffff;
-     --background-color-grey: #F8F9FC;
      --background-color-dark: #101820;
-     --background-color-grey-medium: #D9D9D9;
+     --background-color-grey: rgba(71, 71, 71, 1);
+     --background-color-grey-medium: rgba(59, 59, 59, 1);
+     --background-color-grey-dark: rgba(44, 44, 44, 1);
      --background-color-client: #F1F0F0;
      --background-color-trust-whi: #F4F4F4;
      --color-white: #ffffff;
