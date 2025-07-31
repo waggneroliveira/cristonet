@@ -576,11 +576,11 @@
         @yield('content') 
     </main>
 
-    <footer id="footer" class="footer position-relative dark-background">
+    <footer id="footer" class="footer position-relative dark-background-medium">
         <div class="container pt-5 pb-3">
             <div class="sitemap mt-2 mb-5 row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-3 justify-content-between align-items-center">
                 <div class=logo>
-                    <img src="{{asset('build/client/images/logo-footer.svg')}}" alt="WHI - Web de Alta Inovação" title="WHI - Web de Alta Inovação" loading=lazy>
+                    <img src="{{asset('build/client/images/logo.svg')}}" alt="WHI - Web de Alta Inovação" title="WHI - Web de Alta Inovação" loading=lazy>
                 </div>
                 <ul class="list-unstyled text-start">
                     <li class="montserrat-regular font-16 mb-3"><a href="{{route('blog')}}">Blog</a></li>
@@ -612,13 +612,6 @@
                             <path d="M11 17H2V3H11M6.5 21C6.10218 21 5.72064 20.842 5.43934 20.5607C5.15804 20.2794 5 19.8978 5 19.5C5 19.1022 5.15804 18.7206 5.43934 18.4393C5.72064 18.158 6.10218 18 6.5 18C6.89782 18 7.27936 18.158 7.56066 18.4393C7.84196 18.7206 8 19.1022 8 19.5C8 19.8978 7.84196 20.2794 7.56066 20.5607C7.27936 20.842 6.89782 21 6.5 21ZM10.5 0H2.5C1.83696 0 1.20107 0.263392 0.732233 0.732233C0.263392 1.20107 0 1.83696 0 2.5V19.5C0 20.163 0.263392 20.7989 0.732233 21.2678C1.20107 21.7366 1.83696 22 2.5 22H10.5C11.163 22 11.7989 21.7366 12.2678 21.2678C12.7366 20.7989 13 20.163 13 19.5V2.5C13 1.83696 12.7366 1.20107 12.2678 0.732233C11.7989 0.263392 11.163 0 10.5 0Z" fill="#F9F9F9"/>
                             </svg>
                             (71) 3017-4112
-                        </a>
-                    </span>
-                    <span>
-                        <a href=http://webmail.sindacsba.org.br/ target=_blank rel="noopener noreferrer" class="bg-webmail rounded-3 mt-4 montserrat-medium text-white d-flex justify-content-center align-items-center">
-                            <p class="title-blue mb-0">
-                                Webmail
-                            </p>
                         </a>
                     </span>
                 </div>

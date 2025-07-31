@@ -66,52 +66,25 @@
 
             <div class="col-12 col-lg-6">
                 <div class="image d-flex justify-content-end">
-                    <img src="{{asset('build/client/images/woman.svg')}}" alt="About" class="w-100 h-100 about-image" loading="lazy">
+                    <img src="{{asset('build/client/images/woman.svg')}}" alt="About" class="w-100 h-100 about-image d-none d-sm-block" loading="lazy">
                 </div>
             </div>            
         </div>
         <div class="partners">
             <div class="container py-5">
                 <div class="row g-3 justify-content-center">
-                    <div class="col-6 col-sm-4 col-md-2">
-                        <div class="partner-card border rounded-2 d-flex justify-content-center align-items-center">
-                            <img src="{{asset('build/client/images/petrobras.png')}}" alt="Petrobras" />                            
+                    @for ($p = 0; $p < 6; $p++)                        
+                        <div class="col-6 col-sm-4 col-md-2">
+                            <div class="partner-card border rounded-2 d-flex justify-content-center align-items-center">
+                                <img src="{{asset('build/client/images/petrobras.png')}}" alt="Petrobras" loading="lazy"/>                            
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="col-6 col-sm-4 col-md-2">
-                        <div class="partner-card border rounded-2 d-flex justify-content-center align-items-center">
-                            <img src="{{asset('build/client/images/petrobras.png')}}" alt="Petrobras" />                            
-                        </div>
-                    </div>
-
-                    <div class="col-6 col-sm-4 col-md-2">
-                        <div class="partner-card border rounded-2 d-flex justify-content-center align-items-center">
-                            <img src="{{asset('build/client/images/petrobras.png')}}" alt="Petrobras" />                           
-                        </div>
-                    </div>
-
-                    <div class="col-6 col-sm-4 col-md-2">
-                        <div class="partner-card border rounded-2 d-flex justify-content-center align-items-center">
-                            <img src="{{asset('build/client/images/petrobras.png')}}" alt="Petrobras" />                            
-                        </div>
-                    </div>
-
-                    <div class="col-6 col-sm-4 col-md-2">
-                        <div class="partner-card border rounded-2 d-flex justify-content-center align-items-center">
-                            <img src="{{asset('build/client/images/petrobras.png')}}" alt="Petrobras" />                            
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-4 col-md-2">
-                        <div class="partner-card border rounded-2 d-flex justify-content-center align-items-center">
-                            <img src="{{asset('build/client/images/petrobras.png')}}" alt="Petrobras" />                            
-                        </div>
-                    </div>
+                    @endfor
                 </div>
             </div>
         </div>
     </div>
-    <img src="{{asset('build/client/images/firu.webp')}}" alt="Firlua about" class="firula-about position-absolute">
+    <img src="{{asset('build/client/images/firu.webp')}}" alt="Firlua about" class="firula-about position-absolute d-none d-sm-block" loading="lazy">
 </section>
 
 <section id="plans" class="background-plan py-5 plan">
@@ -171,7 +144,7 @@
             </div>
         </aside>
         <div class="col-12 col-md-7">
-            <div class="swiper init-swiper" style="padding: 35px 0 35px 0">
+            <div class="swiper init-swiper" style="padding: 0 0 35px 0">
                 <script type=application/json class=swiper-config>
                     {
                         "speed": 500,
@@ -280,7 +253,7 @@
         </div>
     </div>
 </section>
-<section id="products" class="background-plan py-5 products">
+<section id="products" class="background-plan py-5 products position-relative">
     <div class="content m-auto me-0 justify-content-end d-flex flex-wrap flex-column flex-md-row">
         <aside class="col-12 col-md-4">
             <div class="w-100">
@@ -296,10 +269,10 @@
                 </p>
             </div>
 
-            <img src="{{asset('build/client/images/woman-product.webp')}}" alt="">
+            <img src="{{asset('build/client/images/woman-product.webp')}}" alt="imagem woman-firula" class="d-none d-sm-block position-absolute bottom-0" loading="lazy">
         </aside>
         <div class="col-12 col-md-7">
-            <div class="swiper init-swiper" style="padding: 35px 0 35px 0">
+            <div class="swiper init-swiper" style="padding: 0 0 35px 0">
                 <script type=application/json class=swiper-config>
                     {
                         "speed": 500,
@@ -380,7 +353,7 @@
 <section id="depoiment" class="depoiment position-relative">
     <div class="content m-auto me-0 justify-content-end d-flex flex-wrap align-items-center h-100 flex-column flex-md-row">
         <div class="col-12 col-lg-4">
-            <h2 class="title mb-0 text-uppercase font-35 montserrat-semiBold text-black">Depoimentos</h2>
+            <h2 class="title mb-0 text-uppercase font-35 montserrat-semiBold text-black before">Depoimentos</h2>
             
             <p class="mb-0 mt-4 text-start p-0 montserrat-medium font-15 col-12 col-lg-8">Veja sobre o depoimento de pessoas que viveram uma experiência conosco!</p>
             
@@ -439,9 +412,10 @@
                     @for ($d = 0; $d < 6 ; $d++)                        
                         <div class="swiper-slide">
                             <div class="project-list-item dark-background px-3 py-4 rounded-4">
-                                <svg class="position-absolute start-0 ms-3 mt-4 top-0" width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0.5 9.57015H7.16667C8.08713 9.57015 8.83333 8.82395 8.83333 7.90348V2.90348C8.83333 1.98302 8.08713 1.23682 7.16667 1.23682H2.16667C1.2462 1.23682 0.5 1.98302 0.5 2.90348V9.57015ZM0.5 9.57015V15.4035C0.5 18.6251 3.11167 21.2368 6.33333 21.2368M12.1667 9.57015H18.8333C19.7538 9.57015 20.5 8.82395 20.5 7.90348V2.90348C20.5 1.98302 19.7538 1.23682 18.8333 1.23682H13.8333C12.9129 1.23682 12.1667 1.98302 12.1667 2.90348V9.57015ZM12.1667 9.57015V15.4035C12.1667 18.6251 14.7783 21.2368 18 21.2368" stroke="#EFA286"/>
+                                <svg class="position-absolute start-0 ms-2 mt-2 top-0" width="29" height="29" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 13.0833H10.6667C12.0013 13.0833 13.0833 12.0013 13.0833 10.6667V3.41667C13.0833 2.08199 12.0013 1 10.6667 1H3.41667C2.08199 1 1 2.08199 1 3.41667V13.0833ZM1 13.0833V21.5417C1 26.2131 4.78692 30 9.45833 30M17.9167 13.0833H27.5833C28.9181 13.0833 30 12.0013 30 10.6667V3.41667C30 2.08199 28.9181 1 27.5833 1H20.3333C18.9987 1 17.9167 2.08199 17.9167 3.41667V13.0833ZM17.9167 13.0833V21.5417C17.9167 26.2131 21.7036 30 26.375 30" stroke="#F2E416"/>
                                 </svg>
+
                                 <div class="row">
                                     <div class="content position-relative">
                                         <p class="depoiment-text m-auto mt-2 montserrat-regular font-15 text-white">
@@ -453,13 +427,15 @@
                                         <span class="font-16 montserrat-medium">Hosana Costa</span>
                                         <span class="font-12 montserrat-regular text-white">Cliente há 3 anos</span>
                                         <div class="image-rating">
-                                            <img src="{{asset('build/client/images/rating.svg')}}" loading="lazy" alt="Rating" class="w-100">
+                                            <img src="{{asset('build/client/images/rating.svg')}}" loading="lazy" alt="Rating" class="w-100" loading="lazy">
                                         </div>
                                     </div> 
-                                </div>
-                                <svg class="position-absolute end-0 me-3 mb-4 bottom-0 aspas" width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M22.5 14.0702L15.1667 14.0702C14.1542 14.0702 13.3333 14.891 13.3333 15.9035L13.3333 21.4035C13.3333 22.416 14.1542 23.2368 15.1667 23.2368L20.6667 23.2368C21.6792 23.2368 22.5 22.416 22.5 21.4035L22.5 14.0702ZM22.5 14.0702L22.5 7.65348C22.5 4.10965 19.6272 1.23682 16.0833 1.23682M9.66667 14.0701L2.33333 14.0701C1.32078 14.0701 0.499999 14.891 0.499999 15.9035L0.499998 21.4035C0.499998 22.416 1.32078 23.2368 2.33333 23.2368L7.83333 23.2368C8.84585 23.2368 9.66667 22.416 9.66667 21.4035L9.66667 14.0701ZM9.66667 14.0701L9.66667 7.65348C9.66667 4.10965 6.79383 1.23682 3.25 1.23682" stroke="#EFA286"/>
-                                </svg>                                   
+                                </div> 
+
+                                <svg class="position-absolute end-0 me-2 mb-2 bottom-0" width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M36 21.4167L24.3333 21.4167C22.7225 21.4167 21.4167 22.7225 21.4167 24.3333L21.4167 33.0833C21.4167 34.6941 22.7225 36 24.3333 36L33.0833 36C34.6941 36 36 34.6942 36 33.0833L36 21.4167ZM36 21.4167L36 11.2083C36 5.57042 31.4296 1 25.7917 1M15.5833 21.4167L3.91666 21.4167C2.30579 21.4167 0.999997 22.7225 0.999997 24.3333L0.999996 33.0833C0.999996 34.6941 2.30579 36 3.91666 36L12.6667 36C14.2775 36 15.5833 34.6941 15.5833 33.0833L15.5833 21.4167ZM15.5833 21.4167L15.5833 11.2083C15.5833 5.57042 11.0129 1 5.375 1" stroke="#F2E416"/>
+                                </svg>
+                              
                             </div>
                         </div>
                     @endfor
@@ -472,4 +448,49 @@
         </div>
     </div>
 </section>
+
+<section id="contact" class="contact-section py-5 bg-contact text-white">
+    <div class="container">
+        <div class="row align-items-center justify-content-between">
+
+            <!-- Coluna Esquerda - Formulário -->
+            <div class="col-12 col-lg-5 mb-4 mb-lg-0">
+                <h4 class="title mb-0 text-uppercase font-32 montserrat-semiBold before">
+                    ENTRE EM CONTATO AGORA!
+                </h4>
+                <p class="mt-4 montserrat-regular text-white font-15">
+                    Deixe seu número abaixo que entraremos em contato em breve. Ou, fale conosco pelo WhatsApp.
+                </p>
+
+                <div class="d-flex align-items-center mb-4">
+                    <span class="me-3 montserrat-regular font-15"><i class="bi bi-instagram me-2"></i> @cristonet</span>
+                    <span class="montserrat-regular font-15"><i class="bi bi-whatsapp me-2"></i> 71 98655-0508</span>
+                </div>
+
+                <form class="col-12 col-lg-11">
+                    <div class="input-group mb-3">
+                        <input type="tel" class="form-control montserrat-regular font-15" placeholder="Telefone" required>
+                        <button class="btn btn-danger montserrat-medium font-15 col-3" type="submit">Enviar</button>
+                    </div>
+                    <div class="form-check small">
+                        <input class="form-check-input" type="checkbox" value="" id="privacyCheck" required>
+                        <label class="form-check-label montserrat-regular font-15" for="privacyCheck">
+                            Aceito os termos descritos na Política de Privacidade
+                        </label>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Coluna Direita - Mapa -->
+            <div class="col-12 col-lg-5">
+                <div class="ratio ratio-4x3">
+                    <iframe src="https://www.google.com/maps?q=Rua%20da%20Paz%20e%20Castelo%20Branco&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+                     </iframe>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
 @endsection
