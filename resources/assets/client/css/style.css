@@ -19,10 +19,6 @@
      line-height: 0
  }
 
- .project-list-item {
-     width: 264.2px
- }
-
  .scroll-top:hover {
      background-color: color-mix(in srgb, var(--background-red), transparent 20%);
      color: var(--contrast-color)
@@ -108,11 +104,34 @@
      --emphasis-color: #1FAD90;
      scroll-behavior: smooth
  }
+/* depoiment */
+.depoiment{
+    background-image: url(../images/bg-depoiment.webp);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 500px;
+    width: 100%;
+}
+.depoiment-text,
+.client-info{
+    width: 78%;
+}
+.aspas {
+    width: 22px;
+    height: 22px;
+}
+.image-rating img{
+    aspect-ratio: inherit;
+    width: 100px !important;
+}
+/* depoiment */
+
 /* plan */
 .btn-navigation {
     position: relative;
     width: 110px;
-    margin: 50px 0 0;
+    margin: 45px -13px 0
 }
 .text-red{
     color: var(--text-red);
@@ -193,8 +212,8 @@
 
  .swiper-button-next,
  .swiper-button-prev {
-     color: var(--text-color-blog-inner);
-     width: 30px;
+    color: var(--background-color-white);
+    width: 35px;
  }
 
  .menu-mobile-down {
@@ -437,12 +456,6 @@
      transform: scaleX(1);
  }
 
- .project-list-item img,
- .rating span img {
-     aspect-ratio: 1/1;
-     object-position: center
- }
-
  .image-hero,
  .img-fluid,
  .project-list-item img,
@@ -535,6 +548,9 @@
  .font-32 {
      font-size: 2rem;
  }
+ .font-35 {
+     font-size: 2.188rem;
+ }
 
  .font-40 {
      font-size: 2.5rem;
@@ -568,12 +584,16 @@
      flex-shrink: 0;
      height: auto !important
  }
-
+.swiper-button-next:after,
+.swiper-button-prev:after {
+    font-size: 35px;
+    font-weight: 800;
+}
  .stack-details-slider .swiper-button-next,
  .stack-details-slider .swiper-button-prev {
      display: none;
      color: transparent;
-     -webkit-text-stroke: 2px black
+     -webkit-text-stroke: 2px white
  }
 
  .text-blog-inner {

@@ -118,8 +118,8 @@
     <div class="content m-auto me-0 justify-content-end d-flex flex-wrap flex-column flex-md-row">
         <aside class="col-12 col-md-4">
             <div class="w-100">
-                <h2 class="text-uppercase montserrat-medium font-25 text-white">Planos Disponíveis</h2>
-                <h3 class="text-uppercase montserrat-ExtraBold font-32 text-white">PARA VOCÊ</h3>
+                <h2 class="montserrat-medium font-25 text-white">Planos Disponíveis</h2>
+                <h3 class="text-uppercase montserrat-ExtraBold font-35 text-white">PARA VOCÊ</h3>
             </div>
 
             <ul class="d-flex justify-content-center align-items-start gap-4 flex-column p-0 mt-5 col-12 col-md-6">
@@ -280,5 +280,196 @@
         </div>
     </div>
 </section>
+<section id="products" class="background-plan py-5 products">
+    <div class="content m-auto me-0 justify-content-end d-flex flex-wrap flex-column flex-md-row">
+        <aside class="col-12 col-md-4">
+            <div class="w-100">
+                <h2 class=" montserrat-medium font-25 text-white">Conheça nossos</h2>
+                <h3 class="text-uppercase montserrat-ExtraBold font-35 text-white">PRODUTOS</h3>
+            </div>
 
+            <div class="obs mt-4 col-12 col-md-8">
+                <p class="montserrat-regular font-15 text-white">
+                    Conheça os nossos produtos exclusivos e disponíveis para você. 
+                    <br><br>
+                    *Consulte disponibilidade
+                </p>
+            </div>
+
+            <img src="{{asset('build/client/images/woman-product.webp')}}" alt="">
+        </aside>
+        <div class="col-12 col-md-7">
+            <div class="swiper init-swiper" style="padding: 35px 0 35px 0">
+                <script type=application/json class=swiper-config>
+                    {
+                        "speed": 500,
+                        "slidesPerView": 3.5,
+                        "slidesPerGroup": 1,
+                        "centeredSlides": false,
+                        "initialSlide": 0,
+                        "pagination": {
+                            "el": ".swiper-pagination",
+                            "type": "bullets",
+                            "clickable": true
+                        },
+                        "navigation": {
+                            "nextEl": ".swiper-button-next",
+                            "prevEl": ".swiper-button-prev"
+                        },
+                        "breakpoints": {
+                            "320": {
+                                "slidesPerView": 1.5,
+                                "spaceBetween": 5
+                            },
+                            "475": {
+                                "slidesPerView": 2,
+                                "spaceBetween": 5
+                            },
+                            "631": {
+                                "slidesPerView": 3.2,
+                                "spaceBetween": 5
+                            },
+                            "768": {
+                                "slidesPerView": 3.2,
+                                "spaceBetween": 5
+                            },
+                            "1025": {
+                                "slidesPerView": 3.2,
+                                "spaceBetween": 10
+                            }
+                        }
+                    }
+                </script>
+
+                <div class="swiper-wrapper align-items-center">   
+                    @for ($i = 0; $i < 6; $i++)                        
+                        <div class=swiper-slide>
+                            <div class="card-plan bg-white rounded-3 p-3">
+                                <div class="d-flex justify-content-center align-items-center flex-column">
+                                    <div class="image mb-3">
+                                        <img src="{{asset('build/client/images/modem.png')}}" alt="imagem do produto">
+                                    </div>
+                                    <div class="title">
+                                        <h5 class="subtitle-plan montserrat-bold font-18 mb-0 text-center">CAIXA SERVIDOR 2.0</h5>
+                                    </div>
+                                </div>
+                                <div class="description p-0 mt-4">                                                                           
+                                    <p class="col-12 text-center montserrat-medium font-15 text-black">
+                                        Servidor confiável e de alto desempenho para hospedar seus sites e aplicações com segurança e velocidade e velocidade.e velocidade.
+                                    </p>                                    
+                                </div>
+                                <div class="price">
+                                    <span class="montserrat-semiBold font-25 text-red d-block text-center">R$ 220,00</span>
+                                </div>
+                                <div class="call-to-action mt-3 text-center">
+                                    <a href="http://" target="_blank" rel="noopener noreferrer" class="btn background-red rounded-5 px-5 py-2 text-white montserrat-semiBold font-15">Quero esse</a>
+                                </div>
+                            </div>
+                        </div>
+                    @endfor                    
+                </div>
+                <div class=btn-navigation>
+                    <div class=swiper-button-prev></div>
+                    <div class=swiper-button-next></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="depoiment" class="depoiment position-relative">
+    <div class="content m-auto me-0 justify-content-end d-flex flex-wrap align-items-center h-100 flex-column flex-md-row">
+        <div class="col-12 col-lg-4">
+            <h2 class="title mb-0 text-uppercase font-35 montserrat-semiBold text-black">Depoimentos</h2>
+            
+            <p class="mb-0 mt-4 text-start p-0 montserrat-medium font-15 col-12 col-lg-8">Veja sobre o depoimento de pessoas que viveram uma experiência conosco!</p>
+            
+            <div class="call-to-action mt-3">
+                <a href="http://" target="_blank" rel="noopener noreferrer" class="btn background-red rounded-5 px-5 py-2 text-white montserrat-semiBold font-15">Conhecer</a>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-7 position-relative">
+            <div class="project-list-details-slider swiper init-swiper">
+                <script type=application/json class=swiper-config>
+                    {
+                        "speed": 500,
+                        "slidesPerView": 5,
+                        "slidesPerGroup": 1,
+                        "centeredSlides": true,
+                        "initialSlide": 0,
+                        "pagination": {
+                            "el": ".swiper-pagination",
+                            "type": "bullets",
+                            "clickable": true
+                        },
+                        "navigation": {
+                            "nextEl": ".swiper-button-next",
+                            "prevEl": ".swiper-button-prev"
+                        },
+                        "breakpoints": {
+                            "320": {
+                                "slidesPerView": 1.3,
+                                "spaceBetween": 5
+                            },
+                            "475": {
+                                "slidesPerView": 1.3,
+                                "spaceBetween": 5
+                            },
+                            "631": {
+                                "slidesPerView": 2.3,
+                                "spaceBetween": 5
+                            },
+                            "768": {
+                                "slidesPerView": 2.3,
+                                "spaceBetween": 5
+                            },
+                            "991": {
+                                "slidesPerView": 2.3,
+                                "spaceBetween": 5
+                            },
+                            "1025": {
+                                "slidesPerView": 2.5,
+                                "spaceBetween": 5
+                            }
+                        }
+                    }
+                </script>
+                <div class="swiper-wrapper align-items-center">
+                    @for ($d = 0; $d < 6 ; $d++)                        
+                        <div class="swiper-slide">
+                            <div class="project-list-item dark-background px-3 py-4 rounded-4">
+                                <svg class="position-absolute start-0 ms-3 mt-4 top-0" width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0.5 9.57015H7.16667C8.08713 9.57015 8.83333 8.82395 8.83333 7.90348V2.90348C8.83333 1.98302 8.08713 1.23682 7.16667 1.23682H2.16667C1.2462 1.23682 0.5 1.98302 0.5 2.90348V9.57015ZM0.5 9.57015V15.4035C0.5 18.6251 3.11167 21.2368 6.33333 21.2368M12.1667 9.57015H18.8333C19.7538 9.57015 20.5 8.82395 20.5 7.90348V2.90348C20.5 1.98302 19.7538 1.23682 18.8333 1.23682H13.8333C12.9129 1.23682 12.1667 1.98302 12.1667 2.90348V9.57015ZM12.1667 9.57015V15.4035C12.1667 18.6251 14.7783 21.2368 18 21.2368" stroke="#EFA286"/>
+                                </svg>
+                                <div class="row">
+                                    <div class="content position-relative">
+                                        <p class="depoiment-text m-auto mt-2 montserrat-regular font-15 text-white">
+                                            Atendimento maravilhoso, Maiara, uma excelente profissional, sempre muito cuidadosa em cada movimento, recomendo super!!
+                                        </p>                                          
+                                    </div>
+    
+                                    <div class="client-info d-flex flex-column m-auto mt-4 gap-1">
+                                        <span class="font-16 montserrat-medium">Hosana Costa</span>
+                                        <span class="font-12 montserrat-regular text-white">Cliente há 3 anos</span>
+                                        <div class="image-rating">
+                                            <img src="{{asset('build/client/images/rating.svg')}}" loading="lazy" alt="Rating" class="w-100">
+                                        </div>
+                                    </div> 
+                                </div>
+                                <svg class="position-absolute end-0 me-3 mb-4 bottom-0 aspas" width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22.5 14.0702L15.1667 14.0702C14.1542 14.0702 13.3333 14.891 13.3333 15.9035L13.3333 21.4035C13.3333 22.416 14.1542 23.2368 15.1667 23.2368L20.6667 23.2368C21.6792 23.2368 22.5 22.416 22.5 21.4035L22.5 14.0702ZM22.5 14.0702L22.5 7.65348C22.5 4.10965 19.6272 1.23682 16.0833 1.23682M9.66667 14.0701L2.33333 14.0701C1.32078 14.0701 0.499999 14.891 0.499999 15.9035L0.499998 21.4035C0.499998 22.416 1.32078 23.2368 2.33333 23.2368L7.83333 23.2368C8.84585 23.2368 9.66667 22.416 9.66667 21.4035L9.66667 14.0701ZM9.66667 14.0701L9.66667 7.65348C9.66667 4.10965 6.79383 1.23682 3.25 1.23682" stroke="#EFA286"/>
+                                </svg>                                   
+                            </div>
+                        </div>
+                    @endfor
+                </div>
+                <div class=btn-navigation>
+                    <div class=swiper-button-prev></div>
+                    <div class=swiper-button-next></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 @endsection
