@@ -37,13 +37,6 @@
     <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"></noscript>
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
-    <link rel="preload" href="{{ asset('build/admin/js/libs/sweetalert2/sweetalert2.min.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link href="{{ asset('build/admin/js/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css"></noscript>
-    <link rel="preload" href="{{ asset('build/admin/js/libs/dropzone/min/dropzone.min.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link href="{{ asset('build/admin/js/libs/dropzone/min/dropzone.min.css') }}" rel="stylesheet" type="text/css"></noscript>
-    <link rel="preload" href="{{ asset('build/admin/js/libs/dropify/css/dropify.min.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link href="{{ asset('build/admin/js/libs/dropify/css/dropify.min.css') }}" rel="stylesheet" type="text/css"></noscript>
-
 
     <link href="{{ asset('build/client/css/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link rel="preload" href="{{ asset('build/client/css/bootstrap-icons/bootstrap-icons.css') }}" as="style" onload="this.rel='stylesheet'">
@@ -125,8 +118,8 @@
 </head>
 <body>
     <div id="organization" hidden></div>
-    <header id="header" class="w-100 d-flex flex-column position p-0 mt-2">   
-        <div class="w-100 py-2 py-sm-2 bg-transparent">
+    <header id="header" class="w-100 d-flex flex-column position p-0 mt-0">   
+        <div class="w-100 py-3 py-sm-3 bg-transparent">
             <div class="container m-auto d-flex align-items-center justify-content-between flex-row">
                 <div class="logo-img px-3 py-2 rounded-2 d-flex justify-content-start align-items-center">
                     <a href="{{route('blog')}}">
@@ -137,11 +130,15 @@
                 <div class="social-links d-flex justify-content-between align-items-center gap-4 text-center col-9">
                     <nav class="none site-navigation ul position-relative text-end width-75">
                         <ul class="d-flex flex-row justify-content-start align-items-center gap-4 mb-0 list-unstyled">
-                            <li><a href="{{route('blog')}}" class="nav-link montserrat-regular font-18 {{ request()->routeIs('blog') ? 'active' : '' }} {{ request()->routeIs('blog-inner') ? 'active' : '' }}">Notícias</a></li>
-                            <li><a href="{{route('noticies')}}" class="nav-link montserrat-regular font-18 {{ request()->routeIs('noticies') ? 'active' : '' }}">Editais</a></li>
-                            <li><a href="{{route('contact')}}" class="nav-link montserrat-regular font-18 {{ request()->routeIs('contact') ? 'active' : '' }}">Contato</a></li>
+                            <li><a href="{{route('index')}}#hero" class="nav-link montserrat-regular font-18">Home</a></li>
+                            <li><a href="{{route('index')}}#about" class="nav-link montserrat-regular font-18">Sobre</a></li>
+                            <li><a href="{{route('index')}}#plans" class="nav-link montserrat-regular font-18">Planos</a></li>
+                            <li><a href="{{route('index')}}#products" class="nav-link montserrat-regular font-18">Produtos</a></li>
+                            <li><a href="{{route('index')}}#depoiment" class="nav-link montserrat-regular font-18">Depoimentos</a></li>
+                            <li><a href="{{route('index')}}#contact" class="nav-link montserrat-regular font-18">Contato</a></li>
                         </ul>                      
                     </nav>
+
                     <nav class="none site-navigation position-relative text-end w-auto redes-sociais">
                         <ul class="p-0 d-flex justify-content-start gap-4 flex-row mb-0">
                             @if (isset($contact) && $contact->link_insta)
@@ -182,43 +179,7 @@
                         </ul> 
                     </nav>
 
-                    <div class="login d-flex justify-content-start align-items-center gap-2 w-auto">                        
-                        @if (!Auth::guard('client')->check())                            
-                            <div class="d-flex justify-content-start align-items-center gap-2">
-                                <svg width="20" height="20" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M46.793 8.62893C44.5547 8.62893 42.7344 6.81253 42.7344 4.57423C42.7344 2.33593 44.5547 0.519531 46.793 0.519531L80.57 0.503906C88.8044 0.503906 95.5 7.20311 95.5 15.4339V80.5789C95.5 88.8055 88.8008 95.5089 80.57 95.5089H46.793C44.5469 95.5089 42.7266 93.6847 42.7266 91.4386C42.7266 89.1886 44.5469 87.3683 46.793 87.3683H80.57C84.3083 87.3683 87.3591 84.3136 87.3591 80.5831V15.4311C87.3591 11.7006 84.3083 8.63031 80.57 8.63031L46.793 8.62893ZM49.6914 68.2459L66.5504 51.0619C67.398 50.3158 67.9332 49.2181 67.9332 47.9994C67.9332 46.7807 67.398 45.683 66.5504 44.9408L49.6914 27.7568C48.1133 26.1591 45.543 26.1357 43.9492 27.71C42.3515 29.2803 42.3281 31.8545 43.9062 33.4522L54.1792 43.9322L4.5742 43.9283C2.3281 43.9283 0.5 45.7525 0.5 47.9986C0.5 50.2486 2.3281 52.0689 4.5742 52.0689H54.1762L43.9032 62.5459C42.3251 64.1436 42.3524 66.7138 43.9462 68.288C45.5439 69.8583 48.1103 69.8389 49.6884 68.2412L49.6914 68.2459Z" fill="white"/>
-                                </svg>
-
-                                <h2 class="off-login m-0 montserrat-medium font-14 text-start" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#loginModal">Login</h2>
-                            </div>
-                        @else
-                            @php
-                                $user = Auth::guard('client')->user();
-                                $defaultImage = $user && $user->path_image ? url($user->path_image) : '';
-                            @endphp
-                            <div class="image-profile">
-                                <picture>
-                                    <source srcset="{{ isset($defaultImage) && $defaultImage <> null ?$defaultImage:asset('build/client/images/user.jpg') }}" type="image/svg+xml">
-                                    <img src="{{ isset($defaultImage) && $defaultImage <> null ?$defaultImage:asset('build/client/images/user.jpg') }}"
-                                        alt="Imagem de Login"
-                                        class="img-fluid rounded-circle">
-                                </picture>
-                            </div>
-                            <div class="d-flex flex-column align-items-start gap-1">
-                                <div class="d-flex justify-content-start align-items-center gap-2 lh-0">
-                                    <h2 class="loginOn m-0 montserrat-medium font-14 text-start">Bem vindo,</h2>   
-                                    <h3 class="m-0 montserrat-medium font-14 text-start">{{$names = collect(explode(' ', Auth::guard('client')->user()->name))->slice(0, 1)->implode(' ')}}!</h3>      
-                                    <a class="nav-link waves-effect waves-light" href="#" data-bs-toggle="modal" data-bs-target="#editClientModal-{{Auth::guard('client')->user()->id}}">
-                                        <i class="bi bi-gear font-18"></i>
-                                    </a>                 
-                                </div>  
-                                <a href="{{route('client.user.logout')}}" class="d-flex justify-content-start align-items-center gap-2 text-decoration-none lh-0">
-                                    <i class="bi bi-box-arrow-right font-18"></i>
-                                    <h4 class="montserrat-medium font-12 m-0">Sair</h4>
-                                </a>                                               
-                            </div>
-                        @endif
-                    </div>
+                    {{-- Aqui vai o codigo de login --}}
 
                     <!-- Botão menu sandwich -->
                     <button id="menu-toggle" class="d-lg-none btn btn-link p-0 ms-2" aria-label="Abrir menu" type="button">
@@ -578,14 +539,20 @@
 
     <footer id="footer" class="footer position-relative dark-background-medium">
         <div class="container pt-5 pb-3">
-            <div class="sitemap mt-2 mb-5 row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-3 justify-content-between align-items-center">
+            <div class="sitemap mt-2 mb-5 row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-3 justify-content-between align-items-baseline">
                 <div class=logo>
                     <img src="{{asset('build/client/images/logo.svg')}}" alt="WHI - Web de Alta Inovação" title="WHI - Web de Alta Inovação" loading=lazy>
                 </div>
-                <ul class="list-unstyled text-start">
-                    <li class="montserrat-regular font-16 mb-3"><a href="{{route('blog')}}">Blog</a></li>
-                    <li class="montserrat-regular font-16 mb-3"><a href="{{route('noticies')}}">Editais</a></li>
-                    <li class="montserrat-regular font-16 mb-3"><a href="{{route('contact')}}">Contato</a></li>
+                <ul class="list-unstyled text-start mt-0">
+                    <li class="montserrat-regular font-16 mb-3"><a href="{{route('index')}}#hero" class="nav-link montserrat-regular font-16 mb-3">Home</a></li>
+                    <li><a href="{{route('index')}}#about" class="nav-link montserrat-regular font-16 mb-3">Sobre</a></li>
+                    <li><a href="{{route('index')}}#plans" class="nav-link montserrat-regular font-16 mb-3">Planos</a></li>
+                </ul>
+                <ul class="list-unstyled text-start">                    
+                    <li><a href="{{route('index')}}#products" class="nav-link montserrat-regular font-16 mb-3">Produtos</a></li>
+                    <li><a href="{{route('index')}}#depoiment" class="nav-link montserrat-regular font-16 mb-3">Depoimentos</a></li>
+                    <li class="montserrat-regular font-16 mb-3"><a href="{{route('index')}}#contact" class="nav-link montserrat-regular font-16 mb-3">Contato</a></li>
+                    <li><a href="#" class="nav-link montserrat-regular font-16 mb-3">Política de privacidade</a></li>
                 </ul>
                 <div class="d-flex justify-content-end flex-column w-auto montserrat-semiBold">
                     <span>
@@ -650,18 +617,21 @@
         </div>
     </footer>
     <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
     
     <script src="https://cdn.ckeditor.com/4.22.1/basic/ckeditor.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-    <script src="{{ asset('build/admin/js/libs/sweetalert2/sweetalert2.min.js') }}"></script>
-    <script src="{{ asset('build/admin/js/libs/dropzone/min/dropzone.min.js') }}"></script>
-    <script src="{{ asset('build/admin/js/libs/dropify/js/dropify.min.js') }}"></script>
-    <script src="{{ asset('build/admin/js/pages/form-fileuploads.init.js') }}"></script>
     <script src="{{ asset('build/client/css/bootstrap/js/bootstrap.bundle.js') }}"></script>
-    <script src="{{ asset('build/client/css/typed.js/typed.umd.js') }}"></script>
     <script src="{{ asset('build/client/js/default.js') }}"></script>
+    <script defer>
+        // Ativa a classe manualmente com base na rolagem ou clique
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function () {
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
+            });
+        });
+    </script>
 
 
     {{-- Modais alert --}}

@@ -57,7 +57,7 @@ public function store(Request $request)
             Storage::putFileAs($this->pathUpload, $file, $filename);
         } else {
             $image = $manager->read($file)
-                ->resize(1440, null, function ($constraint) {
+                ->resize(null, null, function ($constraint) {
                     $constraint->aspectRatio();
                     $constraint->upsize();
                 })
@@ -80,7 +80,7 @@ public function store(Request $request)
             Storage::putFileAs($this->pathUpload, $fileMobile, $filenameMobile);
         } else {
             $imageMobile = $manager->read($fileMobile)
-                ->resize(475, null, function ($constraint) {
+                ->resize(null, null, function ($constraint) {
                     $constraint->aspectRatio();
                     $constraint->upsize();
                 })
@@ -154,7 +154,7 @@ public function update(Request $request, Slide $slide)
             Storage::putFileAs($this->pathUpload, $fileMobile, $filenameMobile);
         } else {
             $imageMobile = $manager->read($fileMobile)
-                ->resize(475, null, function ($constraint) {
+                ->resize(null, null, function ($constraint) {
                     $constraint->aspectRatio();
                     $constraint->upsize();
                 })
@@ -164,7 +164,7 @@ public function update(Request $request, Slide $slide)
             Storage::put($this->pathUpload . $filenameMobile, $imageMobile);
         }
 
-        Storage::delete($slide->path_image_mobile);
+        Storage::delete(isset($slide->path_image_mobile)?$slide->path_image_mobile:'');
         $data['path_image_mobile'] = $this->pathUpload . $filenameMobile;
     }
 

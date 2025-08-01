@@ -1,12 +1,21 @@
 @extends('client.core.client')
 @section('content')
-<section id=hero class="hero position-relative d-flex flex-column section dark-background overflow-hidden">
-    @foreach ($slides as $slide)
-        <picture>
-            <source srcset="{{ asset('storage/' . $slide->path_image_mobile) }}" media="(max-width: 885px)">
-            <img src="{{ asset('storage/' . $slide->path_image) }}" alt="Banner Hero" title="Banner Hero" class="image-hero">
-        </picture>
-    @endforeach
+<section id="hero" class="hero position-relative d-flex flex-column section dark-background overflow-hidden">
+    <div class="swiper hero-swiper">
+        <div class="swiper-wrapper">
+            @foreach ($slides as $slide)
+                <div class="swiper-slide">
+                    <picture>
+                        <source srcset="{{ asset('storage/' . $slide->path_image_mobile) }}" media="(max-width: 885px)">
+                        <img src="{{ asset('storage/' . $slide->path_image) }}" alt="Banner Hero" title="Banner Hero" class="image-hero w-100">
+                    </picture>
+                </div>
+            @endforeach
+        </div>
+
+        <!-- Paginação opcional -->
+        <div class="swiper-pagination"></div>
+    </div>
 </section>
 
 <section id="topics">

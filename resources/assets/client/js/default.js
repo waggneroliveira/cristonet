@@ -31,6 +31,14 @@
             behavior: "smooth"
         })
     })), document.addEventListener("scroll", (function() {
+            const header = document.getElementById("header");
+            if (!header) return;
+
+            if (window.scrollY > 50) {
+                header.classList.add("bg-scroll");
+            } else {
+                header.classList.remove("bg-scroll");
+            }
         n && (window.scrollY > 100 ? n.classList.add("active") : n.classList.remove("active"))
     })), document.querySelectorAll(".skills-animation").forEach((e => {
         new Waypoint({
@@ -244,19 +252,41 @@
         }
     });
 
-    $("body").on("click", ".dropify-clear", function () {
-        var nameInput = $(this).parent().find("input:first").attr("name");
-        $(this).parent().find(`input[name=delete_${nameInput}]`).remove();
-        $(this)
-            .parent()
-            .find(`.preview-image`)
-            .css("background-image", "url()");
-        $(this).parent().find(`.content-area-image-crop`).show();
-        $(this)
-            .parent()
-            .append(
-                `<input type="hidden" name="delete_${nameInput}" value="${nameInput}" />`
-            );
+    if (typeof jQuery !== "undefined") {
+        $("body").on("click", ".dropify-clear", function () {
+            var nameInput = $(this).parent().find("input:first").attr("name");
+            $(this).parent().find(`input[name=delete_${nameInput}]`).remove();
+            $(this)
+                .parent()
+                .find(`.preview-image`)
+                .css("background-image", "url()");
+            $(this).parent().find(`.content-area-image-crop`).show();
+            $(this)
+                .parent()
+                .append(
+                    `<input type="hidden" name="delete_${nameInput}" value="${nameInput}" />`
+                );
+        });
+    }
+
+    window.addEventListener("load", function () {
+        new Swiper(".hero-swiper", {
+            loop: false,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            effect: "fade",
+            speed: 800
+        });
     });
 
 }();
