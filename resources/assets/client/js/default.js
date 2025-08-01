@@ -269,24 +269,30 @@
         });
     }
 
-    window.addEventListener("load", function () {
-        new Swiper(".hero-swiper", {
+window.addEventListener("load", function () {
+    const heroSwiperEl = document.querySelector(".hero-swiper");
+
+    if (heroSwiperEl) {
+        new Swiper(heroSwiperEl, {
             loop: false,
+            effect: "fade",
+            speed: 800,
             autoplay: {
                 delay: 5000,
                 disableOnInteraction: false,
             },
             pagination: {
-                el: ".swiper-pagination",
+                el: heroSwiperEl.querySelector(".swiper-pagination"),
                 clickable: true,
             },
             navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
-            effect: "fade",
-            speed: 800
+                nextEl: heroSwiperEl.querySelector(".swiper-button-next"),
+                prevEl: heroSwiperEl.querySelector(".swiper-button-prev"),
+            }
         });
-    });
+    }
+});
+
+
 
 }();

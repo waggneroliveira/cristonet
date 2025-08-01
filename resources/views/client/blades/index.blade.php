@@ -12,7 +12,6 @@
                 </div>
             @endforeach
         </div>
-
         <!-- Paginação opcional -->
         <div class="swiper-pagination"></div>
     </div>
