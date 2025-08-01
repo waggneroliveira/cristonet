@@ -1,10 +1,17 @@
- 
- .bg-scroll {
-    background-color: rgba(0, 0, 0, 0.8); /* Exemplo de cor */
-    transition: background-color 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* opcional */
-}
 
+.w-100.py-3.py-sm-5.bg-transparent{
+    transition: all 0.3s ease;
+}
+.bg-scroll {
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+.bg-scroll .w-100.py-3.py-sm-5.bg-transparent{
+    padding: 20px 0 !important;
+    transition: all 0.3s ease;
+}
  .scroll-top {
      position: fixed;
      visibility: hidden;

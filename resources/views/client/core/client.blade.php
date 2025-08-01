@@ -119,9 +119,9 @@
 <body>
     <div id="organization" hidden></div>
     <header id="header" class="w-100 d-flex flex-column position p-0 mt-0">   
-        <div class="w-100 py-3 py-sm-3 bg-transparent">
-            <div class="container m-auto d-flex align-items-center justify-content-between flex-row">
-                <div class="logo-img px-3 py-2 rounded-2 d-flex justify-content-start align-items-center">
+        <div class="w-100 py-3 py-sm-5 bg-transparent">
+            <div class="container m-auto p-0 d-flex align-items-center justify-content-between flex-row">
+                <div class="logo-img rounded-2 d-flex justify-content-start align-items-center">
                     <a href="{{route('blog')}}">
                         <img src="{{asset('build/client/images/logo.svg')}}" alt="Instituto Baiano de Medicina Desportivao" title="Instituto Baiano de Medicina Desportivao" class="img-fluid">
                     </a>
