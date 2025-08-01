@@ -950,9 +950,11 @@
     width: 40px;
     height: 8px;
     border-radius: 3px;
+    transition: all 0.3s ease;
 }
 .swiper-pagination-bullet-active{
     background-color: var(--background-red) !important;
+    transition: all 0.3s ease;
 }
  .hero {
      width: 100%;
