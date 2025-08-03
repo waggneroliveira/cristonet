@@ -30,6 +30,7 @@ use App\Http\Controllers\StackSessionTitleController;
 use App\Http\Controllers\Auth\PasswordEmailController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\PopUpController;
+use App\Http\Controllers\TopicController;
 
 Route::get('painel/', function () {
     return redirect()->route('admin.dashboard.painel');
@@ -170,6 +171,15 @@ Route::prefix('painel/')->group(function () {
         ->name('admin.dashboard.user.destroySelected');
         Route::post('usuario/sorting', [UserController::class, 'sorting'])
         ->name('admin.dashboard.user.sorting');
+
+        //TOPICOS
+        Route::resource('topico', TopicController::class)
+        ->names('admin.dashboard.topic')
+        ->parameters(['topico'=>'topic']);
+        Route::post('topico/delete', [TopicController::class, 'destroySelected'])
+        ->name('admin.dashboard.topic.destroySelected');
+        Route::post('topico/sorting', [TopicController::class, 'sorting'])
+        ->name('admin.dashboard.topic.sorting');
         
         //DESATIVAR COMENTARIO
         Route::put('/desativa-comentario/{comment}', [CommentController::class, 'desactiveComment'])

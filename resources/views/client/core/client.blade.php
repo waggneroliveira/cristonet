@@ -541,7 +541,7 @@
         <div class="container pt-5 pb-3">
             <div class="sitemap mt-2 mb-5 row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-3 justify-content-between align-items-baseline">
                 <div class=logo>
-                    <img src="{{asset('build/client/images/logo.svg')}}" alt="WHI - Web de Alta Inovação" title="WHI - Web de Alta Inovação" loading=lazy>
+                    <img src="{{asset('build/client/images/logo.svg')}}" alt="WHI - Web de Alta Inovação" title="WHI - Web de Alta Inovação" loading="lazy" class="w-100">
                 </div>
                 <ul class="list-unstyled text-start mt-0">
                     <li class="montserrat-regular font-16 mb-3"><a href="{{route('index')}}#hero" class="nav-link montserrat-regular font-16 mb-3">Home</a></li>

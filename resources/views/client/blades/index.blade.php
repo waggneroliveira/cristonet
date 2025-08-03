@@ -20,19 +20,22 @@
 <section id="topics">
     <div class="col-12 topics">
         <div class="row text-white text-center">
-            <div class="col-md-4 grey-background p-4 d-flex justify-content-between align-items-center">
-                <div class="mb-3">
-                    <i class="bi bi-stars" style="font-size: 2rem;"></i>
+            @foreach ($topics as $topic)                
+                <div class="col-md-4 grey-background p-4 d-flex justify-content-between align-items-center">
+                    <div class="mb-3">
+                        {{-- <i class="bi bi-stars" style="font-size: 2rem;"></i> --}}
+                        <img src="{{asset('storage/'.$topic->path_image)}}" alt="{{$topic->title}}">
+                    </div>
+                    <div class="description text-start col-10">
+                        <h5 class="montserrat-bold font-25">{{$topic->title}}</h5>
+                        <p class="mb-0 montserrat-regular font-15 text-white">
+                            {{$topic->description}}
+                        </p>
+                    </div>
                 </div>
-                <div class="description text-start col-10">
-                    <h5 class="montserrat-bold font-25">Experiência</h5>
-                    <p class="mb-0 montserrat-regular font-15 text-white">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
-                    </p>
-                </div>
-            </div>
+            @endforeach
 
-            <div class="col-md-4 bg-secondary p-4 d-flex justify-content-between align-items-center">
+            {{-- <div class="col-md-4 bg-secondary p-4 d-flex justify-content-between align-items-center">
                 <div class="mb-3">
                     <i class="bi bi-patch-check" style="font-size: 2rem;"></i>
                 </div>
@@ -54,7 +57,7 @@
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
                     </p>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </section>
