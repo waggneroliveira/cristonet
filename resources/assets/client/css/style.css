@@ -188,6 +188,10 @@
  /* plan */
 
 /* Aboute */
+.partner-card img{
+    height: 102px;
+    width: auto;
+}
 .about .description p{
     font-size: 0.938rem;
     font-family: "Montserrat", sans-serif;

@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('partners', function (Blueprint $table) {
             $table->id();
+            $table->string('path_image')->nullable();
+            $table->string('link')->nullable();
+            $table->boolean('active')->default(0);
+            $table->integer('sorting')->default(0);
             $table->timestamps();
         });
     }

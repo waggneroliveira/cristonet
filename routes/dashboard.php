@@ -32,6 +32,7 @@ use App\Http\Controllers\AuditActivityController;
 use App\Http\Controllers\StackSessionTitleController;
 use App\Http\Controllers\Auth\PasswordEmailController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\PartnerController;
 
 Route::get('painel/', function () {
     return redirect()->route('admin.dashboard.painel');
@@ -172,6 +173,14 @@ Route::prefix('painel/')->group(function () {
         ->name('admin.dashboard.user.destroySelected');
         Route::post('usuario/sorting', [UserController::class, 'sorting'])
         ->name('admin.dashboard.user.sorting');
+        //PARCEIROS
+        Route::resource('parceiros', PartnerController::class)
+        ->names('admin.dashboard.partner')
+        ->parameters(['parceiros'=>'partner']);
+        Route::post('parceiros/delete', [PartnerController::class, 'destroySelected'])
+        ->name('admin.dashboard.partner.destroySelected');
+        Route::post('parceiros/sorting', [PartnerController::class, 'sorting'])
+        ->name('admin.dashboard.partner.sorting');
         //ABOUT
         Route::resource('sobre', AboutController::class)
         ->names('admin.dashboard.about')

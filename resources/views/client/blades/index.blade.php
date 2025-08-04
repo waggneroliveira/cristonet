@@ -38,18 +38,18 @@
         </div>
     </section>
 @endif
-@if (!empty($about))
+@if (!empty($about) || !empty($partners))
     <section id="about" class="position-relative">
         <div class="container">
-            <div class="row d-flex justify-content-between align-items-start about flex-wrap w-100 py-5">
+            <div class="row d-flex justify-content-between align-items-start about flex-wrap w-100 pt-5">
                 <div class="col-12 col-lg-6">
                     <h1 class="d-flex align-items-start gap-2 montserrat-semiBold font-28 text-black before text-uppercase">{{$about->title}}</h1>
             
-                    <div class="description mt-3">{!!$about->description!!}</div>
+                    <div class="description mt-4">{!!$about->description!!}</div>
                     
                     @if ($about->link)                        
                         <div class="call-to-action mt-4">
-                            <a href="{{$about->link}}" target="_blank" rel="noopener noreferrer" class="btn background-red rounded-5 px-3 py-2 text-white montserrat-semiBold font-15">{{$about->title_button}}</a>
+                            <a href="{{$about->link}}" target="_blank" rel="noopener noreferrer" class="btn background-red rounded-5 px-4 py-2 text-white montserrat-semiBold font-15">{{$about->title_button}}</a>
                         </div>
                     @endif
                 </div>
@@ -60,19 +60,21 @@
                     </div>
                 </div>            
             </div>
-            <div class="partners">
-                <div class="container py-5">
-                    <div class="row g-3 justify-content-center">
-                        @for ($p = 0; $p < 6; $p++)                        
-                            <div class="col-6 col-sm-4 col-md-2">
-                                <div class="partner-card border rounded-2 d-flex justify-content-center align-items-center">
-                                    <img src="{{asset('build/client/images/petrobras.png')}}" alt="Petrobras" loading="lazy"/>                            
+            @if (!empty($partners))
+                <div class="partners">
+                    <div class="container py-5">
+                        <div class="row g-3 justify-content-start">
+                            @foreach ($partners as $partner)                        
+                                <div class="col-6 col-sm-4 col-md-2">
+                                    <div class="partner-card border rounded-2 d-flex justify-content-center align-items-center">
+                                        <img src="{{asset('storage/'.$partner->path_image)}}" alt="Logo dos parceiro" loading="lazy"/>                            
+                                    </div>
                                 </div>
-                            </div>
-                        @endfor
+                            @endforeach
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endif
         </div>
         <img src="{{asset('build/client/images/firu.webp')}}" alt="Firlua about" class="firula-about position-absolute d-none d-sm-block" loading="lazy">
     </section>
