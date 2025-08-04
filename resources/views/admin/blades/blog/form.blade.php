@@ -33,7 +33,7 @@
             {!!isset($blog)?$blog->text:''!!}
         </textarea>
     </div>
-        <div class="mb-3">
+    <div class="mb-3">
         <div class="form-check">
             <input name="active" {{ isset($blog->active) && $blog->active == 1 ? 'checked' : '' }} type="checkbox" class="form-check-input" id="invalidCheck{{isset($blog->id)?$blog->id:''}}" />
             <label class="form-check-label" for="invalidCheck">{{__('dashboard.active')}}?</label>

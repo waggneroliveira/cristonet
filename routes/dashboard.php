@@ -9,8 +9,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\PopUpController;
 use App\Http\Controllers\SlideController;
 use App\Http\Controllers\StackController;
+use App\Http\Controllers\TopicController;
 use App\Repositories\AuditCountRepository;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
@@ -29,8 +32,6 @@ use App\Http\Controllers\AuditActivityController;
 use App\Http\Controllers\StackSessionTitleController;
 use App\Http\Controllers\Auth\PasswordEmailController;
 use App\Http\Controllers\Auth\ResetPasswordController;
-use App\Http\Controllers\PopUpController;
-use App\Http\Controllers\TopicController;
 
 Route::get('painel/', function () {
     return redirect()->route('admin.dashboard.painel');
@@ -171,7 +172,10 @@ Route::prefix('painel/')->group(function () {
         ->name('admin.dashboard.user.destroySelected');
         Route::post('usuario/sorting', [UserController::class, 'sorting'])
         ->name('admin.dashboard.user.sorting');
-
+        //ABOUT
+        Route::resource('sobre', AboutController::class)
+        ->names('admin.dashboard.about')
+        ->parameters(['sobre'=>'about']);  
         //TOPICOS
         Route::resource('topico', TopicController::class)
         ->names('admin.dashboard.topic')

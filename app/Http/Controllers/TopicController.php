@@ -127,7 +127,7 @@ class TopicController extends Controller
         return redirect()->back();
     }
 
-     public function destroySelected(Request $request)
+    public function destroySelected(Request $request)
     {    
         foreach ($request->deleteAll as $topicId) {
             $topic = Topic::find($topicId);

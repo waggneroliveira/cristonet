@@ -188,6 +188,13 @@
  /* plan */
 
 /* Aboute */
+.about .description p{
+    font-size: 0.938rem;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    line-height: 26px;
+}
  .about-image{
     max-width: 505px;
     max-height: 516px;

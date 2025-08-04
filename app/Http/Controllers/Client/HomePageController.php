@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Models\About;
 use App\Models\Slide;
 use App\Models\Stack;
 use App\Models\Topic;
@@ -15,7 +16,8 @@ class HomePageController extends Controller
     {
         $slides = Slide::active()->sorting()->get();
         $topics = Topic::active()->sorting()->get();
+        $about = About::active()->first();
 
-        return view('client.blades.index', compact('slides', 'topics'));
+        return view('client.blades.index', compact('slides', 'topics', 'about'));
     }
 }

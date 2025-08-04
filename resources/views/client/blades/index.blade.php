@@ -16,63 +16,67 @@
         <div class="swiper-pagination"></div>
     </div>
 </section>
-
-<section id="topics">
-    <div class="col-12 topics">
-        <div class="row text-white text-center">
-            @foreach ($topics as $topic)                
-                <div class="box-topic col-md-4 grey-background p-4 d-flex justify-content-between align-items-center">
-                    <div class="mb-3">
-                        {{-- <i class="bi bi-stars" style="font-size: 2rem;"></i> --}}
-                        <img src="{{asset('storage/'.$topic->path_image)}}" alt="{{$topic->title}}">
-                    </div>
-                    <div class="description text-start col-10">
-                        <h5 class="montserrat-bold font-25">{{$topic->title}}</h5>
-                        <p class="mb-0 montserrat-regular font-15 text-white">
-                            {{$topic->description}}
-                        </p>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    </div>
-</section>
-
-<section id="about" class="position-relative">
-    <div class="container">
-        <div class="row d-flex justify-content-between align-items-start about flex-wrap w-100 py-5">
-            <div class="col-12 col-lg-6">
-                <h1 class="d-flex align-items-start gap-2 montserrat-semiBold font-28 text-black before text-uppercase">SOMOS A PROVEDORA PARA UM NOVO CONCEITO DE INTERNET</h1>
-        
-                <p class="montserrat-regular font-15 mt-3">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centurie Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centurie s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centurie</p>
-                
-                <div class="call-to-action mt-4">
-                    <a href="http://" target="_blank" rel="noopener noreferrer" class="btn background-red rounded-5 px-3 py-2 text-white montserrat-semiBold font-15">Confira aqui</a>
-                </div>
-            </div>
-
-            <div class="col-12 col-lg-6">
-                <div class="image d-flex justify-content-end">
-                    <img src="{{asset('build/client/images/woman.svg')}}" alt="About" class="w-100 h-100 about-image d-none d-sm-block" loading="lazy">
-                </div>
-            </div>            
-        </div>
-        <div class="partners">
-            <div class="container py-5">
-                <div class="row g-3 justify-content-center">
-                    @for ($p = 0; $p < 6; $p++)                        
-                        <div class="col-6 col-sm-4 col-md-2">
-                            <div class="partner-card border rounded-2 d-flex justify-content-center align-items-center">
-                                <img src="{{asset('build/client/images/petrobras.png')}}" alt="Petrobras" loading="lazy"/>                            
-                            </div>
+@if (!empty($topics))
+    <section id="topics">
+        <div class="col-12 topics">
+            <div class="row text-white text-center">
+                @foreach ($topics as $topic)                
+                    <div class="box-topic col-md-4 grey-background p-4 d-flex justify-content-between align-items-center">
+                        <div class="mb-3">
+                            {{-- <i class="bi bi-stars" style="font-size: 2rem;"></i> --}}
+                            <img src="{{asset('storage/'.$topic->path_image)}}" alt="{{$topic->title}}">
                         </div>
-                    @endfor
+                        <div class="description text-start col-10">
+                            <h5 class="montserrat-bold font-25">{{$topic->title}}</h5>
+                            <p class="mb-0 montserrat-regular font-15 text-white">
+                                {{$topic->description}}
+                            </p>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+@endif
+@if (!empty($about))
+    <section id="about" class="position-relative">
+        <div class="container">
+            <div class="row d-flex justify-content-between align-items-start about flex-wrap w-100 py-5">
+                <div class="col-12 col-lg-6">
+                    <h1 class="d-flex align-items-start gap-2 montserrat-semiBold font-28 text-black before text-uppercase">{{$about->title}}</h1>
+            
+                    <div class="description mt-3">{!!$about->description!!}</div>
+                    
+                    @if ($about->link)                        
+                        <div class="call-to-action mt-4">
+                            <a href="{{$about->link}}" target="_blank" rel="noopener noreferrer" class="btn background-red rounded-5 px-3 py-2 text-white montserrat-semiBold font-15">{{$about->title_button}}</a>
+                        </div>
+                    @endif
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="image d-flex justify-content-end">
+                        <img src="{{asset('storage/'.$about->path_image)}}" alt="About" class="w-100 h-100 about-image d-none d-sm-block" loading="lazy">
+                    </div>
+                </div>            
+            </div>
+            <div class="partners">
+                <div class="container py-5">
+                    <div class="row g-3 justify-content-center">
+                        @for ($p = 0; $p < 6; $p++)                        
+                            <div class="col-6 col-sm-4 col-md-2">
+                                <div class="partner-card border rounded-2 d-flex justify-content-center align-items-center">
+                                    <img src="{{asset('build/client/images/petrobras.png')}}" alt="Petrobras" loading="lazy"/>                            
+                                </div>
+                            </div>
+                        @endfor
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <img src="{{asset('build/client/images/firu.webp')}}" alt="Firlua about" class="firula-about position-absolute d-none d-sm-block" loading="lazy">
-</section>
+        <img src="{{asset('build/client/images/firu.webp')}}" alt="Firlua about" class="firula-about position-absolute d-none d-sm-block" loading="lazy">
+    </section>
+@endif
 
 <section id="plans" class="background-plan py-5 plan">
     <div class="content m-auto me-0 justify-content-end d-flex flex-wrap flex-column flex-md-row">
