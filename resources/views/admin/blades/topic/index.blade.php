@@ -37,29 +37,31 @@
                                         @endif
                                     </div>
                                     <div class="col-6 d-flex justify-content-end">
-                                        @if (Auth::user()->hasRole('Super') || Auth::user()->can('usuario.tornar usuario master') || Auth::user()->can(['topico.visualizar', 'topico.criar']))
-                                            <button type="button" class="btn btn-primary text-black waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#topic-create"><i class="mdi mdi-plus-circle me-1"></i> {{__('dashboard.btn_create')}}</button>
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="topic-create" tabindex="-1" role="dialog" aria-hidden="true">
-                                                <div class="topic modal-dialog modal-dialog-centered">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header bg-light">
-                                                            <h4 class="modal-title" id="myCenterModalLabel">{{__('dashboard.btn_create')}}</h4>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
-                                                        </div>
-                                                        <div class="modal-body p-4">
-                                                            <form action="{{route('admin.dashboard.topic.store')}}" method="POST" enctype="multipart/form-data">
-                                                                @csrf
-                                                                @include('admin.blades.topic.form', ['textareaId' => 'textarea-create'])  
-                                                                <div class="d-flex justify-content-end gap-2">
-                                                                    <button type="button" class="btn btn-danger waves-effect waves-light" data-bs-dismiss="modal">{{__('dashboard.btn_cancel')}}</button>
-                                                                    <button type="submit" class="btn btn-primary text-black waves-effect waves-light">{{__('dashboard.btn_create')}}</button>
-                                                                </div>                                                 
-                                                            </form>
-                                                        </div>
-                                                    </div><!-- /.modal-content -->
-                                                </div><!-- /.modal-dialog -->
-                                            </div><!-- /.modal -->
+                                        @if ($topics->count() < 3)                                            
+                                            @if (Auth::user()->hasRole('Super') || Auth::user()->can('usuario.tornar usuario master') || Auth::user()->can(['topico.visualizar', 'topico.criar']))
+                                                <button type="button" class="btn btn-primary text-black waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#topic-create"><i class="mdi mdi-plus-circle me-1"></i> {{__('dashboard.btn_create')}}</button>
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="topic-create" tabindex="-1" role="dialog" aria-hidden="true">
+                                                    <div class="topic modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header bg-light">
+                                                                <h4 class="modal-title" id="myCenterModalLabel">{{__('dashboard.btn_create')}}</h4>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                                                            </div>
+                                                            <div class="modal-body p-4">
+                                                                <form action="{{route('admin.dashboard.topic.store')}}" method="POST" enctype="multipart/form-data">
+                                                                    @csrf
+                                                                    @include('admin.blades.topic.form', ['textareaId' => 'textarea-create'])  
+                                                                    <div class="d-flex justify-content-end gap-2">
+                                                                        <button type="button" class="btn btn-danger waves-effect waves-light" data-bs-dismiss="modal">{{__('dashboard.btn_cancel')}}</button>
+                                                                        <button type="submit" class="btn btn-primary text-black waves-effect waves-light">{{__('dashboard.btn_create')}}</button>
+                                                                    </div>                                                 
+                                                                </form>
+                                                            </div>
+                                                        </div><!-- /.modal-content -->
+                                                    </div><!-- /.modal-dialog -->
+                                                </div><!-- /.modal -->
+                                            @endif
                                         @endif
                                     </div>
                                 </div>
@@ -90,7 +92,7 @@
                                                 <td>
                                                    {!!isset($topic->title)?$topic->title:'-'!!}
                                                 </td>
-                                                <td class="table-topic text-center">
+                                                <td class="table-topic text-start">
                                                     @if ($topic->path_image)
                                                         <img src="{{ asset('storage/'.$topic->path_image) }}" alt="table-topic" class="me-2 rounded-circle" style="width: 40px; height: 40px;">
                                                         @else      

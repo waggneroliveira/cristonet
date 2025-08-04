@@ -122,6 +122,18 @@
     background: var(--background-color-contact);
 }
 
+/* topic */
+.box-topic img{
+    width: 57px;
+}
+.box-topic:nth-of-type(2){
+    background: #3B3B3B;
+}
+.box-topic:nth-of-type(3){
+    background: #2C2C2C;
+}
+/* topic */
+
 /* depoiment */
 .depoiment .title.before:before{
     vertical-align: middle;
