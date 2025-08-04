@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Partner;
+use Illuminate\Support\Str;
+use App\Models\PlanCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -13,14 +14,14 @@ use Illuminate\Support\Facades\Response;
 use RealRashid\SweetAlert\Facades\Alert;
 use Intervention\Image\Drivers\Gd\Driver as GdDriver;
 
-class PartnerController extends Controller
+class PlanCategoryController extends Controller
 {
-    protected $pathUpload = 'admin/uploads/images/partner/';
+    protected $pathUpload = 'admin/uploads/images/plan-category/';
     public function index()
     {
-        $partners = Partner::sorting()->get();
+        $planCategories = PlanCategory::sorting()->get();
         
-        return view('admin.blades.partner.index', compact('partners'));
+        return view('admin.blades.planCategory.index', compact('planCategories'));
     }
 
     public function store(Request $request)
@@ -55,10 +56,11 @@ class PartnerController extends Controller
         }
 
         $data['active'] = $request->active ? 1 : 0;
+        $data['slug'] = Str::slug($request->title);
 
         try {
             DB::beginTransaction();
-            partner::create($data);
+            PlanCategory::create($data);
             DB::commit();
             session()->flash('success', __('dashboard.response_item_create'));
         } catch (\Exception $e) {
@@ -69,12 +71,12 @@ class PartnerController extends Controller
         return redirect()->back();
     }
 
-    public function update(Request $request, Partner $partner)
+    public function update(Request $request, PlanCategory $planCategory)
     {
         $data = $request->all();
         $manager = new ImageManager(GdDriver::class);
 
-        // partner desktop
+        // PlanCategory desktop
         if ($request->hasFile('path_image')) {
             $file = $request->file('path_image');
             $mime = $file->getMimeType();
@@ -94,20 +96,21 @@ class PartnerController extends Controller
                 Storage::put($this->pathUpload . $filename, $image);
             }
 
-            Storage::delete(isset($partner->path_image)??$partner->path_image);
+            Storage::delete(isset($planCategory->path_image)??$planCategory->path_image);
             $data['path_image'] = $this->pathUpload . $filename;
         }
 
         if (isset($request->delete_path_image)) {
-            Storage::delete(isset($partner->path_image)??$partner->path_image);
+            Storage::delete(isset($planCategory->path_image)??$planCategory->path_image);
             $data['path_image'] = null;
         }
 
         $data['active'] = $request->active ? 1 : 0;
-
+        $data['slug'] = Str::slug($request->title);
+        
         try {
             DB::beginTransaction();
-            $partner->fill($data)->save();
+            $planCategory->fill($data)->save();
             DB::commit();
             session()->flash('success', __('dashboard.response_item_update'));
         } catch (\Exception $e) {
@@ -118,41 +121,41 @@ class PartnerController extends Controller
         return redirect()->back();
     }
 
-    public function destroy(Partner $partner)
+    public function destroy(PlanCategory $planCategory)
     {
-        Storage::delete(isset($partner->path_image)??$partner->path_image);
-        $partner->delete();
+        Storage::delete(isset($planCategory->path_image)??$planCategory->path_image);
+        $planCategory->delete();
         Session::flash('success',__('dashboard.response_item_delete'));
         return redirect()->back();
     }
 
     public function destroySelected(Request $request)
     {    
-        foreach ($request->deleteAll as $partnerId) {
-            $partner = Partner::find($partnerId);
+        foreach ($request->deleteAll as $planCategoryId) {
+            $planCategory = PlanCategory::find($planCategoryId);
     
-            if ($partner) {
+            if ($planCategory) {
                 activity()
                     ->causedBy(Auth::user())
-                    ->performedOn($partner)
+                    ->performedOn($planCategory)
                     ->event('multiple_deleted')
                     ->withProperties([
                         'attributes' => [
-                            'id' => $partnerId,
-                            'path_image' => $partner->path_image,
-                            'link' => $partner->link,
-                            'sorting' => $partner->sorting,
-                            'active' => $partner->active,
+                            'id' => $planCategoryId,
+                            'path_image' => $planCategory->path_image,
+                            'link' => $planCategory->link,
+                            'sorting' => $planCategory->sorting,
+                            'active' => $planCategory->active,
                             'event' => 'multiple_deleted',
                         ]
                     ])
                     ->log('multiple_deleted');
             } else {
-                \Log::warning("Item com ID $partnerId não encontrado.");
+                \Log::warning("Item com ID $planCategoryId não encontrado.");
             }
         }
     
-        $deleted = Partner::whereIn('id', $request->deleteAll)->delete();
+        $deleted = PlanCategory::whereIn('id', $request->deleteAll)->delete();
     
         if ($deleted) {
             return Response::json(['status' => 'success', 'message' => $deleted . ' '.__('dashboard.response_item_delete')]);
@@ -164,27 +167,27 @@ class PartnerController extends Controller
     public function sorting(Request $request)
     {
         foreach($request->arrId as $sorting => $id) {
-            $partner = Partner::find($id);
+            $planCategory = PlanCategory::find($id);
     
-            if ($partner) {
-                $partner->sorting = $sorting;
-                $partner->save();
+            if ($planCategory) {
+                $planCategory->sorting = $sorting;
+                $planCategory->save();
             } else {
                 Log::warning("Item com ID $id não encontrado.");
             }
 
-            if($partner) {
+            if($planCategory) {
                 activity()
                     ->causedBy(Auth::user())
-                    ->performedOn($partner)
+                    ->performedOn($planCategory)
                     ->event('order_updated')
                     ->withProperties([
                         'attributes' => [
                             'id' => $id,
-                            'path_image' => $partner->path_image,
-                            'link' => $partner->link,
-                            'sorting' => $partner->sorting,
-                            'active' => $partner->active,
+                            'path_image' => $planCategory->path_image,
+                            'link' => $planCategory->link,
+                            'sorting' => $planCategory->sorting,
+                            'active' => $planCategory->active,
                             'event' => 'order_updated',
                         ]
                     ])
