@@ -34,6 +34,7 @@ use App\Http\Controllers\Auth\PasswordEmailController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\PlanCategoryController;
+use App\Http\Controllers\PlanController;
 use App\Models\PlanCategory;
 
 Route::get('painel/', function () {
@@ -183,6 +184,14 @@ Route::prefix('painel/')->group(function () {
         ->name('admin.dashboard.planCategory.destroySelected');
         Route::post('categoria-de-plano/sorting', [PlanCategoryController::class, 'sorting'])
         ->name('admin.dashboard.planCategory.sorting');
+        //PLAN
+        Route::resource('planos', PlanController::class)
+        ->parameters(['planos' => 'plan'])
+        ->names('admin.dashboard.plan');
+        Route::post('planos/delete', [PlanController::class, 'destroySelected'])
+        ->name('admin.dashboard.plan.destroySelected');
+        Route::post('planos/sorting', [PlanController::class, 'sorting'])
+        ->name('admin.dashboard.plan.sorting');
         //PARTNER
         Route::resource('parceiros', PartnerController::class)
         ->names('admin.dashboard.partner')
