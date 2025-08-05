@@ -38,7 +38,7 @@
         </div>
     </section>
 @endif
-@if (!empty($about) || !empty($partners))
+@if (!empty($about) && !empty($partners))
     <section id="about" class="position-relative">
         <div class="container">
             <div class="row d-flex justify-content-between align-items-start about flex-wrap w-100 pt-5">
@@ -83,125 +83,118 @@
 <section id="plans" class="background-plan py-5 plan">
     <div class="content m-auto me-0 justify-content-end d-flex flex-wrap flex-column flex-md-row">
         <aside class="col-12 col-md-4">
-            <div class="w-100">
-                <h2 class="montserrat-medium font-25 text-white">Planos Disponíveis</h2>
-                <h3 class="text-uppercase montserrat-ExtraBold font-35 text-white">PARA VOCÊ</h3>
-            </div>
+            @if (!empty($planSection))
+                <div class="w-100">
+                    <h2 class="montserrat-medium font-25 text-white">{{ $planSection->title }}</h2>
+                    <h3 class="text-uppercase montserrat-ExtraBold font-35 text-white">{{ $planSection->subtitle }}</h3>
+                </div>
+            @endif
             @if (!empty($planCategories))                
                 <ul class="d-flex justify-content-center align-items-start gap-4 flex-column p-0 mt-5 col-12 col-md-6">
                     @foreach ($planCategories as $planCategory)                    
-                        <li class="list-unstyled border-bottom pb-4 col-12">
-                            <a href="" class="montserrat-medium font-15 text-white background-red py-2 px-3 rounded-5 d-flex w-100 justify-content-center gap-3 align-items-center">
-                                <img src="{{asset('storage/' . $planCategory->path_image)}}" alt="Imagem da categoria">
-
-                                {{$planCategory->title}}
-                            </a>
+                        <li class="list-unstyled pb-4 col-12">
+                            <button type="button" 
+                                    class="border-transparent shadow-none border-none montserrat-medium font-15 text-white background-red py-2 px-3 rounded-5 d-flex w-100 justify-content-center gap-3 align-items-center btn-filter-category" 
+                                    data-id="{{ $planCategory->id }}">
+                                <img src="{{ asset('storage/' . $planCategory->path_image) }}" alt="Imagem da categoria">
+                                {{ $planCategory->title }}
+                            </button>
                         </li>
                     @endforeach
                 </ul>
             @endif
-            <div class="obs mt-4 col-12 col-md-8">
-                <p class="montserrat-regular font-15 text-white">
-                    *Os planos poderão ser reajustados no período de 12 meses (CONSUMIDOR PESSOA FÍSICA), conforme contrato e norma da ANATEL.
-                    <br><br>
-                    *Consulte viabilidade para o seu endereço.
-                    <br><br>
-                    *Adicional disponível apenas para clientes Cristonet
-                </p>
-            </div>
+            @if (!empty($planSection))                
+                <div class="obs mt-4 col-12 col-md-8">
+                    <div class="description">
+                        {!! $planSection->text !!}
+                    </div>
+                </div>
+            @endif
         </aside>
-        <div class="col-12 col-md-7">
-            <div class="swiper init-swiper" style="padding: 0 0 35px 0">
-                <script type=application/json class=swiper-config>
-                    {
-                        "speed": 500,
-                        "slidesPerView": 3.5,
-                        "slidesPerGroup": 1,
-                        "centeredSlides": false,
-                        "initialSlide": 0,
-                        "pagination": {
-                            "el": ".swiper-pagination",
-                            "type": "bullets",
-                            "clickable": true
-                        },
-                        "navigation": {
-                            "nextEl": ".swiper-button-next",
-                            "prevEl": ".swiper-button-prev"
-                        },
-                        "breakpoints": {
-                            "320": {
-                                "slidesPerView": 1.5,
-                                "spaceBetween": 5
+        @if (!empty($plans))
+            <div class="col-12 col-md-7">
+                <div class="swiper init-swiper" style="padding: 0 0 35px 0">
+                    <script type=application/json class=swiper-config>
+                        {
+                            "speed": 500,
+                            "slidesPerView": 3.5,
+                            "slidesPerGroup": 1,
+                            "centeredSlides": false,
+                            "initialSlide": 0,
+                            "pagination": {
+                                "el": ".swiper-pagination",
+                                "type": "bullets",
+                                "clickable": true
                             },
-                            "475": {
-                                "slidesPerView": 2,
-                                "spaceBetween": 5
+                            "navigation": {
+                                "nextEl": ".swiper-button-next",
+                                "prevEl": ".swiper-button-prev"
                             },
-                            "631": {
-                                "slidesPerView": 3.2,
-                                "spaceBetween": 5
-                            },
-                            "768": {
-                                "slidesPerView": 3.2,
-                                "spaceBetween": 5
-                            },
-                            "1025": {
-                                "slidesPerView": 3.2,
-                                "spaceBetween": 10
+                            "breakpoints": {
+                                "320": {
+                                    "slidesPerView": 1.5,
+                                    "spaceBetween": 5
+                                },
+                                "475": {
+                                    "slidesPerView": 2,
+                                    "spaceBetween": 5
+                                },
+                                "631": {
+                                    "slidesPerView": 3.2,
+                                    "spaceBetween": 5
+                                },
+                                "768": {
+                                    "slidesPerView": 3.2,
+                                    "spaceBetween": 5
+                                },
+                                "1025": {
+                                    "slidesPerView": 3.2,
+                                    "spaceBetween": 10
+                                }
                             }
                         }
-                    }
-                </script>
+                    </script>
 
-                <div class="swiper-wrapper align-items-center">   
-                    @for ($i = 0; $i < 6; $i++)                        
-                        <div class=swiper-slide>
-                            <div class="card-plan bg-white rounded-3 p-3">
-                                <div class="d-flex justify-content-between align-items-baseline">
-                                    <div class="title">
-                                        <h4 class="montserrat-medium text-black font-18 mb-1">Plano</h4>
-                                        <h5 class="subtitle-plan montserrat-bold font-18 mb-0">VIP Ilimitado</h5>
+                    <div id="plans-container" class="swiper-wrapper align-items-baseline">                        
+                        @foreach ($plans as $plan)  
+                            @php
+                                $priceformated = $plan->price;
+                                $price = str_replace('.', ',', $priceformated);
+                            @endphp                      
+                            <div class=swiper-slide>
+                                <div class="card-plan bg-white rounded-3 p-3 w-100">
+                                    <div class="d-flex justify-content-between align-items-baseline">
+                                        <div class="title">
+                                            <h4 class="montserrat-medium text-black font-18 mb-1">{{$plan->title}}</h4>
+                                            <h5 class="subtitle-plan montserrat-bold font-18 mb-0">{{$plan->subtitle}}</h5>
+                                        </div>
+                                        <div class="qtd-mb">
+                                            <span class="subtitle-plan montserrat-bold font-20 lh-sm">{{$plan->bandwidth_limit}}</span>
+                                            <p class="montserrat-medium font-15 text-black mb-0 lh-sm">{{$plan->bandwidth_unit}}</p>
+                                        </div>
                                     </div>
-                                    <div class="qtd-mb">
-                                        <span class="subtitle-plan montserrat-bold font-20 lh-sm">1000</span>
-                                        <p class="montserrat-medium font-15 text-black mb-0 lh-sm">Megas</p>
+                                    <div class="p-0 mt-4 list">
+                                        {!! $plan->description !!}
                                     </div>
-                                </div>
-                                <ul class="p-0 mt-4">
-                                    @for ($j = 0; $j < 4; $j++)                                        
-                                        <li class="list-unstyled border-bottom pb-3 col-12 mb-3">
-                                            <a href="" class="montserrat-medium font-15 text-black">
-                                                <svg width="21" height="19" viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <g clip-path="url(#clip0_137_482)">
-                                                <path d="M11.9764 -0.857526C7.33766 -1.11332 2.40109 0.862206 1.04479 5.73632C-2.49455 18.4554 20.511 20.9476 21.0675 9.33308C20.9648 3.84391 17.5824 -0.54842 11.9764 -0.857526ZM5.79238 14.8688C2.11142 12.6785 0.725338 8.67947 2.30272 4.6575C4.28123 -0.387281 10.9283 -1.84162 15.4201 0.650014C18.6435 2.43806 20.0298 6.03297 20.0965 9.59652C19.7643 16.529 10.7186 17.8001 5.79238 14.8688ZM15.9536 3.9086C16.3199 4.72603 15.3841 5.7192 14.9739 6.40928C13.9924 8.06082 13.0109 9.71235 12.0293 11.3639C11.6822 11.948 11.2964 13.0172 10.5079 13.1272C9.55436 13.2601 8.40475 11.8791 7.76743 11.3774C6.94204 10.7277 4.94741 9.80777 5.33163 8.56939C5.33103 8.56538 5.33395 8.56028 5.33455 8.55586C5.33529 8.55359 5.33526 8.55147 5.336 8.5492C5.33695 8.5463 5.34041 8.54407 5.34159 8.54122C5.34609 8.52941 5.34625 8.51897 5.35915 8.50456C5.90809 7.89101 6.37568 7.15125 7.27456 7.39509C8.07191 7.61139 8.93869 8.65399 9.62028 9.35368C10.2574 8.30181 10.8947 7.24993 11.5318 6.19803C12.0763 5.29921 12.6501 3.70002 13.5357 3.08891C14.2696 2.58246 15.5838 3.08349 15.9536 3.9086Z" fill="black"/>
-                                                </g>
-                                                <defs>
-                                                <clipPath id="clip0_137_482">
-                                                <rect width="21" height="19" fill="white"/>
-                                                </clipPath>
-                                                </defs>
-                                                </svg>
-                                                Modem Wifi 5G Modem Wifi 5G 
-                                            </a>
-                                        </li>
-                                    @endfor
-                                </ul>
-                                <div class="price">
-                                    <span class="montserrat-semiBold font-25 text-red d-block text-center">R$ 220,00</span>
-                                </div>
-                                <div class="call-to-action mt-3 text-center">
-                                    <a href="http://" target="_blank" rel="noopener noreferrer" class="btn background-red rounded-5 px-5 py-2 text-white montserrat-semiBold font-15">Quero esse</a>
+                                    @if ($price <> "0,00")
+                                        <div class="price">
+                                            <span class="montserrat-semiBold font-25 text-red d-block text-center">R$ {{$price}}</span>
+                                        </div>
+                                    @endif
+                                    <div class="call-to-action mt-3 text-center">
+                                        <a href="http://" target="_blank" rel="noopener noreferrer" class="btn background-red rounded-5 px-5 py-2 text-white montserrat-semiBold font-15">Quero esse</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    @endfor                    
-                </div>
-                <div class=btn-navigation>
-                    <div class=swiper-button-prev></div>
-                    <div class=swiper-button-next></div>
+                        @endforeach                          
+                    </div>
+                    <div class=btn-navigation>
+                        <div class=swiper-button-prev></div>
+                        <div class=swiper-button-next></div>
+                    </div>
                 </div>
             </div>
-        </div>
+        @endif
     </div>
 </section>
 <section id="all-complete">
@@ -459,5 +452,30 @@
         </div>
     </div>
 </section>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const buttons = document.querySelectorAll('.btn-filter-category');
+
+        buttons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                const categoryId = this.dataset.id;
+
+                // Remove a classe ativa de todos
+                buttons.forEach(btn => btn.classList.remove('on-active'));
+
+                // Adiciona a classe ao botão clicado
+                this.classList.add('on-active');
+
+                // Requisição AJAX
+                fetch(`/planos/categoria/${categoryId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('plans-container').innerHTML = data.html;
+                    })
+                    .catch(error => console.error('Erro ao buscar planos:', error));
+            });
+        });
+    });
+</script>
 
 @endsection

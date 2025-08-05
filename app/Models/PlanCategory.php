@@ -20,7 +20,9 @@ class PlanCategory extends Model
         'sorting',
         'path_image',
     ];
-
+    public function plans(){
+        return $this->hasMany(Plan::class, 'plan_category');
+    }
     public function scopeActive($query)
     {
         return $query->where('active', 1);

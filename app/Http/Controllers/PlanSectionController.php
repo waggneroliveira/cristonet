@@ -28,9 +28,11 @@ class PlanSectionController extends Controller
             DB::commit();
             session()->flash('success', __('dashboard.response_item_create'));
         } catch (\Exception $e) {
+            dd($e);
             DB::rollback();
             Alert::error('Erro', __('dashboard.response_item_error_create'));
         }
+        return redirect()->back();
     }
 
     public function update(Request $request, PlanSection $planSection)
@@ -46,6 +48,7 @@ class PlanSectionController extends Controller
             DB::rollback();
             Alert::error('Erro', __('dashboard.response_item_error_update'));
         }
+        return redirect()->back();
     }
 
     public function destroy(PlanSection $planSection)

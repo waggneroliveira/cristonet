@@ -14,6 +14,7 @@ class Plan extends Model
     use Notifiable, HasFactory, LogsActivity;
 
     protected $fillable = [
+        'plan_category',
         'title',
         'subtitle',
         'bandwidth_limit',
@@ -23,6 +24,10 @@ class Plan extends Model
         'active',
         'sorting',
     ];
+
+    public function category(){
+        return $this->belongsTo(PlanCategory::class, 'plan_category');
+    }
 
     public function scopeActive($query)
     {

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Plan;
+use App\Models\PlanCategory;
+use App\Models\PlanSection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -14,17 +16,29 @@ class PlanController extends Controller
 {
     public function index()
     {
+        $categories = PlanCategory::with('plans')->active()->sorting()->get();
         $plans = Plan::sorting()->get();
+        $planSection = PlanSection::first();
+
+        $planCategory = [];
+
+        foreach ($categories as $category) {
+            $planCategory[$category->id] = $category->title;
+        }
         
-        return view('admin.blades.plan.index', compact('plans'));
+        return view('admin.blades.plan.index', compact('plans', 'categories', 'planCategory', 'planSection'));
     }
 
     public function store(Request $request)
     {
         $data = $request->all();
-
+        // Formata o campo 'price'
+        $valorFormatado = $request->price;
+        $valorNumerico = str_replace(['R$', ' ', ' ', "\u{A0}"], '', $valorFormatado);
+        $valorNumerico = str_replace(',', '.', $valorNumerico);
+        $data['price'] = floatval($valorNumerico);
         $data['active'] = $request->active ? 1 : 0;
-
+  
         try {
             DB::beginTransaction();
             Plan::create($data);
@@ -41,9 +55,13 @@ class PlanController extends Controller
     public function update(Request $request, Plan $plan)
     {
         $data = $request->all();
-
+        // Formata o campo 'price'
+        $valorFormatado = $request->price;
+        $valorNumerico = str_replace(['R$', ' ', ' ', "\u{A0}"], '', $valorFormatado);
+        $valorNumerico = str_replace(',', '.', $valorNumerico);
+        $data['price'] = floatval($valorNumerico);
         $data['active'] = $request->active ? 1 : 0;
-
+        // dd($data);
         try {
             DB::beginTransaction();
             $plan->fill($data)->save();

@@ -506,6 +506,29 @@ $("#testSmtp").on("click", function (event) {
     });
 });
 
+//mascara preco
+document.addEventListener('DOMContentLoaded', function () {
+    const priceInputs = document.querySelectorAll('.price-mask');
+
+    priceInputs.forEach(input => {
+        input.addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, '');
+            
+            // Limita a 12 dígitos para evitar valores absurdos
+            if (value.length > 12) value = value.slice(0, 12);
+
+            const options = { style: 'currency', currency: 'BRL' };
+            const formatted = new Intl.NumberFormat('pt-BR', options).format(value / 100);
+            e.target.value = formatted;
+        });
+
+        // Caso queira formatar ao carregar a página (ex: ao editar)
+        let value = input.value.replace(/\D/g, '');
+        if (value) {
+            input.value = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value / 100);
+        }
+    });
+});
 
 
 
