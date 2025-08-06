@@ -8,11 +8,13 @@ use App\Models\Slide;
 use App\Models\Stack;
 use App\Models\Topic;
 use App\Models\Partner;
+use App\Models\Product;
+use App\Models\PlanSection;
 use App\Models\PlanCategory;
 use Illuminate\Http\Request;
+use App\Models\ProductSection;
 use App\Models\StackSessionTitle;
 use App\Http\Controllers\Controller;
-use App\Models\PlanSection;
 
 class HomePageController extends Controller
 {
@@ -35,8 +37,10 @@ class HomePageController extends Controller
         $planCategories = PlanCategory::whereHas('plans')->active()->sorting()->get();
         $about = About::active()->first();
         $planSection = PlanSection::first();
+        $products = Product::active()->sorting()->get();
+        $productSection = ProductSection::first();
 
-        return view('client.blades.index', compact('slides', 'topics', 'about', 'partners','planCategories', 'plans', 'planSection'));
+        return view('client.blades.index', compact('slides', 'topics', 'about', 'partners','planCategories', 'plans', 'planSection','products', 'productSection'));
     }
 
     public function getPlansByCategory($id)

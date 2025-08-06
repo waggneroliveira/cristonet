@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PlanSection;
 use Illuminate\Http\Request;
+use App\Models\ProductSection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class PlanSectionController extends Controller
+class ProductSectionController extends Controller
 {
 
     public function store(Request $request)
@@ -17,24 +17,23 @@ class PlanSectionController extends Controller
 
         try {
             DB::beginTransaction();
-                PlanSection::create($data);
+                ProductSection::create($data);
             DB::commit();
             session()->flash('success', __('dashboard.response_item_create'));
         } catch (\Exception $e) {
-            dd($e);
             DB::rollback();
             Alert::error('Erro', __('dashboard.response_item_error_create'));
         }
         return redirect()->back();
     }
 
-    public function update(Request $request, PlanSection $planSection)
+    public function update(Request $request, ProductSection $productSection)
     {
         $data = $request->all();
 
         try {
             DB::beginTransaction();
-                $planSection->fill($data)->save();
+                $productSection->fill($data)->save();
             DB::commit();
             session()->flash('success', __('dashboard.response_item_update'));
         } catch (\Exception $e) {
@@ -44,9 +43,9 @@ class PlanSectionController extends Controller
         return redirect()->back();
     }
 
-    public function destroy(PlanSection $planSection)
+    public function destroy(ProductSection $productSection)
     {
-        $planSection->delete();
+        $productSection->delete();
         Session::flash('success',__('dashboard.response_item_delete'));
         return redirect()->back();
     }

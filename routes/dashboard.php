@@ -36,6 +36,8 @@ use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\PlanCategoryController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\PlanSectionController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductSectionController;
 use App\Models\PlanCategory;
 use App\Models\PlanSection;
 
@@ -197,8 +199,19 @@ Route::prefix('painel/')->group(function () {
         Route::post('planos/delete', [PlanController::class, 'destroySelected'])
         ->name('admin.dashboard.plan.destroySelected');
         Route::post('planos/sorting', [PlanController::class, 'sorting'])
-        ->name('admin.dashboard.plan.sorting');        
-
+        ->name('admin.dashboard.plan.sorting');   
+        //PRODUCT SECTION
+        Route::resource('sessao-produtos', ProductSectionController::class)
+        ->parameters(['sessao-produtos' => 'productSection'])
+        ->names('admin.dashboard.productSection');     
+        //PRODUCT
+        Route::resource('produtos', ProductController::class)
+        ->parameters(['produtos' => 'product'])
+        ->names('admin.dashboard.product');
+        Route::post('produtos/delete', [ProductController::class, 'destroySelected'])
+        ->name('admin.dashboard.product.destroySelected');
+        Route::post('produtos/sorting', [ProductController::class, 'sorting'])
+        ->name('admin.dashboard.product.sorting');  
         //PARTNER
         Route::resource('parceiros', PartnerController::class)
         ->names('admin.dashboard.partner')

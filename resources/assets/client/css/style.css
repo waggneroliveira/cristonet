@@ -238,7 +238,8 @@
     padding-bottom: 12px;
     margin-bottom: 12px;
 }
-.plan .description p{
+.plan .description p,
+.products .description-session p{
     font-size: 0.938rem;
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
@@ -349,6 +350,14 @@
 .depoiment .swiper-button-prev{
     color: var(--background-color-dark);
     width: 35px;
+}
+.products .description p{
+    font-size: 0.938rem;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal; 
+    color: #000000;
+    text-align: center;
 }
 .products .swiper-button-next,
 .products .swiper-button-prev,

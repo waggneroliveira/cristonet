@@ -166,7 +166,7 @@
                                 $price = str_replace('.', ',', $priceformated);
                             @endphp                      
                             <div class="swiper-slide">
-                                <div class="card-plan bg-white rounded-3 p-3 w-100">
+                                <div class="card-plan bg-white rounded-3 py-4 px-3 w-100">
                                     <div class="d-flex justify-content-between align-items-baseline">
                                         <div class="title">
                                             <h4 class="montserrat-medium text-black font-18 mb-1">{{$plan->title}}</h4>
@@ -221,16 +221,14 @@
     <div class="content m-auto me-0 justify-content-end d-flex flex-wrap flex-column flex-md-row">
         <aside class="col-12 col-md-4">
             <div class="w-100">
-                <h2 class=" montserrat-medium font-25 text-white">Conheça nossos</h2>
-                <h3 class="text-uppercase montserrat-ExtraBold font-35 text-white">PRODUTOS</h3>
+                <h2 class=" montserrat-medium font-25 text-white">{{$productSection->title}}</h2>
+                <h3 class="text-uppercase montserrat-ExtraBold font-35 text-white">{{$productSection->subtitle}}</h3>
             </div>
 
             <div class="obs mt-4 col-12 col-md-8">
-                <p class="montserrat-regular font-15 text-white">
-                    Conheça os nossos produtos exclusivos e disponíveis para você. 
-                    <br><br>
-                    *Consulte disponibilidade
-                </p>
+                <div class="description-session">
+                    {!! $productSection->text !!}
+                </div>
             </div>
 
             <img src="{{asset('build/client/images/woman-product.webp')}}" alt="imagem woman-firula" class="d-none d-sm-block position-absolute bottom-0" loading="lazy">
@@ -279,31 +277,35 @@
                 </script>
 
                 <div class="swiper-wrapper align-items-center">   
-                    @for ($i = 0; $i < 6; $i++)                        
+                    @foreach($products as $product)     
+                        @php
+                            $priceformated = $product->price;
+                            $price = str_replace('.', ',', $priceformated);
+                        @endphp                     
                         <div class=swiper-slide>
                             <div class="card-plan bg-white rounded-3 p-3">
                                 <div class="d-flex justify-content-center align-items-center flex-column">
                                     <div class="image mb-3">
-                                        <img src="{{asset('build/client/images/modem.png')}}" alt="imagem do produto">
+                                        <img src="{{asset('storage/' .$product->path_image)}}" alt="Imagem do produto">
                                     </div>
                                     <div class="title">
-                                        <h5 class="subtitle-plan montserrat-bold font-18 mb-0 text-center">CAIXA SERVIDOR 2.0</h5>
+                                        <h5 class="subtitle-plan montserrat-bold font-18 mb-0 text-center">{{$product->title}}</h5>
                                     </div>
                                 </div>
                                 <div class="description p-0 mt-4">                                                                           
-                                    <p class="col-12 text-center montserrat-medium font-15 text-black">
-                                        Servidor confiável e de alto desempenho para hospedar seus sites e aplicações com segurança e velocidade e velocidade.e velocidade.
-                                    </p>                                    
+                                    {!! $product->text !!}                                 
                                 </div>
-                                <div class="price">
-                                    <span class="montserrat-semiBold font-25 text-red d-block text-center">R$ 220,00</span>
-                                </div>
+                                @if ($price <> "0,00")
+                                    <div class="price">
+                                        <span class="montserrat-semiBold font-25 text-red d-block text-center">R$ {{$price}}</span>
+                                    </div>
+                                @endif
                                 <div class="call-to-action mt-3 text-center">
                                     <a href="http://" target="_blank" rel="noopener noreferrer" class="btn background-red rounded-5 px-5 py-2 text-white montserrat-semiBold font-15">Quero esse</a>
                                 </div>
                             </div>
-                        </div>
-                    @endfor                    
+                        </div>                  
+                    @endforeach                      
                 </div>
                 <div class=btn-navigation>
                     <div class=swiper-button-prev></div>

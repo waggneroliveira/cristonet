@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Log;
-use App\Models\Topic;
+use App\Models\Product;
+use App\Models\ProductSection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -14,16 +14,18 @@ use Illuminate\Support\Facades\Response;
 use RealRashid\SweetAlert\Facades\Alert;
 use Intervention\Image\Drivers\Gd\Driver as GdDriver;
 
-class TopicController extends Controller
+class ProductController extends Controller
 {
-    protected $pathUpload = 'admin/uploads/images/topic/';
+    protected $pathUpload = 'admin/uploads/images/product/';
     public function index()
     {
-        $topics = Topic::get();
+        $products = Product::sorting()->get();
+        $productSection = ProductSection::first();
 
-        return view('admin.blades.topic.index', compact('topics'));
+        return view('admin.blades.product.index', compact('products', 'productSection'));
     }
 
+   
     public function store(Request $request)
     {
         $data = $request->except(['path_image']);
@@ -55,11 +57,16 @@ class TopicController extends Controller
             $data['path_image'] = $this->pathUpload . $filename;
         }
 
+        // Formata o campo 'price'
+        $valorFormatado = $request->price;
+        $valorNumerico = str_replace(['R$', ' ', ' ', "\u{A0}"], '', $valorFormatado);
+        $valorNumerico = str_replace(',', '.', $valorNumerico);
+        $data['price'] = floatval($valorNumerico);
         $data['active'] = $request->active ? 1 : 0;
 
         try {
             DB::beginTransaction();
-            Topic::create($data);
+            Product::create($data);
             DB::commit();
             session()->flash('success', __('dashboard.response_item_create'));
         } catch (\Exception $e) {
@@ -70,12 +77,12 @@ class TopicController extends Controller
         return redirect()->back();
     }
 
-    public function update(Request $request, Topic $topic)
+    public function update(Request $request, Product $product)
     {
         $data = $request->all();
         $manager = new ImageManager(GdDriver::class);
 
-        // topic desktop
+        // product desktop
         if ($request->hasFile('path_image')) {
             $file = $request->file('path_image');
             $mime = $file->getMimeType();
@@ -95,20 +102,25 @@ class TopicController extends Controller
                 Storage::put($this->pathUpload . $filename, $image);
             }
 
-            Storage::delete(isset($topic->path_image)??$topic->path_image);
+            Storage::delete(isset($product->path_image)??$product->path_image);
             $data['path_image'] = $this->pathUpload . $filename;
         }
 
         if (isset($request->delete_path_image)) {
-            Storage::delete(isset($topic->path_image)??$topic->path_image);
+            Storage::delete(isset($product->path_image)??$product->path_image);
             $data['path_image'] = null;
         }
 
+        // Formata o campo 'price'
+        $valorFormatado = $request->price;
+        $valorNumerico = str_replace(['R$', ' ', ' ', "\u{A0}"], '', $valorFormatado);
+        $valorNumerico = str_replace(',', '.', $valorNumerico);
+        $data['price'] = floatval($valorNumerico);
         $data['active'] = $request->active ? 1 : 0;
 
         try {
             DB::beginTransaction();
-            $topic->fill($data)->save();
+            $product->fill($data)->save();
             DB::commit();
             session()->flash('success', __('dashboard.response_item_update'));
         } catch (\Exception $e) {
@@ -119,42 +131,44 @@ class TopicController extends Controller
         return redirect()->back();
     }
 
-    public function destroy(Topic $topic)
+
+    public function destroy(Product $product)
     {
-        Storage::delete(isset($topic->path_image)??$topic->path_image);
-        $topic->delete();
+        Storage::delete(isset($product->path_image)??$product->path_image);
+        $product->delete();
         Session::flash('success',__('dashboard.response_item_delete'));
         return redirect()->back();
     }
 
     public function destroySelected(Request $request)
     {    
-        foreach ($request->deleteAll as $topicId) {
-            $topic = Topic::find($topicId);
+        foreach ($request->deleteAll as $productId) {
+            $product = Product::find($productId);
     
-            if ($topic) {
+            if ($product) {
                 activity()
                     ->causedBy(Auth::user())
-                    ->performedOn($topic)
+                    ->performedOn($product)
                     ->event('multiple_deleted')
                     ->withProperties([
                         'attributes' => [
-                            'id' => $topicId,
-                            'path_image' => $topic->path_image,
-                            'title' => $topic->title,
-                            'description' => $topic->description,
-                            'sorting' => $topic->sorting,
-                            'active' => $topic->active,
+                            'id' => $productId,
+                            'title' => $product->title,
+                            'text' => $product->text,
+                            'path_image' => $product->path_image,
+                            'price' => $product->price,
+                            'sorting' => $product->sorting,
+                            'active' => $product->active,
                             'event' => 'multiple_deleted',
                         ]
                     ])
                     ->log('multiple_deleted');
             } else {
-                \Log::warning("Item com ID $topicId não encontrado.");
+                \Log::warning("Item com ID $productId não encontrado.");
             }
         }
     
-        $deleted = Topic::whereIn('id', $request->deleteAll)->delete();
+        $deleted = Product::whereIn('id', $request->deleteAll)->delete();
     
         if ($deleted) {
             return Response::json(['status' => 'success', 'message' => $deleted . ' '.__('dashboard.response_item_delete')]);
@@ -166,28 +180,29 @@ class TopicController extends Controller
     public function sorting(Request $request)
     {
         foreach($request->arrId as $sorting => $id) {
-            $topic = Topic::find($id);
+            $product = Product::find($id);
     
-            if ($topic) {
-                $topic->sorting = $sorting;
-                $topic->save();
+            if ($product) {
+                $product->sorting = $sorting;
+                $product->save();
             } else {
                 Log::warning("Item com ID $id não encontrado.");
             }
 
-            if($topic) {
+            if($product) {
                 activity()
                     ->causedBy(Auth::user())
-                    ->performedOn($topic)
+                    ->performedOn($product)
                     ->event('order_updated')
                     ->withProperties([
                         'attributes' => [
                             'id' => $id,
-                            'path_image' => $topic->path_image,
-                            'title' => $topic->title,
-                            'description' => $topic->description,
-                            'sorting' => $topic->sorting,
-                            'active' => $topic->active,
+                            'title' => $product->title,
+                            'text' => $product->text,
+                            'path_image' => $product->path_image,
+                            'price' => $product->price,
+                            'sorting' => $product->sorting,
+                            'active' => $product->active,
                             'event' => 'order_updated',
                         ]
                     ])
