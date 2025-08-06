@@ -623,7 +623,7 @@
                             newPlans.forEach((el, index) => {
                                 setTimeout(() => {
                                     el.classList.add('plan-ajax-show');
-                                }, 100 * index); // efeito em cascata
+                                }, 150 * index);
                             });
                         }, remainingTime > 0 ? remainingTime : 0);
 
