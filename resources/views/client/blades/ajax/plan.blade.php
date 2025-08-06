@@ -2,7 +2,7 @@
     @php
         $price = str_replace('.', ',', $plan->price);
     @endphp
-    <div class="swiper-slide">
+    <div class="swiper-slide plan-ajax-hidden">
         <div class="card-plan bg-white rounded-3 p-3 w-100">
             <div class="d-flex justify-content-between align-items-baseline">
                 <div class="title">

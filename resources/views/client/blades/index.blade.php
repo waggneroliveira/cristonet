@@ -165,7 +165,7 @@
                                 $priceformated = $plan->price;
                                 $price = str_replace('.', ',', $priceformated);
                             @endphp                      
-                            <div class=swiper-slide>
+                            <div class="swiper-slide">
                                 <div class="card-plan bg-white rounded-3 p-3 w-100">
                                     <div class="d-flex justify-content-between align-items-baseline">
                                         <div class="title">
@@ -614,17 +614,19 @@
                         const remainingTime = minLoadingTime - elapsedTime;
 
                         setTimeout(() => {
-                            // Aplica fade-out antes de substituir o HTML
-                            container.style.opacity = '0';
-                            
-                            setTimeout(() => {
-                                container.innerHTML = data.html;
+                            container.innerHTML = data.html;
+                            loader.style.display = 'none';
+                            container.style.opacity = '1';
 
-                                // Fade-in suave
-                                container.style.opacity = '1';
-                                loader.style.display = 'none';
-                            }, 100); // pequeno atraso para suavizar a transição
+                            // Suaviza os elementos via classe
+                            const newPlans = container.querySelectorAll('.plan-ajax-hidden');
+                            newPlans.forEach((el, index) => {
+                                setTimeout(() => {
+                                    el.classList.add('plan-ajax-show');
+                                }, 100 * index); // efeito em cascata
+                            });
                         }, remainingTime > 0 ? remainingTime : 0);
+
                     })
                     .catch(error => {
                         console.error('Erro ao buscar planos:', error);
