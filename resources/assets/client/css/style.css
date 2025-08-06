@@ -171,6 +171,31 @@
 /* depoiment */
 
 /* plan */
+#plans-container {
+    transition: opacity 0.4s ease;
+}
+.fade-in {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.load{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    justify-content: center;
+    align-items: center;
+    margin: 0 !important;
+}
 .plan .list-unstyled.pb-4.col-12{
     border-bottom: 1px solid #ffffff38;
 }

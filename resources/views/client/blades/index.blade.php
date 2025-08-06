@@ -112,7 +112,7 @@
             @endif
         </aside>
         @if (!empty($plans))
-            <div class="col-12 col-md-7">
+            <div class="col-12 col-md-7 position-relative">
                 <div class="swiper init-swiper" style="padding: 0 0 35px 0">
                     <script type=application/json class=swiper-config>
                         {
@@ -154,6 +154,10 @@
                             }
                         }
                     </script>
+
+                    <div id="loader" style="display: none;" class="load text-center my-4">
+                        <img src="{{ asset('build/client/images/load.gif') }}" alt="Carregando..." style="width: 40px;">
+                    </div>
 
                     <div id="plans-container" class="swiper-wrapper align-items-baseline">                        
                         @foreach ($plans as $plan)  
@@ -452,7 +456,8 @@
         </div>
     </div>
 </section>
-<script>
+
+{{-- <script>
     document.addEventListener('DOMContentLoaded', function () {
         const buttons = document.querySelectorAll('.btn-filter-category');
 
@@ -473,6 +478,159 @@
                         document.getElementById('plans-container').innerHTML = data.html;
                     })
                     .catch(error => console.error('Erro ao buscar planos:', error));
+            });
+        });
+    });
+</script> --}}
+
+{{-- <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const buttons = document.querySelectorAll('.btn-filter-category');
+        const loader = document.getElementById('loader');
+        const container = document.getElementById('plans-container');
+
+        const minLoadingTime = 200; 
+
+        buttons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                const categoryId = this.dataset.id;
+
+                // Ativa estado visual
+                buttons.forEach(btn => btn.classList.remove('on-active'));
+                this.classList.add('on-active');
+
+                // Mostra loader
+                loader.style.display = 'flex';
+                container.style.opacity = '0.4';
+
+                // Começa o timer para tempo mínimo
+                const startTime = new Date().getTime();
+
+                fetch(`/planos/categoria/${categoryId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const elapsedTime = new Date().getTime() - startTime;
+                        const remainingTime = minLoadingTime - elapsedTime;
+
+                        // Garante tempo mínimo de exibição do loader
+                        setTimeout(() => {
+                            container.innerHTML = data.html;
+                            loader.style.display = 'none';
+                            container.style.opacity = '1';
+                        }, remainingTime > 0 ? remainingTime : 0);
+                    })
+                    .catch(error => {
+                        console.error('Erro ao buscar planos:', error);
+                        loader.style.display = 'none';
+                        container.style.opacity = '1';
+                    });
+            });
+        });
+    });
+</script> --}}
+
+{{-- <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const buttons = document.querySelectorAll('.btn-filter-category');
+        const loader = document.getElementById('loader');
+        const container = document.getElementById('plans-container');
+
+        const minLoadingTime = 200;
+
+        buttons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                const categoryId = this.dataset.id;
+
+                // Ativa estado visual
+                buttons.forEach(btn => btn.classList.remove('on-active'));
+                this.classList.add('on-active');
+
+                // Mostra loader
+                loader.style.display = 'block';
+                container.style.opacity = '0.4';
+
+                const startTime = new Date().getTime();
+
+                fetch(`/planos/categoria/${categoryId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const elapsedTime = new Date().getTime() - startTime;
+                        const remainingTime = minLoadingTime - elapsedTime;
+
+                        setTimeout(() => {
+                            // Aplica novo conteúdo
+                            container.innerHTML = data.html;
+                            loader.style.display = 'none';
+                            container.style.opacity = '1';
+
+                            // Aplica fade-in nos planos
+                            const items = container.querySelectorAll('.plan-box'); // Altere '.plan-box' para o seletor do seu item de plano
+                            items.forEach(item => {
+                                item.classList.add('fade-in');
+                                // força reflow
+                                void item.offsetWidth;
+                                item.classList.add('show');
+                            });
+
+                        }, remainingTime > 0 ? remainingTime : 0);
+                    })
+                    .catch(error => {
+                        console.error('Erro ao buscar planos:', error);
+                        loader.style.display = 'none';
+                        container.style.opacity = '1';
+                    });
+            });
+        });
+    });
+</script> --}}
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const buttons = document.querySelectorAll('.btn-filter-category');
+        const loader = document.getElementById('loader');
+        const container = document.getElementById('plans-container');
+
+        const minLoadingTime = 200; // em ms
+
+        buttons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                const categoryId = this.dataset.id;
+
+                // Ativa estado visual
+                buttons.forEach(btn => btn.classList.remove('on-active'));
+                this.classList.add('on-active');
+
+                // Mostra loader e escurece
+                loader.style.display = 'flex';
+                container.style.opacity = '0.4';
+
+                const startTime = new Date().getTime();
+
+                fetch(`/planos/categoria/${categoryId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const elapsedTime = new Date().getTime() - startTime;
+                        const remainingTime = minLoadingTime - elapsedTime;
+
+                        setTimeout(() => {
+                            // Aplica fade-out antes de substituir o HTML
+                            container.style.opacity = '0';
+                            
+                            setTimeout(() => {
+                                container.innerHTML = data.html;
+
+                                // Fade-in suave
+                                container.style.opacity = '1';
+                                loader.style.display = 'none';
+                            }, 100); // pequeno atraso para suavizar a transição
+                        }, remainingTime > 0 ? remainingTime : 0);
+                    })
+                    .catch(error => {
+                        console.error('Erro ao buscar planos:', error);
+                        loader.style.display = 'none';
+                        container.style.opacity = '1';
+                    });
             });
         });
     });
