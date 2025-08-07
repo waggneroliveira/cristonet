@@ -17,6 +17,14 @@
             {!!isset($depoiment)?$depoiment->text:''!!}
         </textarea>
     </div>
+
+    <div class="form-check mb-3">
+        <input name="active" {{ isset($depoiment->active) && $depoiment->active == 1 ? 'checked' : '' }} type="checkbox" class="form-check-input" id="invalidCheck{{isset($depoiment->id)?$depoiment->id:''}}" />
+        <label class="form-check-label" for="invalidCheck">{{__('dashboard.active')}}?</label>
+        <div class="invalid-feedback">
+            You must agree before submitting.
+        </div>
+    </div>
 </div>
 
 <script>

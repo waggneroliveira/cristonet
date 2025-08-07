@@ -239,14 +239,16 @@
     margin-bottom: 12px;
 }
 .plan .description p,
-.products .description-session p{
+.products .description-session p,
+.depoiment-text p{
     font-size: 0.938rem;
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
     font-style: normal; 
     color: #FFF; 
 }
-.plan .list ul li, .plan .list p{
+.plan .list ul li, .plan .list p,
+.depoiment .description p{
     font-size: 0.938rem;
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;

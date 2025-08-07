@@ -7,12 +7,15 @@ use App\Models\About;
 use App\Models\Slide;
 use App\Models\Stack;
 use App\Models\Topic;
+use App\Models\Contact;
 use App\Models\Partner;
 use App\Models\Product;
+use App\Models\Depoiment;
 use App\Models\PlanSection;
 use App\Models\PlanCategory;
 use Illuminate\Http\Request;
 use App\Models\ProductSection;
+use App\Models\DepoimentSession;
 use App\Models\StackSessionTitle;
 use App\Http\Controllers\Controller;
 
@@ -39,8 +42,11 @@ class HomePageController extends Controller
         $planSection = PlanSection::first();
         $products = Product::active()->sorting()->get();
         $productSection = ProductSection::first();
+        $depoiments = Depoiment::active()->sorting()->get();
+        $depoimentSession = DepoimentSession::first();
+        $contact = Contact::first();
 
-        return view('client.blades.index', compact('slides', 'topics', 'about', 'partners','planCategories', 'plans', 'planSection','products', 'productSection'));
+        return view('client.blades.index', compact('contact', 'depoimentSession', 'depoiments', 'slides', 'topics', 'about', 'partners','planCategories', 'plans', 'planSection','products', 'productSection'));
     }
 
     public function getPlansByCategory($id)

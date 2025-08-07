@@ -35,7 +35,7 @@
                                             @endif
                                         </div>
                                         <div class="col-6 d-flex justify-content-end">
-                                            {{-- @if ($depoimentSession == null)                                                
+                                            @if ($depoimentSession == null)                                                
                                                 <button type="button" class="btn btn-primary text-black waves-effect waves-light me-2" data-bs-toggle="modal" data-bs-target="#depoimentSession-create"><i class="mdi mdi-plus-circle me-1"></i> Info Sessão</button>
                                                 <!-- Modal -->
                                                 <div class="modal fade" id="depoimentSession-create" tabindex="-1" role="dialog" aria-hidden="true">
@@ -83,7 +83,7 @@
                                                         </div><!-- /.modal-content -->
                                                     </div><!-- /.modal-dialog -->
                                                 </div><!-- /.modal -->
-                                            @endif --}}
+                                            @endif
 
 
                                             @if (Auth::user()->hasPermissionTo('noticias.visualizar') &&
@@ -124,9 +124,7 @@
                                                 <th class="bs-checkbox">
                                                     <label><input name="btnSelectAll" type="checkbox"></label>
                                                 </th>
-                                                {{-- <th>Link</th> --}}
                                                 <th>Título</th>
-                                                <th>Categoria</th>
                                                 <th>Criado</th>
                                                 <th>Status</th>
                                                 <th style="width: 85px;">Ações</th>
@@ -136,9 +134,6 @@
                                         <tbody data-route="{{route('admin.dashboard.depoiment.sorting')}}">
                                             @foreach ($depoiments as $key => $depoiment)
                                                 @php
-                                                    if ($depoiment->depoiment_category) {
-                                                        $categoria = $depoimentCategory[$depoiment->depoiment_category] ?? 'Nenhuma categoria';
-                                                    } 
                                                     \Carbon\Carbon::setLocale('pt_BR');
                                                     $dataFormatada = \Carbon\Carbon::parse($depoiment->date)->translatedFormat('d \d\e F \d\e Y');
                                                 @endphp
@@ -149,9 +144,8 @@
                                                         <label><input data-index="{{$key}}" name="btnSelectItem" class="btnSelectItem" type="checkbox" value="{{$depoiment->id}}"></label>
                                                     </td>
                                                     <td>{{substr(strip_tags($depoiment->title), 0, 40)}}...</td>
-                                                    <td>{{$categoria}}</td>
                                                     <td>{{$dataFormatada}}</td>
-                                                    <td class="text-center">
+                                                    <td class="text-start">
                                                         @switch($depoiment->active)
                                                             @case(0) <span class="badge bg-danger">Inativo</span> @break
                                                             @case(1) <span class="badge bg-success">Ativo</span> @break

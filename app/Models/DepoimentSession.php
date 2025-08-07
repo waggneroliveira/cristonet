@@ -9,16 +9,14 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Newsletter extends Model
+class DepoimentSession extends Model
 {
-    use Notifiable, HasFactory, LogsActivity;
+        use Notifiable, HasFactory, LogsActivity;
     
     protected $fillable = [
-        'email',
-        'phone',
-        'term_privacy',
+        'title',
+        'text',
     ];
-
     public function getActivitylogOptions(): LogOptions
     {
         $activityLogService = new ActivityLogService($this);

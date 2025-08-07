@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Depoiment;
+use App\Models\DepoimentSession;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -15,9 +16,10 @@ class DepoimentController extends Controller
     public function index()
     {
         $depoiments = Depoiment::sorting()->get();
-        
-        return view('admin.blades.depoiment.index', compact('depoiments'));
+        $depoimentSession = DepoimentSession::first();
+        return view('admin.blades.depoiment.index', compact('depoiments','depoimentSession'));
     }
+
 
     public function store(Request $request)
     {

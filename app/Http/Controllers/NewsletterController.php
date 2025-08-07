@@ -33,7 +33,8 @@ class NewsletterController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'email' => 'required|email',
+            'email' => 'nullable|email',
+            'phone' => 'nullable|string',
             'term_privacy' => 'accepted',
         ]);
 
@@ -42,6 +43,7 @@ class NewsletterController extends Controller
 
             Newsletter::create([
                 'email' => $validated['email'],
+                'phone' => $validated['phone'],
                 'term_privacy' => 1,
             ]);
 
@@ -85,6 +87,7 @@ class NewsletterController extends Controller
                         'attributes' => [
                             'id' => $newsletterId,
                             'email' => $newsletter->email,
+                            'phone' => $newsletter->phone,
                             'term_privacy' => $newsletter->term_privacy,
                             'event' => 'multiple_deleted',
                         ]

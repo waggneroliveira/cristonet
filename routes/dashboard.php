@@ -32,6 +32,8 @@ use App\Http\Controllers\AuditActivityController;
 use App\Http\Controllers\StackSessionTitleController;
 use App\Http\Controllers\Auth\PasswordEmailController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\DepoimentController;
+use App\Http\Controllers\DepoimentSessionController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\PlanCategoryController;
 use App\Http\Controllers\PlanController;
@@ -232,7 +234,18 @@ Route::prefix('painel/')->group(function () {
         ->name('admin.dashboard.topic.destroySelected');
         Route::post('topico/sorting', [TopicController::class, 'sorting'])
         ->name('admin.dashboard.topic.sorting');
-        
+        //DEPOIMENT SECTION
+        Route::resource('sessao-depoimentos', DepoimentSessionController::class)
+        ->parameters(['sessao-depoimentos' => 'depoimentSession'])
+        ->names('admin.dashboard.depoimentSession'); 
+        //DEPOIMENT
+        Route::resource('depoimentos', DepoimentController::class)
+        ->parameters(['depoimentos' => 'depoiment'])
+        ->names('admin.dashboard.depoiment');
+        Route::post('depoimentos/delete', [DepoimentController::class, 'destroySelected'])
+        ->name('admin.dashboard.depoiment.destroySelected');
+        Route::post('depoimentos/sorting', [DepoimentController::class, 'sorting'])
+        ->name('admin.dashboard.depoiment.sorting');
         //DESATIVAR COMENTARIO
         Route::put('/desativa-comentario/{comment}', [CommentController::class, 'desactiveComment'])
         ->name('comment.desactive.update');
