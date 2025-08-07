@@ -1,0 +1,227 @@
+@extends('admin.core.admin')
+@section('content')
+    <div class="content-page">
+        <div class="content">
+            <!-- Start Content-->
+            <div class="container-fluid">
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
+                                    <li class="breadcrumb-item active">Depoimentos</li>
+                                </ol>
+                            </div>
+                            <h4 class="page-title">Depoimentos</h4>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row mb-2">
+                                    <div class="col-12 d-flex justify-between">
+                                        <div class="col-6">
+                                            @if (Auth::user()->hasPermissionTo('noticias.visualizar') &&
+                                            Auth::user()->hasPermissionTo('noticias.remover') ||
+                                            Auth::user()->hasPermissionTo('usuario.tornar usuario master') || 
+                                            Auth::user()->hasRole('Super'))
+                                                <button id="btSubmitDelete" data-route="{{route('admin.dashboard.depoiment.destroySelected')}}" type="button" class="btSubmitDelete btn btn-danger" style="display: none;">{{__('dashboard.btn_delete_all')}}</button>
+                                            @endif
+                                        </div>
+                                        <div class="col-6 d-flex justify-content-end">
+                                            {{-- @if ($depoimentSession == null)                                                
+                                                <button type="button" class="btn btn-primary text-black waves-effect waves-light me-2" data-bs-toggle="modal" data-bs-target="#depoimentSession-create"><i class="mdi mdi-plus-circle me-1"></i> Info Sessão</button>
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="depoimentSession-create" tabindex="-1" role="dialog" aria-hidden="true">
+                                                    <div class="depoiment modal-dialog modal-dialog-centered" style="max-width: 760px;">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header bg-light">
+                                                                <h4 class="modal-title" id="myCenterModalLabel">{{__('dashboard.btn_create')}}</h4>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                                                            </div>
+                                                            <div class="modal-body p-4">
+                                                                <form action="{{route('admin.dashboard.depoimentSession.store')}}" method="POST" enctype="multipart/form-data">
+                                                                    @csrf
+                                                                    @include('admin.blades.depoimentSession.form', ['textareaId' => 'textarea-create'])  
+                                                                    <div class="d-flex justify-content-end gap-2">
+                                                                        <button type="button" class="btn btn-danger waves-effect waves-light" data-bs-dismiss="modal">{{__('dashboard.btn_cancel')}}</button>
+                                                                        <button type="submit" class="btn btn-primary text-black waves-effect waves-light">{{__('dashboard.btn_create')}}</button>
+                                                                    </div>                                                 
+                                                                </form>
+                                                            </div>
+                                                        </div><!-- /.modal-content -->
+                                                    </div><!-- /.modal-dialog -->
+                                                </div><!-- /.modal -->                                                
+                                            @endif
+
+                                            @if (isset($depoimentSession))
+                                                <button data-bs-toggle="modal" data-bs-target="#depoimentSession-edit-{{$depoimentSession->id}}" class="tabledit-edit-button btn btn-primary text-black me-2"><span class="mdi mdi-pencil me-1"></span>Info Sessão</button>
+                                                <div class="modal fade" id="depoimentSession-edit-{{$depoimentSession->id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                                                    <div class="depoiment modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header bg-light">
+                                                                <h4 class="modal-title" id="myCenterModalLabel">{{__('dashboard.btn_edit')}}</h4>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                                                            </div>
+                                                            <div class="modal-body p-4">
+                                                                <form action="{{ route('admin.dashboard.depoimentSession.update', ['depoimentSession' => $depoimentSession->id]) }}" method="POST" enctype="multipart/form-data">
+                                                                    @csrf
+                                                                    @method('PUT')
+                                                                    @include('admin.blades.depoimentSession.form', ['textareaId' => 'textarea-edit-' . $depoimentSession->id])   
+                                                                    <div class="d-flex justify-content-end gap-2">
+                                                                        <button type="button" class="btn btn-danger waves-effect waves-light" data-bs-dismiss="modal">{{__('dashboard.btn_cancel')}}</button>
+                                                                        <button type="submit" class="btn btn-primary text-black waves-effect waves-light">{{__('dashboard.btn_save')}}</button>
+                                                                    </div>                                                                                                                      
+                                                                </form>                                                                    
+                                                            </div>
+                                                        </div><!-- /.modal-content -->
+                                                    </div><!-- /.modal-dialog -->
+                                                </div><!-- /.modal -->
+                                            @endif --}}
+
+
+                                            @if (Auth::user()->hasPermissionTo('noticias.visualizar') &&
+                                            Auth::user()->hasPermissionTo('noticias.criar') ||
+                                            Auth::user()->hasPermissionTo('usuario.tornar usuario master') || 
+                                            Auth::user()->hasRole('Super'))
+                                                <button type="button" class="btn btn-primary text-black waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#depoiment-create"><i class="mdi mdi-plus-circle me-1"></i> {{__('dashboard.btn_create')}}</button>
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="depoiment-create" tabindex="-1" role="dialog" aria-hidden="true">
+                                                    <div class="depoiment modal-dialog modal-dialog-centered" style="max-width: 760px;">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header bg-light">
+                                                                <h4 class="modal-title" id="myCenterModalLabel">{{__('dashboard.btn_create')}}</h4>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                                                            </div>
+                                                            <div class="modal-body p-4">
+                                                                <form action="{{route('admin.dashboard.depoiment.store')}}" method="POST" enctype="multipart/form-data">
+                                                                    @csrf
+                                                                    @include('admin.blades.depoiment.form', ['textareaId' => 'textarea-create'])  
+                                                                    <div class="d-flex justify-content-end gap-2">
+                                                                        <button type="button" class="btn btn-danger waves-effect waves-light" data-bs-dismiss="modal">{{__('dashboard.btn_cancel')}}</button>
+                                                                        <button type="submit" class="btn btn-primary text-black waves-effect waves-light">{{__('dashboard.btn_create')}}</button>
+                                                                    </div>                                                 
+                                                                </form>
+                                                            </div>
+                                                        </div><!-- /.modal-content -->
+                                                    </div><!-- /.modal-dialog -->
+                                                </div><!-- /.modal -->
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table-sortable table table-centered table-nowrap table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th class="bs-checkbox">
+                                                    <label><input name="btnSelectAll" type="checkbox"></label>
+                                                </th>
+                                                {{-- <th>Link</th> --}}
+                                                <th>Título</th>
+                                                <th>Categoria</th>
+                                                <th>Criado</th>
+                                                <th>Status</th>
+                                                <th style="width: 85px;">Ações</th>
+                                            </tr>
+                                        </thead>
+    
+                                        <tbody data-route="{{route('admin.dashboard.depoiment.sorting')}}">
+                                            @foreach ($depoiments as $key => $depoiment)
+                                                @php
+                                                    if ($depoiment->depoiment_category) {
+                                                        $categoria = $depoimentCategory[$depoiment->depoiment_category] ?? 'Nenhuma categoria';
+                                                    } 
+                                                    \Carbon\Carbon::setLocale('pt_BR');
+                                                    $dataFormatada = \Carbon\Carbon::parse($depoiment->date)->translatedFormat('d \d\e F \d\e Y');
+                                                @endphp
+
+                                                <tr data-code="{{$depoiment->id}}">
+                                                    <td><span class="btnDrag mdi mdi-drag-horizontal font-22"></span></td>
+                                                    <td class="bs-checkbox">
+                                                        <label><input data-index="{{$key}}" name="btnSelectItem" class="btnSelectItem" type="checkbox" value="{{$depoiment->id}}"></label>
+                                                    </td>
+                                                    <td>{{substr(strip_tags($depoiment->title), 0, 40)}}...</td>
+                                                    <td>{{$categoria}}</td>
+                                                    <td>{{$dataFormatada}}</td>
+                                                    <td class="text-center">
+                                                        @switch($depoiment->active)
+                                                            @case(0) <span class="badge bg-danger">Inativo</span> @break
+                                                            @case(1) <span class="badge bg-success">Ativo</span> @break
+                                                        @endswitch
+                                                    </td>
+                                                    <td class="d-flex gap-lg-1 justify-center">
+                                                        @if (Auth::user()->hasPermissionTo('noticias.visualizar') &&
+                                                        Auth::user()->hasPermissionTo('noticias.editar') ||
+                                                        Auth::user()->hasPermissionTo('usuario.tornar usuario master') || 
+                                                        Auth::user()->hasRole('Super'))
+                                                        <button data-bs-toggle="modal" data-bs-target="#depoiment-edit-{{$depoiment->id}}" class="tabledit-edit-button btn btn-primary text-black" style="padding: 2px 8px;width: 30px"><span class="mdi mdi-pencil"></span></button>
+                                                        <div class="modal fade" id="depoiment-edit-{{$depoiment->id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                                                            <div class="depoiment modal-dialog modal-dialog-centered">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header bg-light">
+                                                                        <h4 class="modal-title" id="myCenterModalLabel">{{__('dashboard.btn_edit')}}</h4>
+                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                                                                    </div>
+                                                                    <div class="modal-body p-4">
+                                                                        <form action="{{ route('admin.dashboard.depoiment.update', ['depoiment' => $depoiment->id]) }}" method="POST" enctype="multipart/form-data">
+                                                                            @csrf
+                                                                            @method('PUT')
+                                                                            @include('admin.blades.depoiment.form', ['textareaId' => 'textarea-edit-depoiment-' . $depoiment->id])   
+                                                                            <div class="d-flex justify-content-end gap-2">
+                                                                                <button type="button" class="btn btn-danger waves-effect waves-light" data-bs-dismiss="modal">{{__('dashboard.btn_cancel')}}</button>
+                                                                                <button type="submit" class="btn btn-primary text-black waves-effect waves-light">{{__('dashboard.btn_save')}}</button>
+                                                                            </div>                                                                                                                      
+                                                                        </form>                                                                    
+                                                                    </div>
+                                                                </div><!-- /.modal-content -->
+                                                            </div><!-- /.modal-dialog -->
+                                                        </div><!-- /.modal -->
+                                                        @endif
+
+                                                        @if (Auth::user()->hasPermissionTo('noticias.visualizar') &&
+                                                        Auth::user()->hasPermissionTo('noticias.remover') ||
+                                                        Auth::user()->hasPermissionTo('usuario.tornar usuario master') || 
+                                                        Auth::user()->hasRole('Super'))
+                                                            <form action="{{route('admin.dashboard.depoiment.destroy',['depoiment' => $depoiment->id])}}" style="width: 30px" method="POST">
+                                                                @method('DELETE') @csrf        
+                                                                
+                                                                <button type="button" style="width: 30px"class="demo-delete-row btn btn-danger btn-xs btn-icon btSubmitDeleteItem"><i class="fa fa-times"></i></button>
+                                                            </form>                                                    
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                {{-- PAGINATION --}}
+                                <div class="mt-3 float-end">
+                                   {{-- {{$depoiment->links()}} --}}
+                                </div>
+                            </div>
+                        </div> <!-- end card-->
+                    </div> <!-- end col-->
+                </div>
+                <!-- end row -->
+            </div> <!-- container -->
+        </div> <!-- content -->
+    </div>
+    <style>
+        .cke_notification_warning{
+            opacity: -1;
+            z-index: -2;
+        }
+        .cke_chrome{
+            width: 100%;
+        }
+    </style>
+@endsection
