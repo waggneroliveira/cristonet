@@ -462,7 +462,7 @@
 
                     <form id="newsletterForm" class="col-12 col-lg-11">
                         <div class="input-group mb-3">
-                            <input type="tel" name="phone" class="form-control montserrat-regular font-15" placeholder="Telefone" required>
+                            <input type="tel" name="phone" id="phone" class="form-control montserrat-regular font-15" placeholder="Telefone" required>
                             <button class="btn btn-danger montserrat-medium font-15 col-3" type="submit">Enviar</button>
                         </div>
                         <div class="form-check small">
