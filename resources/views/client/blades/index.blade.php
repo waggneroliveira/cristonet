@@ -328,7 +328,7 @@
 @endif
 @if ((!empty($depoimentSession) && ($depoimentSession->title || $depoimentSession->text)) ||
     (!empty($depoiments) && count($depoiments) > 0))
-    <section id="depoiment" class="depoiment position-relative">
+    <section id="depoiment" class="depoiment position-relative h-100">
         <div class="content m-auto me-0 justify-content-end d-flex flex-wrap align-items-center h-100 flex-column flex-md-row">
             @if (!empty($depoimentSession) && isset($depoimentSession->title) && isset($depoimentSession->text))            
                 <div class="col-12 col-lg-4 animate-on-scroll" data-animation="animate__fadeInLeft">
