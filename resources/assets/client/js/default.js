@@ -2,28 +2,10 @@
     "use strict";
     let e = document.querySelector("#preloader");
 
-    function t() {
-        AOS.init({
-            duration: 600,
-            easing: "ease-in-out",
-            once: !0,
-            mirror: !1
-        })
-    }
     e && window.addEventListener("load", (() => {
         e.remove()
-    })), window.addEventListener("load", t);
-    let o = document.querySelector(".typed");
-    if (o) {
-        let e = o.getAttribute("data-typed-items");
-        e = e.split(","), new Typed(".typed", {
-            strings: e,
-            loop: !0,
-            typeSpeed: 100,
-            backSpeed: 50,
-            backDelay: 2e3
-        })
-    }
+    }));
+
     let n = document.querySelector(".scroll-top");
     n.addEventListener("click", (e => {
         e.preventDefault(), window.scrollTo({
@@ -107,34 +89,24 @@
         }))
     }));
 
-    function l() {
-        if (window.innerWidth <= 885) {
-            document.querySelectorAll("[data-aos]").forEach((e => {
-                e.removeAttribute("data-aos"), e.removeAttribute("data-aos-delay"), e.classList.remove("aos-animate", "aos-init")
-            }));
-            let e = document.createElement("style");
-            e.innerHTML = "\n              \n          ", document.head.appendChild(e), "undefined" != typeof AOS && AOS.refresh && AOS.refresh()
-        }
-    }
-    document.addEventListener("DOMContentLoaded", l), window.addEventListener("resize", l),
-        document.addEventListener("DOMContentLoaded", (function() {
-            document.querySelectorAll('a[href^="#"]').forEach((function(e) {
-                e.addEventListener("click", (function(e) {
-                    e.preventDefault();
-                    let t = this.getAttribute("href");
-                    if (t.length > 1) {
-                        let e = document.querySelector(t);
-                        e && window.scrollTo({
-                            top: e.offsetTop,
-                            behavior: "smooth"
-                        })
-                    } else window.scrollTo({
-                        top: 0,
+    document.addEventListener("DOMContentLoaded", (function() {
+        document.querySelectorAll('a[href^="#"]').forEach((function(e) {
+            e.addEventListener("click", (function(e) {
+                e.preventDefault();
+                let t = this.getAttribute("href");
+                if (t.length > 1) {
+                    let e = document.querySelector(t);
+                    e && window.scrollTo({
+                        top: e.offsetTop,
                         behavior: "smooth"
                     })
-                }))
+                } else window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                })
             }))
         }))
+    }))
 
     document.addEventListener('DOMContentLoaded', function() {
         const swiperAnuncio = new Swiper('.announcement', {
@@ -295,6 +267,28 @@ window.addEventListener("load", function () {
     }
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    const elements = document.querySelectorAll(".animate-on-scroll");
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const animation = entry.target.dataset.animation;
+
+                // Adiciona um delay antes da animação
+                setTimeout(() => {
+                    entry.target.classList.add("animate__animated", animation, "animate__slow");
+                }, 100); // 300ms de atraso
+
+                observer.unobserve(entry.target); // roda apenas uma vez
+            }
+        });
+    }, {
+        threshold: 0.2 // 20% visível já aciona
+    });
+
+    elements.forEach(el => observer.observe(el));
+});
 
 
 }();

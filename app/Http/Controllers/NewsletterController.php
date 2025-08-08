@@ -42,8 +42,8 @@ class NewsletterController extends Controller
             DB::beginTransaction();
 
             Newsletter::create([
-                'email' => $validated['email'],
-                'phone' => $validated['phone'],
+                'email' => $validated['email'] ?? null,
+                'phone' => $validated['phone'] ?? null,
                 'term_privacy' => 1,
             ]);
 
@@ -63,7 +63,6 @@ class NewsletterController extends Controller
             ], 500);
         }
     }
-
 
 
     public function destroy(Newsletter $newsletter)

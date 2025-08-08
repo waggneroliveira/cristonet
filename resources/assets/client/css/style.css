@@ -2,6 +2,16 @@
 .w-100.py-3.py-sm-5.bg-transparent{
     transition: all 0.3s ease;
 }
+.animate-on-scroll {
+    opacity: 0;
+}
+
+.animate__animated {
+    opacity: 1;
+    animation-delay: 0.1s;
+    animation-duration: 0.3s;
+}
+
 .bg-scroll {
     background-color: rgba(0, 0, 0, 0.8);
     transition: background-color 0.3s ease;

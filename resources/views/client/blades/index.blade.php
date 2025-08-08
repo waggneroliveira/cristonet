@@ -17,7 +17,7 @@
     </div>
 </section>
 @if (!empty($topics))
-    <section id="topics">
+    <section id="topics" class="animate-on-scroll" data-animation="animate__fadeInUp">
         <div class="col-12 topics">
             <div class="row text-white text-center">
                 @foreach ($topics as $topic)                
@@ -42,7 +42,7 @@
     <section id="about" class="position-relative">
         <div class="container">
             <div class="row d-flex justify-content-between align-items-start about flex-wrap w-100 pt-5">
-                <div class="col-12 col-lg-6">
+                <div class="col-12 col-lg-6 animate-on-scroll" data-animation="animate__fadeInLeft">
                     <h1 class="d-flex align-items-start gap-2 montserrat-semiBold font-28 text-black before text-uppercase">{{$about->title}}</h1>
             
                     <div class="description mt-4">{!!$about->description!!}</div>
@@ -54,14 +54,14 @@
                     @endif
                 </div>
 
-                <div class="col-12 col-lg-6">
+                <div class="col-12 col-lg-6 animate-on-scroll" data-animation="animate__fadeInRight">
                     <div class="image d-flex justify-content-end">
                         <img src="{{asset('storage/'.$about->path_image)}}" alt="About" class="w-100 h-100 about-image d-none d-sm-block" loading="lazy">
                     </div>
                 </div>            
             </div>
             @if (!empty($partners))
-                <div class="partners">
+                <div class="partners animate-on-scroll" data-animation="animate__fadeInUp">
                     <div class="container py-5">
                         <div class="row g-3 justify-content-start">
                             @foreach ($partners as $partner)                        
@@ -85,7 +85,7 @@
     (!empty($plans) && count($plans) > 0))
     <section id="plans" class="background-plan py-5 plan">
         <div class="content m-auto me-0 justify-content-end d-flex flex-wrap flex-column flex-md-row">
-            <aside class="col-12 col-md-4">
+            <aside class="col-12 col-md-4 animate-on-scroll" data-animation="animate__fadeInLeft">
                 @if (isset($planSection->title) || isset($planSection->subtitle))
                     <div class="w-100">
                         <h2 class="montserrat-medium font-25 text-white">{{ $planSection->title }}</h2>
@@ -162,7 +162,7 @@
                             <img src="{{ asset('build/client/images/load.gif') }}" alt="Carregando..." style="width: 40px;">
                         </div>
 
-                        <div id="plans-container" class="swiper-wrapper align-items-baseline">                        
+                        <div id="plans-container" class="swiper-wrapper align-items-baseline animate-on-scroll" data-animation="animate__fadeInRight">                        
                             @foreach ($plans as $plan)  
                                 @php
                                     $priceformated = $plan->price;
@@ -205,7 +205,7 @@
         </div>
     </section>
 @endif
-<section id="all-complete">
+<section id="all-complete" class="animate-on-scroll" data-animation="animate__fadeIn">
     <div class="container">
         <div class="row align-items-center py-5">
             <div class="col-12 col-md-4 mb-3 mb-md-0">
@@ -227,14 +227,14 @@
         <div class="content m-auto me-0 justify-content-end d-flex flex-wrap flex-column flex-md-row">
             <aside class="col-12 col-md-4">
                 @if (isset($productSection->title) || isset($productSection->subtitle))                    
-                    <div class="w-100">
+                    <div class="w-100 animate-on-scroll" data-animation="animate__fadeInLeft">
                         <h2 class=" montserrat-medium font-25 text-white">{{$productSection->title}}</h2>
                         <h3 class="text-uppercase montserrat-ExtraBold font-35 text-white">{{$productSection->subtitle}}</h3>
                     </div>
                 @endif
 
                 @if (isset($productSection->text))                    
-                    <div class="obs mt-4 col-12 col-md-8">
+                    <div class="obs animate-on-scroll mt-4 col-12 col-md-8" data-animation="animate__fadeInLeft">
                         <div class="description-session">
                             {!! $productSection->text !!}
                         </div>
@@ -243,7 +243,7 @@
 
                 <img src="{{asset('build/client/images/woman-product.webp')}}" alt="imagem woman-firula" class="d-none d-sm-block position-absolute bottom-0" loading="lazy">
             </aside>
-            <div class="col-12 col-md-7">
+            <div class="col-12 col-md-7 animate-on-scroll" data-animation="animate__fadeInRight">
                 <div class="swiper init-swiper" style="padding: 0 0 35px 0">
                     <script type=application/json class=swiper-config>
                         {
@@ -331,7 +331,7 @@
     <section id="depoiment" class="depoiment position-relative">
         <div class="content m-auto me-0 justify-content-end d-flex flex-wrap align-items-center h-100 flex-column flex-md-row">
             @if (!empty($depoimentSession) && isset($depoimentSession->title) && isset($depoimentSession->text))            
-                <div class="col-12 col-lg-4">
+                <div class="col-12 col-lg-4 animate-on-scroll" data-animation="animate__fadeInLeft">
                     @if ($depoimentSession->title)                    
                         <h2 class="title mb-0 text-uppercase font-35 montserrat-semiBold text-black before">{{ $depoimentSession->title }}</h2>
                     @endif
@@ -348,7 +348,7 @@
                 </div>
             @endif
 
-            <div class="col-12 col-md-7 position-relative">
+            <div class="col-12 col-md-7 position-relative animate-on-scroll" data-animation="animate__fadeInRight">
                 <div class="project-list-details-slider swiper init-swiper">
                     <script type=application/json class=swiper-config>
                         {
@@ -441,7 +441,7 @@
             <div class="row align-items-center justify-content-between">
 
                 <!-- Coluna Esquerda - Formulário -->
-                <div class="col-12 col-lg-5 mb-4 mb-lg-0">
+                <div class="col-12 col-lg-5 mb-4 mb-lg-0 animate-on-scroll" data-animation="animate__fadeInUp">
                     @if ($contact->name_section)                        
                         <h4 class="title mb-0 text-uppercase font-32 montserrat-semiBold before">
                             {{$contact->name_section}}
@@ -460,7 +460,8 @@
                         @endif
                     </div>
 
-                    <form id="newsletterForm" class="col-12 col-lg-11">
+                    <form id="phoneForm" class="col-12 col-lg-11">
+                        @csrf
                         <div class="input-group mb-3">
                             <input type="tel" name="phone" id="phone" class="form-control montserrat-regular font-15" placeholder="Telefone" required>
                             <button class="btn btn-danger montserrat-medium font-15 col-3" type="submit">Enviar</button>
@@ -476,7 +477,7 @@
 
                 <!-- Coluna Direita - Mapa -->
                 @if ($contact->maps)                    
-                    <div class="col-12 col-lg-5">
+                    <div class="col-12 col-lg-5 animate-on-scroll" data-animation="animate__fadeInDown">
                         <div class="ratio ratio-4x3">
                             <iframe src="{{ $contact->maps}}" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
                             </iframe>
@@ -543,7 +544,14 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $('#newsletterForm').on('submit', function(e) {
+    // Configura CSRF Token para todas as requisições AJAX
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $('#phoneForm').on('submit', function(e) {
         e.preventDefault();
 
         const formData = $(this).serialize();
@@ -560,10 +568,13 @@
                     timer: 1800,
                     showConfirmButton: false
                 });
-                $('#newsletterForm')[0].reset();
+                $('#phoneForm')[0].reset();
             },
             error: function(xhr) {
+                console.log(xhr.status, xhr.responseText); // Debug rápido
+
                 if (xhr.status === 422) {
+                    // Erro de validação
                     const errors = xhr.responseJSON.errors;
                     let errorMessages = '';
                     for (let field in errors) {
@@ -571,12 +582,23 @@
                     }
 
                     Swal.fire({
-                        title: 'Erro',
+                        title: 'Erro de validação',
                         text: errorMessages,
                         icon: 'error',
                         confirmButtonText: 'OK'
                     });
+
+                } else if (xhr.status === 419) {
+                    // CSRF token inválido
+                    Swal.fire({
+                        title: 'Sessão expirada',
+                        text: 'Recarregue a página e tente novamente.',
+                        icon: 'warning',
+                        confirmButtonText: 'OK'
+                    });
+
                 } else {
+                    // Erro genérico
                     Swal.fire({
                         title: 'Erro',
                         text: 'Ocorreu um erro ao enviar seu cadastro. Tente novamente.',
@@ -587,6 +609,6 @@
             }
         });
     });
-
 </script>
+
 @endsection
