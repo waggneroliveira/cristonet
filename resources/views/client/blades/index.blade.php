@@ -122,9 +122,9 @@
                 @endif
             </aside>
             @if (!empty($plans))
-                <div class="col-12 col-md-7 position-relative">
+                <div class="col-12 col-md-7 position-relative animate-on-scroll" data-animation="animate__fadeInRight">
                     <div class="swiper init-swiper" style="padding: 0 0 35px 0">
-                        <script type=application/json class=swiper-config>
+                        <script type="application/json" class="swiper-config">
                             {
                                 "speed": 500,
                                 "slidesPerView": 3.5,
@@ -168,8 +168,8 @@
                         <div id="loader" style="display: none;" class="load text-center my-4">
                             <img src="{{ asset('build/client/images/load.gif') }}" alt="Carregando..." style="width: 40px;">
                         </div>
-
-                        <div id="plans-container" class="swiper-wrapper align-items-baseline animate-on-scroll" data-animation="animate__fadeInRight">                        
+                        
+                        <div id="plans-container" class="swiper-wrapper align-items-baseline">                        
                             @foreach ($plans as $plan)  
                                 @php
                                     $priceformated = $plan->price;
@@ -202,9 +202,9 @@
                                 </div>
                             @endforeach                          
                         </div>
-                        <div class=btn-navigation>
-                            <div class=swiper-button-prev></div>
-                            <div class=swiper-button-next></div>
+                        <div class="btn-navigation">
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
                         </div>
                     </div>
                 </div>
