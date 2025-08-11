@@ -369,7 +369,7 @@
     font-optical-sizing: auto;
     font-style: normal; 
     color: #000000;
-    text-align: center;
+    text-align: center !important;
 }
 .products .swiper-button-next,
 .products .swiper-button-prev,
@@ -1107,9 +1107,9 @@
      margin-top: 40px
  }
 
- .image-hero {
+.hero .image-hero {
      width: 100%;
-     height: auto;
+     height: 100dvh;
      object-fit: cover;
      display: block;
  }
@@ -1185,6 +1185,22 @@
  }
 
  @media (max-width: 991.98px) {
+    .depoiment .content{
+        padding: 20px 0 20px 0;
+    }
+    .topics .montserrat-bold.font-25{
+        font-size: 1.25rem;
+    }
+    .box-topic img{
+        width: 40px;
+    }
+    .box-topic .description p{
+        font-size: 0.813rem;
+    }
+    .d-flex.justify-content-center.align-items-start.gap-4.flex-column.p-0.mt-5.col-12.col-md-6,
+    .obs.mt-4.col-12.col-md-8{
+        width: 95%;
+    }
      .social-links.d-flex.justify-content-between.align-items-center.gap-4.text-center.col-9 {
          justify-content: flex-end !important;
      }
@@ -1206,7 +1222,18 @@
      }
  }
 
- @media (max-width:769px) {
+ @media (max-width:768px) {
+    .plan aside,
+    .products aside{
+        width: 91.66666667%;
+        margin: 0 auto;
+    }
+    .plan .col-12.col-md-7.position-relative,
+    .products .col-12.col-md-7.animate-on-scroll{
+        width: 95%;
+        margin: 0 auto;
+        margin-right: 0;
+    }
      .announcement {
          width: 95% !important;
      }
@@ -1245,6 +1272,13 @@
  }
 
  @media (max-width:576px) {
+    .d-flex.justify-content-center.align-items-start.gap-4.flex-column.p-0.mt-5.col-12.col-md-6{
+        width: 100%;
+    }
+    .about .animate-on-scroll{
+        margin: 0 auto;
+        padding: 0 !important;
+    }
      .announcement .image img {
          object-fit: contain;
      }
@@ -1295,9 +1329,30 @@
          font-size: 18px;
          font-weight: 800;
      }
+     .before::before{
+        height: 25px;
+        width: 8px;
+        margin-top: 0;
+     }
+    #all-complete h2{
+        align-items: center !important;
+    }
+    .about h1.before::before{
+        width: 20px;   
+    }
  }
 
  @media (max-width:476px) {
+    .topics .montserrat-bold.font-25, .about h1, .plan h2, .products h2, .depoiment h2, 
+    #all-complete h2, .contact-section h4{
+        font-size: 1.125rem;
+    }
+    .plan h3, .products h3{
+        font-size: 1.75rem;
+    }
+    .contact-section .animate-on-scroll{
+        margin: 0 auto;
+    }
      .d-flex.flex-column.col-10.comment {
          width: 80%;
      }
@@ -1309,11 +1364,9 @@
          padding-top: 35px !important;
      }
      .sitemap .logo img {
-         width: 95px;
+        max-width: 280px;
      }
-     br {
-         display: none;
-     }
+
      .login .loginOn {
          font-size: 0.563rem;
      }

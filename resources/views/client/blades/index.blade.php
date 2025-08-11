@@ -41,8 +41,8 @@
 @if (!empty($about) && !empty($partners))
     <section id="about" class="position-relative">
         <div class="container">
-            <div class="row d-flex justify-content-between align-items-start about flex-wrap w-100 pt-5">
-                <div class="col-12 col-lg-6 animate-on-scroll" data-animation="animate__fadeInLeft">
+            <div class="d-flex justify-content-between align-items-start about flex-wrap w-100 pt-4 pt-lg-5">
+                <div class="col-11 col-lg-6 animate-on-scroll" data-animation="animate__fadeInLeft">
                     <h1 class="d-flex align-items-start gap-2 montserrat-semiBold font-28 text-black before text-uppercase">{{$about->title}}</h1>
             
                     <div class="description mt-4">{!!$about->description!!}</div>
@@ -54,7 +54,7 @@
                     @endif
                 </div>
 
-                <div class="col-12 col-lg-6 animate-on-scroll" data-animation="animate__fadeInRight">
+                <div class="col-11 col-lg-6 animate-on-scroll" data-animation="animate__fadeInRight">
                     <div class="image d-flex justify-content-end">
                         <img src="{{asset('storage/'.$about->path_image)}}" alt="About" class="w-100 h-100 about-image d-none d-sm-block" loading="lazy">
                     </div>
@@ -85,7 +85,7 @@
     (!empty($plans) && count($plans) > 0))
     <section id="plans" class="background-plan py-5 plan">
         <div class="content m-auto me-0 justify-content-end d-flex flex-wrap flex-column flex-md-row">
-            <aside class="col-12 col-md-4 animate-on-scroll" data-animation="animate__fadeInLeft">
+            <aside class="col-11 col-md-4 animate-on-scroll" data-animation="animate__fadeInLeft">
                 @if (isset($planSection->title) || isset($planSection->subtitle))
                     <div class="w-100">
                         <h2 class="montserrat-medium font-25 text-white">{{ $planSection->title }}</h2>
@@ -135,19 +135,19 @@
                                 },
                                 "breakpoints": {
                                     "320": {
-                                        "slidesPerView": 1.5,
+                                        "slidesPerView": 1.2,
                                         "spaceBetween": 5
                                     },
-                                    "475": {
+                                    "515": {
                                         "slidesPerView": 2,
                                         "spaceBetween": 5
                                     },
                                     "631": {
-                                        "slidesPerView": 3.2,
+                                        "slidesPerView": 2.5,
                                         "spaceBetween": 5
                                     },
                                     "768": {
-                                        "slidesPerView": 3.2,
+                                        "slidesPerView": 2.2,
                                         "spaceBetween": 5
                                     },
                                     "1025": {
@@ -263,19 +263,19 @@
                             },
                             "breakpoints": {
                                 "320": {
-                                    "slidesPerView": 1.5,
+                                    "slidesPerView": 1.2,
                                     "spaceBetween": 5
                                 },
-                                "475": {
+                                "513": {
                                     "slidesPerView": 2,
                                     "spaceBetween": 5
                                 },
                                 "631": {
-                                    "slidesPerView": 3.2,
+                                    "slidesPerView": 2.5,
                                     "spaceBetween": 5
                                 },
                                 "768": {
-                                    "slidesPerView": 3.2,
+                                    "slidesPerView": 2.2,
                                     "spaceBetween": 5
                                 },
                                 "1025": {
@@ -331,7 +331,7 @@
     <section id="depoiment" class="depoiment position-relative h-100">
         <div class="content m-auto me-0 justify-content-end d-flex flex-wrap align-items-center h-100 flex-column flex-md-row">
             @if (!empty($depoimentSession) && isset($depoimentSession->title) && isset($depoimentSession->text))            
-                <div class="col-12 col-lg-4 animate-on-scroll" data-animation="animate__fadeInLeft">
+                <div class="col-11 col-lg-4 animate-on-scroll" data-animation="animate__fadeInLeft">
                     @if ($depoimentSession->title)                    
                         <h2 class="title mb-0 text-uppercase font-35 montserrat-semiBold text-black before">{{ $depoimentSession->title }}</h2>
                     @endif
@@ -368,11 +368,11 @@
                             },
                             "breakpoints": {
                                 "320": {
-                                    "slidesPerView": 1.3,
+                                    "slidesPerView": 1.2,
                                     "spaceBetween": 5
                                 },
                                 "475": {
-                                    "slidesPerView": 1.3,
+                                    "slidesPerView": 1.2,
                                     "spaceBetween": 5
                                 },
                                 "631": {
@@ -441,7 +441,7 @@
             <div class="row align-items-center justify-content-between">
 
                 <!-- Coluna Esquerda - Formulário -->
-                <div class="col-12 col-lg-5 mb-4 mb-lg-0 animate-on-scroll" data-animation="animate__fadeInUp">
+                <div class="col-11 col-lg-5 mb-4 mb-lg-0 animate-on-scroll" data-animation="animate__fadeInUp">
                     @if ($contact->name_section)                        
                         <h4 class="title mb-0 text-uppercase font-32 montserrat-semiBold before">
                             {{$contact->name_section}}
@@ -477,7 +477,7 @@
 
                 <!-- Coluna Direita - Mapa -->
                 @if ($contact->maps)                    
-                    <div class="col-12 col-lg-5 animate-on-scroll" data-animation="animate__fadeInDown">
+                    <div class="col-11 col-lg-5 animate-on-scroll" data-animation="animate__fadeInDown">
                         <div class="ratio ratio-4x3">
                             <iframe src="{{ $contact->maps}}" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
                             </iframe>
