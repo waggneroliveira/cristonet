@@ -1,6 +1,6 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /projetos/cristonet/
+    RewriteBase /projetos/
 
     # Redireciona requisições para index.php
     RewriteCond %{REQUEST_FILENAME} !-f
