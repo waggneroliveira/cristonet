@@ -143,40 +143,50 @@
     }
 
     //Menu mobile
-    const s = document.getElementById("menu-toggle"),
-        a = document.getElementById("menu-mobile"),
-        c = document.getElementById("menu-close"),
-        d = document.querySelector(".btn_sidebar"); // botão do menu inferior
+const s = document.getElementById("menu-toggle");
+const a = document.getElementById("menu-mobile");
+const c = document.getElementById("menu-close");
 
-    s.addEventListener("click", function () {
-        const e = a.classList.toggle("active");
-        document.body.style.overflow = e ? "hidden" : "";
+if (s && a && c) {
+    // Abrir menu
+    s.addEventListener("click", () => {
+        const isActive = a.classList.toggle("active");
+        document.body.style.overflow = isActive ? "hidden" : "";
     });
 
-    c.addEventListener("click", function () {
+    // Fechar pelo botão de fechar
+    c.addEventListener("click", () => {
         a.classList.remove("active");
         document.body.style.overflow = "";
     });
 
-    d.addEventListener("click", function () {
-        const e = a.classList.toggle("active");
-        document.body.style.overflow = e ? "hidden" : "";
-    });
-
+    // Fechar ao clicar nos links
     a.querySelectorAll("a").forEach(link => {
-        link.addEventListener("click", function(e) {
+        link.addEventListener("click", function (e) {
             const href = this.getAttribute("href");
             if (href && href.startsWith("#")) {
                 e.preventDefault();
                 const target = document.querySelector(href);
+
                 if (target) {
                     target.scrollIntoView({ behavior: "smooth" });
                 }
+
+                // Fecha o menu depois do scroll
+                setTimeout(() => {
+                    a.classList.remove("active");
+                    document.body.style.overflow = "";
+                }, 800);
+            } else {
+                // Links normais também fecham
                 a.classList.remove("active");
                 document.body.style.overflow = "";
             }
         });
     });
+}
+
+
 
     //Mascara de telefone
     document.querySelectorAll(".phone").forEach(function(phoneInput) {
