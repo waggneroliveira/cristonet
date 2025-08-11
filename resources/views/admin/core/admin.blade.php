@@ -19,7 +19,7 @@
 
         <meta name="author" content="WHI - Web de Alta Inspiração">
         <meta name="description" content="Painel gerenciador de conteúdo WHI">
-        <meta name="copyright" content="© 2024 WHI - Web de Alta Inspiração." />
+        <meta name="copyright" content="© 2025 WHI - Web de Alta Inspiração." />
         <meta name="robots" content="none">
         <meta name="googlebot" content="noarchive">
         

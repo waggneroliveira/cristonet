@@ -23,8 +23,9 @@
                 @foreach ($topics as $topic)                
                     <div class="box-topic col-md-4 grey-background p-4 d-flex justify-content-between align-items-center">
                         <div class="mb-3">
-                            {{-- <i class="bi bi-stars" style="font-size: 2rem;"></i> --}}
-                            <img src="{{asset('storage/'.$topic->path_image)}}" alt="{{$topic->title}}">
+                            @if (isset($topic->path_image) && $topic->path_image <> null)                                
+                                <img src="{{asset('storage/'.$topic->path_image)}}" alt="Ícone {{$topic->title}}">
+                            @endif
                         </div>
                         <div class="description text-start col-10">
                             <h5 class="montserrat-bold font-25">{{$topic->title}}</h5>
@@ -54,11 +55,13 @@
                     @endif
                 </div>
 
-                <div class="col-11 col-lg-6 animate-on-scroll" data-animation="animate__fadeInRight">
-                    <div class="image d-flex justify-content-end">
-                        <img src="{{asset('storage/'.$about->path_image)}}" alt="About" class="w-100 h-100 about-image d-none d-sm-block" loading="lazy">
-                    </div>
-                </div>            
+                @if (isset($about->path_image) && $about->path_image <> null)                    
+                    <div class="col-11 col-lg-6 animate-on-scroll" data-animation="animate__fadeInRight">
+                        <div class="image d-flex justify-content-end">
+                            <img src="{{asset('storage/'.$about->path_image)}}" alt="About" class="w-100 h-100 about-image d-none d-sm-block" loading="lazy">
+                        </div>
+                    </div>            
+                @endif
             </div>
             @if (!empty($partners))
                 <div class="partners animate-on-scroll" data-animation="animate__fadeInUp">
@@ -67,7 +70,9 @@
                             @foreach ($partners as $partner)                        
                                 <div class="col-6 col-sm-4 col-md-2">
                                     <div class="partner-card border rounded-2 d-flex justify-content-center align-items-center">
-                                        <img src="{{asset('storage/'.$partner->path_image)}}" alt="Logo dos parceiro" loading="lazy"/>                            
+                                        @if (isset($partner->path_image) && $partner->path_image <> null)                                            
+                                            <img src="{{asset('storage/'.$partner->path_image)}}" alt="Logo dos parceiro" loading="lazy"/>                            
+                                        @endif
                                     </div>
                                 </div>
                             @endforeach
@@ -99,8 +104,10 @@
                                 <button type="button" 
                                         class="border-transparent shadow-none border-none montserrat-medium font-15 text-white background-red py-2 px-3 rounded-5 d-flex w-100 justify-content-center gap-3 align-items-center btn-filter-category" 
                                         data-id="{{ $planCategory->id }}">
-                                    <img src="{{ asset('storage/' . $planCategory->path_image) }}" alt="Imagem da categoria">
-                                    {{ $planCategory->title }}
+                                        @if (isset($planCategory->path_image) && $planCategory->path_image <> null)                                            
+                                            <img src="{{ asset('storage/' . $planCategory->path_image) }}" alt="Imagem da categoria">
+                                        @endif
+                                        {{ $planCategory->title }}
                                 </button>
                             </li>
                         @endforeach
@@ -295,9 +302,11 @@
                             <div class=swiper-slide>
                                 <div class="card-plan bg-white rounded-3 p-3">
                                     <div class="d-flex justify-content-center align-items-center flex-column">
-                                        <div class="image mb-3">
-                                            <img src="{{asset('storage/' .$product->path_image)}}" alt="Imagem do produto">
-                                        </div>
+                                        @if (isset($product->path_image) && !empty($product->path_image))                                            
+                                            <div class="image mb-3">
+                                                <img src="{{asset('storage/' .$product->path_image)}}" alt="Imagem do produto">
+                                            </div>
+                                        @endif
                                         <div class="title">
                                             <h5 class="subtitle-plan montserrat-bold font-18 mb-0 text-center">{{$product->title}}</h5>
                                         </div>
