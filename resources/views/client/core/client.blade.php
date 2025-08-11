@@ -7,22 +7,22 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="theme-color" content="#0d0d0d">
-    <meta name="description" content="O CristoNet é o sindicato que representa os Agentes Comunitários de Saúde (ACS) e Agentes de Combate às Endemias (ACE) da Bahia, lutando por direitos, valorização profissional e melhores condições de trabalho.">
-    <meta name="keywords" content="CristoNet, Sindicato Bahia, agentes comunitários de saúde, agentes de combate às endemias, ACS Bahia, ACE Bahia, sindicato ACS ACE, saúde pública Bahia, trabalhadores da saúde Bahia, direitos dos agentes de saúde, sindicato saúde Bahia, categoria ACS ACE, luta sindical Bahia, representação sindical saúde, agentes comunitários Bahia, agentes endemias Bahia, sindicato dos agentes Bahia">
+    <meta name="description" content="CristoNet - Provedor de internet rápida e estável. Planos de fibra óptica com alta velocidade e suporte de qualidade para sua casa ou empresa.">
+    <meta name="keywords" content="CristoNet, provedor de internet, internet fibra óptica, planos de internet, internet rápida, internet residencial, internet empresarial, Wi-Fi, banda larga, internet veloz, provedor de fibra, internet estável, internet para empresas, internet de qualidade">
     <title>CristoNet</title>
-    <meta property="og:url" content="https://www.sindacsba.org.br">
+    <meta property="og:url" content="https://whi.dev.br/projetos/cristonet">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Sindicato de agentes comunitários de saúde e agentes de combate as endemias da Bahia.">
-    <meta property="og:description" content="O CristoNet é o sindicato que representa os Agentes Comunitários de Saúde (ACS) e Agentes de Combate às Endemias (ACE) da Bahia, lutando por direitos, valorização profissional e melhores condições de trabalho.">
+    <meta property="og:title" content="CristoNet">
+    <meta property="og:description" content="CristoNet - Provedor de internet rápida e estável. Planos de fibra óptica com alta velocidade e suporte de qualidade para sua casa ou empresa.">
     <meta name="twitter:card" content=summary_large_image>
-    <meta name="twitter:url" content=https://www.sindacsba.org.br>
-    <meta name="twitter:title" content="Sindicato de agentes comunitários de saúde e agentes de combate as endemias da Bahia.">
-    <meta name="twitter:description" content="O CristoNet é o sindicato que representa os Agentes Comunitários de Saúde (ACS) e Agentes de Combate às Endemias (ACE) da Bahia, lutando por direitos, valorização profissional e melhores condições de trabalho.">
-    <meta name="twitter:image" content=https://www.sindacsba.org.br/assets/images/logo.png>
+    <meta name="twitter:url" content=https://whi.dev.br/projetos/cristonet>
+    <meta name="twitter:title" content="CristoNet">
+    <meta name="twitter:description" content="CristoNet - Provedor de internet rápida e estável. Planos de fibra óptica com alta velocidade e suporte de qualidade para sua casa ou empresa.">
+    <meta name="twitter:image" content=https://whi.dev.br/projetos/cristonet/assets/images/logo.png>
     <link rel="canonical" href="{{ url()->current() }}">
     <meta name="copyright" content="Direitos reservados WHI">
     <meta name="author" content="WHI">
-    <link rel="shortcut icon" href="https://www.sindacsba.org.br/assets/images/favicon.svg">
+    <link rel="shortcut icon" href="https://whi.dev.br/projetos/cristonet/assets/images/favicon.svg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    
@@ -46,36 +46,32 @@
         {
             "@context": "https://schema.org",
             "@type": "Organization",
-            "@id": "https://www.sindacsba.org.br/#organization",
+            "@id": "https://whi.dev.br/projetos/cristonet/#organization",
             "name": "CristoNet",
-            "legalName": "Sindicato de agentes comunitários de saúde e agentes de combate as endemias da Bahia.",
-            "url": "https://www.sindacsba.org.br",
-            "logo": "https://www.sindacsba.org.br/assets/images/logo.png",
-            "image": "https://www.sindacsba.org.br/assets/images/logo.png",
-            "description": "O CristoNet é o sindicato que representa os Agentes Comunitários de Saúde (ACS) e Agentes de Combate às Endemias (ACE) da Bahia, lutando por direitos, valorização profissional e melhores condições de trabalho.",
-            "foundingDate": "2003",
-            "email": "sindacsbahia@gmail.com",
-            "telephone": "+55 71 3017-4112",
+            "legalName": "CristoNet",
+            "url": "https://whi.dev.br/projetos/cristonet",
+            "logo": "https://whi.dev.br/projetos/cristonet/assets/images/logo.png",
+            "image": "https://whi.dev.br/projetos/cristonet/assets/images/logo.png",
+            "description": "CristoNet - Provedor de internet rápida e estável. Planos de fibra óptica com alta velocidade e suporte de qualidade para sua casa ou empresa.",
+            "foundingDate": "2007",
+            "email": "Jrdinario@hotmail.com",
+            "telephone": "+55 71 98655-0508",
             "sameAs": [
-                "https://www.instagram.com/sindacsbahia",
-                "https://www.tiktok.com/@sindacsbahia",
-                "https://www.youtube.com/channel/UCG0q-E25LZ2Lx73N50tCD8Q",
-                "https://x.com/SindacsBahia",
-                "https://www.facebook.com/sindacsbahia.org.br"
+                "https://www.instagram.com/cristonettelecom"
             ],
             "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "Rua Do Tesouro, 56 - Edif Santa Cruz Andar 7 Sala 700 - Comércio",
+                "streetAddress": "Rua Direta da Mata Escura, 550 - Mata Escura",                
                 "addressLocality": "Salvador",
                 "addressRegion": "BA",
-                "postalCode": "40026-028",
+                "postalCode": "41225-190",
                 "addressCountry": "BR"
             },
             "contactPoint": {
                 "@type": "ContactPoint",
-                "telephone": "+55 71 3017-4112",
+                "telephone": "+55 71 98655-0508",
                 "contactType": "customer service",
-                "email": "sindacsbahia@gmail.com",
+                "email": "Jrdinario@hotmail.com",
                 "areaServed": "BR",
                 "availableLanguage": ["pt", "en"]
             },
@@ -88,27 +84,24 @@
             "identifier": {
                 "@type": "PropertyValue",
                 "propertyID": "CNPJ",
-                "value": "06.953.941/0001-26"
+                "value": "46.645.660/0001-20"
             },
             "slogan": "CristoNet",
             "keywords": [
                 "CristoNet",
-                "Sindicato Bahia",
-                "agentes comunitários de saúde",
-                "agentes de combate às endemias",
-                "ACS Bahia",
-                "ACE Bahia",
-                "sindicato ACS ACE",
-                "saúde pública Bahia",
-                "trabalhadores da saúde Bahia",
-                "direitos dos agentes de saúde",
-                "sindicato saúde Bahia",
-                "categoria ACS ACE",
-                "luta sindical Bahia",
-                "representação sindical saúde",
-                "agentes comunitários Bahia",
-                "agentes endemias Bahia",
-                "sindicato dos agentes Bahia"
+                "provedor de internet",
+                "internet fibra óptica",
+                "planos de internet",
+                "internet rápida",
+                "internet residencial",
+                "internet empresarial",
+                "Wi-Fi",
+                "banda larga",
+                "internet veloz",
+                "provedor de fibra",
+                "internet estável",
+                "internet para empresas",
+                "internet de qualidade"
             ]
         }
     </script>
@@ -595,7 +588,7 @@
                     </script>
                 </div>
                 <div class=credits>
-                    <a href="https://www.sindacsba.org.br/" target=_blank rel="noopener noreferrer">
+                    <a href="https://whi.dev.br/projetos/cristonet/" target=_blank rel="noopener noreferrer">
                         <img src="{{asset('build/client/images/developed.svg')}}"  alt="WHI - Web de Alta Inovação" title="WHI - Web de Alta Inovação" loading=lazy>
                     </a>
                 </div>

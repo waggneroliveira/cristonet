@@ -24,7 +24,7 @@
                     <div class="box-topic col-md-4 grey-background p-4 d-flex justify-content-between align-items-center">
                         <div class="mb-3">
                             @if (isset($topic->path_image) && $topic->path_image <> null)                                
-                                <img src="{{asset('storage/'.$topic->path_image)}}" alt="Ícone {{$topic->title}}">
+                                <img src="{{asset('storage/'.$topic->path_image)}}" alt="Ícone {{$topic->title}}" loading="lazy">
                             @endif
                         </div>
                         <div class="description text-start col-10">
@@ -105,7 +105,7 @@
                                         class="border-transparent shadow-none border-none montserrat-medium font-15 text-white background-red py-2 px-3 rounded-5 d-flex w-100 justify-content-center gap-3 align-items-center btn-filter-category" 
                                         data-id="{{ $planCategory->id }}">
                                         @if (isset($planCategory->path_image) && $planCategory->path_image <> null)                                            
-                                            <img src="{{ asset('storage/' . $planCategory->path_image) }}" alt="Imagem da categoria">
+                                            <img src="{{ asset('storage/' . $planCategory->path_image) }}" alt="Imagem da categoria" loading="lazy">
                                         @endif
                                         {{ $planCategory->title }}
                                 </button>
@@ -166,7 +166,7 @@
                         </script>
 
                         <div id="loader" style="display: none;" class="load text-center my-4">
-                            <img src="{{ asset('build/client/images/load.gif') }}" alt="Carregando..." style="width: 40px;">
+                            <img src="{{ asset('build/client/images/load.gif') }}" alt="Carregando..." style="width: 40px;" loading="lazy">
                         </div>
                         
                         <div id="plans-container" class="swiper-wrapper align-items-baseline">                        
@@ -196,7 +196,27 @@
                                             </div>
                                         @endif
                                         <div class="call-to-action mt-3 text-center">
-                                            <a href="http://" target="_blank" rel="noopener noreferrer" class="btn background-red rounded-5 px-5 py-2 text-white montserrat-semiBold font-15">Quero esse</a>
+                                            @if (isset($contact) && $contact->phone_one <> null)
+                                                @php
+                                                    // Remove caracteres não numéricos do telefone
+                                                    $phone = preg_replace('/\D/', '', $contact->phone_one);
+
+                                                    // Monta mensagem com ícones e quebras de linha
+                                                    $mensagem = "Olá! Tenho interesse no plano:%0A"
+                                                            . "📌 Plano: {$plan->title} {$plan->subtitle}%0A"
+                                                            . "🚀 Velocidade: {$plan->bandwidth_limit} {$plan->bandwidth_unit}%0A"
+                                                            . "💲 Preço: R$ {$price}";
+                                                @endphp
+
+                                                <a 
+                                                    href="https://wa.me/55{{ $phone }}?text={{ $mensagem }}" 
+                                                    target="_blank" 
+                                                    rel="noopener noreferrer" 
+                                                    class="btn background-red rounded-5 px-5 py-2 text-white montserrat-semiBold font-15"
+                                                >
+                                                    Quero esse
+                                                </a>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -304,7 +324,7 @@
                                     <div class="d-flex justify-content-center align-items-center flex-column">
                                         @if (isset($product->path_image) && !empty($product->path_image))                                            
                                             <div class="image mb-3">
-                                                <img src="{{asset('storage/' .$product->path_image)}}" alt="Imagem do produto">
+                                                <img src="{{asset('storage/' .$product->path_image)}}" alt="Imagem do produto" loading="lazy">
                                             </div>
                                         @endif
                                         <div class="title">
@@ -320,7 +340,26 @@
                                         </div>
                                     @endif
                                     <div class="call-to-action mt-3 text-center">
-                                        <a href="http://" target="_blank" rel="noopener noreferrer" class="btn background-red rounded-5 px-5 py-2 text-white montserrat-semiBold font-15">Quero esse</a>
+                                        @if (isset($contact) && $contact->phone_one <> null)
+                                            @php
+                                                // Remove caracteres não numéricos do telefone
+                                                $phone = preg_replace('/\D/', '', $contact->phone_one);
+
+                                                // Monta mensagem com ícones e quebras de linha
+                                                $mensagem = "Olá! Tenho interesse no produto:%0A"
+                                                        . "📌 Produto: {$product->title}%0A"
+                                                        . "💲 Preço: R$ {$price}";
+                                            @endphp
+
+                                            <a 
+                                                href="https://wa.me/55{{ $phone }}?text={{ $mensagem }}" 
+                                                target="_blank" 
+                                                rel="noopener noreferrer" 
+                                                class="btn background-red rounded-5 px-5 py-2 text-white montserrat-semiBold font-15"
+                                            >
+                                                Quero esse
+                                            </a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>                  
@@ -352,7 +391,24 @@
                     @endif
                     
                     <div class="call-to-action mt-3">
-                        <a href="http://" target="_blank" rel="noopener noreferrer" class="btn background-red rounded-5 px-5 py-2 text-white montserrat-semiBold font-15">Conhecer</a>
+                        @if (isset($contact) && $contact->phone_one <> null)
+                            @php
+                                // Remove caracteres não numéricos do telefone
+                                $phone = preg_replace('/\D/', '', $contact->phone_one);
+
+                                // Monta mensagem com ícones e quebras de linha
+                                $mensagem = "Olá! Encontrei seu site e gostaria de conhecer mais sobre os planos disponíveis.%0A";
+                            @endphp
+
+                            <a 
+                                href="https://wa.me/55{{ $phone }}?text={{ $mensagem }}" 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                class="btn background-red rounded-5 px-5 py-2 text-white montserrat-semiBold font-15"
+                            >
+                                Conhecer
+                            </a>
+                        @endif
                     </div>
                 </div>
             @endif
