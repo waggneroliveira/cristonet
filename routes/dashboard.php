@@ -98,19 +98,12 @@ Route::prefix('painel/')->group(function () {
 
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
-        Route::resource('pop-up', PopUpController::class)
-        ->names('admin.dashboard.popUp')
-        ->parameters(['pop-up'=>'popUp']);
         //AUDITORIA
         Route::resource('auditorias', AuditActivityController::class)
         ->names('admin.dashboard.audit')
         ->parameters(['auditorias'=>'activitie']);
         Route::post('auditorias/{id}/mark-as-read', [AuditActivityController::class, 'markAsRead']);
         Route::post('/auditorias/mark-all-as-read', [AuditActivityController::class, 'markAllAsRead']);
-        //LEAD
-        Route::resource('lead', FormIndexController::class)
-        ->names('admin.dashboard.formIndex')
-        ->parameters(['lead'=>'formIndex']);
         //CONTATO
         Route::resource('contato', ContactController::class)
         ->names('admin.dashboard.contact')
@@ -121,40 +114,6 @@ Route::prefix('painel/')->group(function () {
         ->parameters(['newsletter'=>'newsletter']);
         Route::post('newsletter/delete', [NewsletterController::class, 'destroySelected'])
         ->name('admin.dashboard.newsletter.destroySelected');
-        //ANUNCIO
-        Route::resource('anuncio', AnnouncementController::class)
-        ->names('admin.dashboard.announcement')
-        ->parameters(['anuncio'=>'announcement']);
-        Route::post('anuncio/delete', [AnnouncementController::class, 'destroySelected'])
-        ->name('admin.dashboard.announcement.destroySelected');
-        Route::post('anuncio/sorting', [AnnouncementController::class, 'sorting'])
-        ->name('admin.dashboard.announcement.sorting');
-        //NOTICIES
-        Route::resource('editais', NoticiesController::class)
-        ->parameters(['editais' => 'noticies'])
-        ->names('admin.dashboard.noticies');
-        Route::post('editais/delete', [NoticiesController::class, 'destroySelected'])
-        ->name('admin.dashboard.noticies.destroySelected');
-        Route::post('editais/sorting', [NoticiesController::class, 'sorting'])
-        ->name('admin.dashboard.noticies.sorting');
-        //BLOG
-        Route::resource('blog', BlogController::class)
-        ->parameters(['blog' => 'blog'])
-        ->names('admin.dashboard.blog');
-        Route::post('blog/delete', [BlogController::class, 'destroySelected'])
-        ->name('admin.dashboard.blog.destroySelected');
-        Route::post('blog/sorting', [BlogController::class, 'sorting'])
-        ->name('admin.dashboard.blog.sorting');
-        Route::post('blog/uploadImageCkeditor', [BlogController::class, 'uploadImageCkeditor'])
-        ->name('admin.dashboard.blog.uploadImageCkeditor');
-        //CATEGORIA BLOG
-        Route::resource('categoria-do-blog', BlogCategoryController::class)
-        ->parameters(['categoria-do-blog' => 'blogCategory'])
-        ->names('admin.dashboard.blogCategory');
-        Route::post('categoria-do-blog/delete', [BlogCategoryController::class, 'destroySelected'])
-        ->name('admin.dashboard.blogCategory.destroySelected');
-        Route::post('categoria-do-blog/sorting', [BlogCategoryController::class, 'sorting'])
-        ->name('admin.dashboard.blogCategory.sorting');
         //SLIDES
         Route::resource('slides', SlideController::class)
         ->names('admin.dashboard.slide')
@@ -246,15 +205,6 @@ Route::prefix('painel/')->group(function () {
         ->name('admin.dashboard.depoiment.destroySelected');
         Route::post('depoimentos/sorting', [DepoimentController::class, 'sorting'])
         ->name('admin.dashboard.depoiment.sorting');
-        //DESATIVAR COMENTARIO
-        Route::put('/desativa-comentario/{comment}', [CommentController::class, 'desactiveComment'])
-        ->name('comment.desactive.update');
-        //ATIVAR COMENTARIO
-        Route::put('/ativar-comentario/{comment}', [CommentController::class, 'activeComment'])
-        ->name('comment.active.update');
-        //DELETAR COMENTARIO
-        Route::delete('/deletar-comentario/{comment}', [CommentController::class, 'destroy'])
-        ->name('comment.delete');
 
         // SETTINGS THEME
         Route::post('setting', [SettingThemeController::class, 'setting'])->name('admin.dashboard.settingTheme'); 

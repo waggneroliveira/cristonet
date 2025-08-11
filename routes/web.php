@@ -62,13 +62,7 @@ Route::get('/', [HomePageController::class, 'index'])
 Route::get('planos/categoria/{id}', [HomePageController::class, 'getPlansByCategory']);
 Route::get('contato', [ContactPageController::class, 'index'])
 ->name('contact');
-Route::post('send-contact', [FormIndexController::class, 'store'])->name('send-contact');
-Route::get('editais', [NoticiesPageController::class, 'index'])
-->name('noticies');
-Route::get('noticias/interna/{slug}', [BlogPageController::class, 'blogInner'])
-->name('blog-inner');
-Route::get('noticias/{category?}', [BlogPageController::class, 'index'])->name('blog');
-Route::post('noticias/search', [BlogPageController::class, 'index'])->name('blog-search');
+
 Route::post('send-newsletter', [NewsletterController::class, 'store'])->name('send-newsletter');
 
 Route::post('cliente/cadastro', [ClientController::class, 'store'])->name('register-client');

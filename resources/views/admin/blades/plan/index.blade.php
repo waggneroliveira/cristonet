@@ -27,8 +27,8 @@
                                 <div class="row mb-2">
                                     <div class="col-12 d-flex justify-between">
                                         <div class="col-6">
-                                            @if (Auth::user()->hasPermissionTo('noticias.visualizar') &&
-                                            Auth::user()->hasPermissionTo('noticias.remover') ||
+                                            @if (Auth::user()->hasPermissionTo('planos.visualizar') &&
+                                            Auth::user()->hasPermissionTo('planos.remover') ||
                                             Auth::user()->hasPermissionTo('usuario.tornar usuario master') || 
                                             Auth::user()->hasRole('Super'))
                                                 <button id="btSubmitDelete" data-route="{{route('admin.dashboard.plan.destroySelected')}}" type="button" class="btSubmitDelete btn btn-danger" style="display: none;">{{__('dashboard.btn_delete_all')}}</button>
@@ -60,34 +60,39 @@
                                                 </div><!-- /.modal -->                                                
                                             @endif
 
-                                            @if (isset($planSection))
-                                                <button data-bs-toggle="modal" data-bs-target="#planSection-edit-{{$planSection->id}}" class="tabledit-edit-button btn btn-primary text-black me-2"><span class="mdi mdi-pencil me-1"></span>Info Sessão</button>
-                                                <div class="modal fade" id="planSection-edit-{{$planSection->id}}" tabindex="-1" role="dialog" aria-hidden="true">
-                                                    <div class="plan modal-dialog modal-dialog-centered">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header bg-light">
-                                                                <h4 class="modal-title" id="myCenterModalLabel">{{__('dashboard.btn_edit')}}</h4>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
-                                                            </div>
-                                                            <div class="modal-body p-4">
-                                                                <form action="{{ route('admin.dashboard.planSection.update', ['planSection' => $planSection->id]) }}" method="POST" enctype="multipart/form-data">
-                                                                    @csrf
-                                                                    @method('PUT')
-                                                                    @include('admin.blades.planSection.form', ['textareaId' => 'textarea-edit-' . $planSection->id])   
-                                                                    <div class="d-flex justify-content-end gap-2">
-                                                                        <button type="button" class="btn btn-danger waves-effect waves-light" data-bs-dismiss="modal">{{__('dashboard.btn_cancel')}}</button>
-                                                                        <button type="submit" class="btn btn-primary text-black waves-effect waves-light">{{__('dashboard.btn_save')}}</button>
-                                                                    </div>                                                                                                                      
-                                                                </form>                                                                    
-                                                            </div>
-                                                        </div><!-- /.modal-content -->
-                                                    </div><!-- /.modal-dialog -->
-                                                </div><!-- /.modal -->
+                                            @if (Auth::user()->hasPermissionTo('planos.visualizar') &&
+                                                Auth::user()->hasPermissionTo('planos.editar') ||
+                                                Auth::user()->hasPermissionTo('usuario.tornar usuario master') || 
+                                                Auth::user()->hasRole('Super'))
+                                                    @if (isset($planSection))
+                                                        <button data-bs-toggle="modal" data-bs-target="#planSection-edit-{{$planSection->id}}" class="tabledit-edit-button btn btn-primary text-black me-2"><span class="mdi mdi-pencil me-1"></span>Info Sessão</button>
+                                                        <div class="modal fade" id="planSection-edit-{{$planSection->id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                                                            <div class="plan modal-dialog modal-dialog-centered">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header bg-light">
+                                                                        <h4 class="modal-title" id="myCenterModalLabel">{{__('dashboard.btn_edit')}}</h4>
+                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                                                                    </div>
+                                                                    <div class="modal-body p-4">
+                                                                        <form action="{{ route('admin.dashboard.planSection.update', ['planSection' => $planSection->id]) }}" method="POST" enctype="multipart/form-data">
+                                                                            @csrf
+                                                                            @method('PUT')
+                                                                            @include('admin.blades.planSection.form', ['textareaId' => 'textarea-edit-' . $planSection->id])   
+                                                                            <div class="d-flex justify-content-end gap-2">
+                                                                                <button type="button" class="btn btn-danger waves-effect waves-light" data-bs-dismiss="modal">{{__('dashboard.btn_cancel')}}</button>
+                                                                                <button type="submit" class="btn btn-primary text-black waves-effect waves-light">{{__('dashboard.btn_save')}}</button>
+                                                                            </div>                                                                                                                      
+                                                                        </form>                                                                    
+                                                                    </div>
+                                                                </div><!-- /.modal-content -->
+                                                            </div><!-- /.modal-dialog -->
+                                                        </div><!-- /.modal -->
+                                                    @endif
                                             @endif
 
 
-                                            @if (Auth::user()->hasPermissionTo('noticias.visualizar') &&
-                                            Auth::user()->hasPermissionTo('noticias.criar') ||
+                                            @if (Auth::user()->hasPermissionTo('planos.visualizar') &&
+                                            Auth::user()->hasPermissionTo('planos.criar') ||
                                             Auth::user()->hasPermissionTo('usuario.tornar usuario master') || 
                                             Auth::user()->hasRole('Super'))
                                                 <button type="button" class="btn btn-primary text-black waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#plan-create"><i class="mdi mdi-plus-circle me-1"></i> {{__('dashboard.btn_create')}}</button>
@@ -158,8 +163,8 @@
                                                         @endswitch
                                                     </td>
                                                     <td class="d-flex gap-lg-1 justify-center">
-                                                        @if (Auth::user()->hasPermissionTo('noticias.visualizar') &&
-                                                        Auth::user()->hasPermissionTo('noticias.editar') ||
+                                                        @if (Auth::user()->hasPermissionTo('planos.visualizar') &&
+                                                        Auth::user()->hasPermissionTo('planos.editar') ||
                                                         Auth::user()->hasPermissionTo('usuario.tornar usuario master') || 
                                                         Auth::user()->hasRole('Super'))
                                                         <button data-bs-toggle="modal" data-bs-target="#plan-edit-{{$plan->id}}" class="tabledit-edit-button btn btn-primary text-black" style="padding: 2px 8px;width: 30px"><span class="mdi mdi-pencil"></span></button>
@@ -186,8 +191,8 @@
                                                         </div><!-- /.modal -->
                                                         @endif
 
-                                                        @if (Auth::user()->hasPermissionTo('noticias.visualizar') &&
-                                                        Auth::user()->hasPermissionTo('noticias.remover') ||
+                                                        @if (Auth::user()->hasPermissionTo('planos.visualizar') &&
+                                                        Auth::user()->hasPermissionTo('planos.remover') ||
                                                         Auth::user()->hasPermissionTo('usuario.tornar usuario master') || 
                                                         Auth::user()->hasRole('Super'))
                                                             <form action="{{route('admin.dashboard.plan.destroy',['plan' => $plan->id])}}" style="width: 30px" method="POST">

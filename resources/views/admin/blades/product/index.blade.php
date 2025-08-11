@@ -32,62 +32,72 @@
                             <div class="row mb-2">
                                 <div class="col-12 d-flex justify-between">
                                     <div class="col-6">
-                                        @if(Auth::user()->hasRole('Super') || Auth::user()->can('usuario.tornar usuario master') || Auth::user()->can(['producto.visualizar', 'producto.remover']))
+                                        @if(Auth::user()->hasRole('Super') || Auth::user()->can('usuario.tornar usuario master') || Auth::user()->can(['produtos.visualizar', 'produtos.remover']))
                                             <button id="btSubmitDelete" data-route="{{route('admin.dashboard.product.destroySelected')}}" type="button" class="btSubmitDelete btn btn-danger" style="display: none;">{{__('dashboard.btn_delete_all')}}</button>
                                         @endif
                                     </div>
                                     <div class="col-6 d-flex justify-content-end">
-                                         @if ($productSection == null)                                                
-                                                <button type="button" class="btn btn-primary text-black waves-effect waves-light me-2" data-bs-toggle="modal" data-bs-target="#productSection-create"><i class="mdi mdi-plus-circle me-1"></i> Info Sessão</button>
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="productSection-create" tabindex="-1" role="dialog" aria-hidden="true">
-                                                    <div class="plan modal-dialog modal-dialog-centered" style="max-width: 760px;">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header bg-light">
-                                                                <h4 class="modal-title" id="myCenterModalLabel">{{__('dashboard.btn_create')}}</h4>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
-                                                            </div>
-                                                            <div class="modal-body p-4">
-                                                                <form action="{{route('admin.dashboard.productSection.store')}}" method="POST" enctype="multipart/form-data">
-                                                                    @csrf
-                                                                    @include('admin.blades.productSection.form', ['textareaId' => 'textarea-create'])  
-                                                                    <div class="d-flex justify-content-end gap-2">
-                                                                        <button type="button" class="btn btn-danger waves-effect waves-light" data-bs-dismiss="modal">{{__('dashboard.btn_cancel')}}</button>
-                                                                        <button type="submit" class="btn btn-primary text-black waves-effect waves-light">{{__('dashboard.btn_create')}}</button>
-                                                                    </div>                                                 
-                                                                </form>
-                                                            </div>
-                                                        </div><!-- /.modal-content -->
-                                                    </div><!-- /.modal-dialog -->
-                                                </div><!-- /.modal -->                                                
-                                            @endif
+                                        @if (Auth::user()->hasPermissionTo('produtos.visualizar') &&
+                                            Auth::user()->hasPermissionTo('produtos.criar') ||
+                                            Auth::user()->hasPermissionTo('usuario.tornar usuario master') || 
+                                            Auth::user()->hasRole('Super'))
+                                                @if ($productSection == null)                                                
+                                                    <button type="button" class="btn btn-primary text-black waves-effect waves-light me-2" data-bs-toggle="modal" data-bs-target="#productSection-create"><i class="mdi mdi-plus-circle me-1"></i> Info Sessão</button>
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="productSection-create" tabindex="-1" role="dialog" aria-hidden="true">
+                                                        <div class="plan modal-dialog modal-dialog-centered" style="max-width: 760px;">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header bg-light">
+                                                                    <h4 class="modal-title" id="myCenterModalLabel">{{__('dashboard.btn_create')}}</h4>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                                                                </div>
+                                                                <div class="modal-body p-4">
+                                                                    <form action="{{route('admin.dashboard.productSection.store')}}" method="POST" enctype="multipart/form-data">
+                                                                        @csrf
+                                                                        @include('admin.blades.productSection.form', ['textareaId' => 'textarea-create'])  
+                                                                        <div class="d-flex justify-content-end gap-2">
+                                                                            <button type="button" class="btn btn-danger waves-effect waves-light" data-bs-dismiss="modal">{{__('dashboard.btn_cancel')}}</button>
+                                                                            <button type="submit" class="btn btn-primary text-black waves-effect waves-light">{{__('dashboard.btn_create')}}</button>
+                                                                        </div>                                                 
+                                                                    </form>
+                                                                </div>
+                                                            </div><!-- /.modal-content -->
+                                                        </div><!-- /.modal-dialog -->
+                                                    </div><!-- /.modal -->                                                
+                                                @endif
+                                        @endif
 
-                                            @if (isset($productSection))
-                                                <button data-bs-toggle="modal" data-bs-target="#productSection-edit-{{$productSection->id}}" class="tabledit-edit-button btn btn-primary text-black me-2"><span class="mdi mdi-pencil me-1"></span>Info Sessão</button>
-                                                <div class="modal fade" id="productSection-edit-{{$productSection->id}}" tabindex="-1" role="dialog" aria-hidden="true">
-                                                    <div class="plan modal-dialog modal-dialog-centered">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header bg-light">
-                                                                <h4 class="modal-title" id="myCenterModalLabel">{{__('dashboard.btn_edit')}}</h4>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
-                                                            </div>
-                                                            <div class="modal-body p-4">
-                                                                <form action="{{ route('admin.dashboard.productSection.update', ['productSection' => $productSection->id]) }}" method="POST" enctype="multipart/form-data">
-                                                                    @csrf
-                                                                    @method('PUT')
-                                                                    @include('admin.blades.productSection.form', ['textareaId' => 'textarea-edit-' . $productSection->id])   
-                                                                    <div class="d-flex justify-content-end gap-2">
-                                                                        <button type="button" class="btn btn-danger waves-effect waves-light" data-bs-dismiss="modal">{{__('dashboard.btn_cancel')}}</button>
-                                                                        <button type="submit" class="btn btn-primary text-black waves-effect waves-light">{{__('dashboard.btn_save')}}</button>
-                                                                    </div>                                                                                                                      
-                                                                </form>                                                                    
-                                                            </div>
-                                                        </div><!-- /.modal-content -->
-                                                    </div><!-- /.modal-dialog -->
-                                                </div><!-- /.modal -->
-                                            @endif
+                                        @if (Auth::user()->hasPermissionTo('produtos.visualizar') &&
+                                            Auth::user()->hasPermissionTo('produtos.editar') ||
+                                            Auth::user()->hasPermissionTo('usuario.tornar usuario master') || 
+                                            Auth::user()->hasRole('Super'))
+                                                @if (isset($productSection))
+                                                    <button data-bs-toggle="modal" data-bs-target="#productSection-edit-{{$productSection->id}}" class="tabledit-edit-button btn btn-primary text-black me-2"><span class="mdi mdi-pencil me-1"></span>Info Sessão</button>
+                                                    <div class="modal fade" id="productSection-edit-{{$productSection->id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                                                        <div class="plan modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header bg-light">
+                                                                    <h4 class="modal-title" id="myCenterModalLabel">{{__('dashboard.btn_edit')}}</h4>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                                                                </div>
+                                                                <div class="modal-body p-4">
+                                                                    <form action="{{ route('admin.dashboard.productSection.update', ['productSection' => $productSection->id]) }}" method="POST" enctype="multipart/form-data">
+                                                                        @csrf
+                                                                        @method('PUT')
+                                                                        @include('admin.blades.productSection.form', ['textareaId' => 'textarea-edit-' . $productSection->id])   
+                                                                        <div class="d-flex justify-content-end gap-2">
+                                                                            <button type="button" class="btn btn-danger waves-effect waves-light" data-bs-dismiss="modal">{{__('dashboard.btn_cancel')}}</button>
+                                                                            <button type="submit" class="btn btn-primary text-black waves-effect waves-light">{{__('dashboard.btn_save')}}</button>
+                                                                        </div>                                                                                                                      
+                                                                    </form>                                                                    
+                                                                </div>
+                                                            </div><!-- /.modal-content -->
+                                                        </div><!-- /.modal-dialog -->
+                                                    </div><!-- /.modal -->
+                                                @endif
+                                        @endif
 
-                                        @if (Auth::user()->hasRole('Super') || Auth::user()->can('usuario.tornar usuario master') || Auth::user()->can(['producto.visualizar', 'producto.criar']))
+                                        @if (Auth::user()->hasRole('Super') || Auth::user()->can('usuario.tornar usuario master') || Auth::user()->can(['produtos.visualizar', 'produtos.criar']))
                                             <button type="button" class="btn btn-primary text-black waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#product-create"><i class="mdi mdi-plus-circle me-1"></i> {{__('dashboard.btn_create')}}</button>
                                             <!-- Modal -->
                                             <div class="modal fade" id="product-create" tabindex="-1" role="dialog" aria-hidden="true">
@@ -175,7 +185,7 @@
                                                 </td>
             
                                                 <td class="d-flex gap-lg-1 justify-center" style="padding: 18px 15px 0px 0px;">
-                                                    @if (Auth::user()->hasRole('Super') || Auth::user()->can('usuario.tornar usuario master') || Auth::user()->can(['producto.visualizar', 'producto.editar'])) 
+                                                    @if (Auth::user()->hasRole('Super') || Auth::user()->can('usuario.tornar usuario master') || Auth::user()->can(['produtos.visualizar', 'produtos.editar'])) 
                                                         <button data-bs-toggle="modal" data-bs-target="#product-edit-{{$product->id}}" class="tabledit-edit-button btn btn-primary text-black" style="padding: 2px 8px;width: 30px"><span class="mdi mdi-pencil"></span></button>
                                                         <div class="modal fade" id="product-edit-{{$product->id}}" tabindex="-1" role="dialog" aria-hidden="true">
                                                             <div class="product modal-dialog modal-dialog-centered">
@@ -199,7 +209,7 @@
                                                             </div><!-- /.modal-dialog -->
                                                         </div><!-- /.modal -->
                                                     @endif
-                                                    @if (Auth::user()->hasRole('Super') || Auth::user()->can('usuario.tornar usuario master') || Auth::user()->can(['producto.visualizar', 'producto.remover']))
+                                                    @if (Auth::user()->hasRole('Super') || Auth::user()->can('usuario.tornar usuario master') || Auth::user()->can(['produtos.visualizar', 'produtos.remover']))
                                                         <form action="{{route('admin.dashboard.product.destroy',['product' => $product->id])}}" style="width: 30px" method="POST">
                                                             @method('DELETE') @csrf        
                                                             

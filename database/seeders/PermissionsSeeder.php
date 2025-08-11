@@ -21,44 +21,57 @@ class PermissionsSeeder extends Seeder
                 'Visualizar',
                 'Remover'
             ],
-            'lead contato'=>[
-                'Visualizar',
-                'Remover'
-            ],
             'email'=>[
                 'Visualizar',
                 'configurar smtp',
                 'testar conexao smtp'
             ],
-            'anuncio'=>[
+            'topico'=>[
                 'Criar',
                 'Editar',                
                 'Visualizar',
                 'Remover'
-            ],
-            'editais'=>[
+            ],            
+            'sobre'=>[
                 'Criar',
                 'Editar',                
                 'Visualizar',
                 'Remover'
-            ],
+            ],            
+            'parceiros'=>[
+                'Criar',
+                'Editar',                
+                'Visualizar',
+                'Remover'
+            ],            
+            'categorias do plano'=>[
+                'Criar',
+                'Editar',                
+                'Visualizar',
+                'Remover'
+            ],            
+            'planos'=>[
+                'Criar',
+                'Editar',                
+                'Visualizar',
+                'Remover'
+            ],            
+            'produtos'=>[
+                'Criar',
+                'Editar',                
+                'Visualizar',
+                'Remover'
+            ],            
+            'depoimentos'=>[
+                'Criar',
+                'Editar',                
+                'Visualizar',
+                'Remover'
+            ],            
             'contato'=>[
                 'Criar',
                 'Editar',                
                 'Visualizar',
-                'Remover'
-            ],
-            'categorias do noticias'=>[
-                'Criar',
-                'Editar',                
-                'Visualizar',
-                'Remover'
-            ],
-            'noticias'=>[
-                'Criar',
-                'Editar',                
-                'Visualizar',
-                'Aprovar, Reprovar ou Remover Comentário',
                 'Remover'
             ],
             'slide'=>[

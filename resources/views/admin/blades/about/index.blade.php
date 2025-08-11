@@ -33,7 +33,7 @@
                                 <div class="col-12 d-flex justify-between">
                                     <div class="col-12 d-flex justify-content-end">
                                         @if (!$about)                                            
-                                            @if (Auth::user()->hasRole('Super') || Auth::user()->can('usuario.tornar usuario master') || Auth::user()->can(['abouto.visualizar', 'abouto.criar']))
+                                            @if (Auth::user()->hasRole('Super') || Auth::user()->can('usuario.tornar usuario master') || Auth::user()->can(['sobre.visualizar', 'sobre.criar']))
                                                 <button type="button" class="btn btn-primary text-black waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#about-create"><i class="mdi mdi-plus-circle me-1"></i> {{__('dashboard.btn_create')}}</button>
                                                 <!-- Modal -->
                                                 <div class="modal fade" id="about-create" tabindex="-1" role="dialog" aria-hidden="true">
@@ -114,7 +114,7 @@
                                                 </td>
             
                                                 <td class="d-flex gap-lg-1 justify-center" style="padding: 18px 15px 0px 0px;">
-                                                    @if (Auth::user()->hasRole('Super') || Auth::user()->can('usuario.tornar usuario master') || Auth::user()->can(['abouto.visualizar', 'abouto.editar'])) 
+                                                    @if (Auth::user()->hasRole('Super') || Auth::user()->can('usuario.tornar usuario master') || Auth::user()->can(['sobre.visualizar', 'sobre.editar'])) 
                                                         <button data-bs-toggle="modal" data-bs-target="#about-edit-{{$about->id}}" class="tabledit-edit-button btn btn-primary text-black" style="padding: 2px 8px;width: 30px"><span class="mdi mdi-pencil"></span></button>
                                                         <div class="modal fade" id="about-edit-{{$about->id}}" tabindex="-1" role="dialog" aria-hidden="true">
                                                             <div class="about modal-dialog modal-dialog-centered">
@@ -138,7 +138,7 @@
                                                             </div><!-- /.modal-dialog -->
                                                         </div><!-- /.modal -->
                                                     @endif
-                                                    @if (Auth::user()->hasRole('Super') || Auth::user()->can('usuario.tornar usuario master') || Auth::user()->can(['abouto.visualizar', 'abouto.remover']))
+                                                    @if (Auth::user()->hasRole('Super') || Auth::user()->can('usuario.tornar usuario master') || Auth::user()->can(['sobre.visualizar', 'sobre.remover']))
                                                         <form action="{{route('admin.dashboard.about.destroy',['about' => $about->id])}}" style="width: 30px" method="POST">
                                                             @method('DELETE') @csrf        
                                                             

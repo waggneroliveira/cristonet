@@ -73,7 +73,6 @@
                                             <th class="bs-checkbox">
                                                 <label><input name="btnSelectAll" type="checkbox"></label>
                                             </th>
-                                            <th>Título</th>
                                             <th>Imagem Desktop</th>
                                             <th>Imagem Mobile</th>
                                             <th>{{__('dashboard.created_at')}}</th>
@@ -88,17 +87,14 @@
                                                 <td class="bs-checkbox">
                                                     <label><input data-index="{{$key}}" name="btnSelectItem" class="btnSelectItem" type="checkbox" value="{{$slide->id}}"></label>
                                                 </td>
-                                                <td>
-                                                   {!!isset($slide->title)?$slide->title:'-'!!}
-                                                </td>
-                                                <td class="table-slide text-center">
+                                                <td class="table-slide text-start">
                                                     @if ($slide->path_image)
                                                         <img src="{{ asset('storage/'.$slide->path_image) }}" alt="table-slide" class="me-2 rounded-circle" style="width: 40px; height: 40px;">
                                                         @else      
                                                         <img src="{{asset('build/admin/images/slides/slide-3.jpg')}}" alt="table-slide" class="me-2 rounded-circle">
                                                     @endif
                                                 </td>                                                
-                                                <td class="table-slide text-center">
+                                                <td class="table-slide text-start">
                                                     @if ($slide->path_image_mobile)
                                                         <img src="{{ asset('storage/'.$slide->path_image_mobile) }}" alt="table-slide" class="me-2 rounded-circle" style="width: 40px; height: 40px;">
                                                         @else      
