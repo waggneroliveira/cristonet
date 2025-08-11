@@ -7,17 +7,17 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="theme-color" content="#0d0d0d">
-    <meta name="description" content="O Sindacs Bahia é o sindicato que representa os Agentes Comunitários de Saúde (ACS) e Agentes de Combate às Endemias (ACE) da Bahia, lutando por direitos, valorização profissional e melhores condições de trabalho.">
-    <meta name="keywords" content="Sindacs Bahia, Sindicato Bahia, agentes comunitários de saúde, agentes de combate às endemias, ACS Bahia, ACE Bahia, sindicato ACS ACE, saúde pública Bahia, trabalhadores da saúde Bahia, direitos dos agentes de saúde, sindicato saúde Bahia, categoria ACS ACE, luta sindical Bahia, representação sindical saúde, agentes comunitários Bahia, agentes endemias Bahia, sindicato dos agentes Bahia">
-    <title>Sindacs Bahia</title>
+    <meta name="description" content="O CristoNet é o sindicato que representa os Agentes Comunitários de Saúde (ACS) e Agentes de Combate às Endemias (ACE) da Bahia, lutando por direitos, valorização profissional e melhores condições de trabalho.">
+    <meta name="keywords" content="CristoNet, Sindicato Bahia, agentes comunitários de saúde, agentes de combate às endemias, ACS Bahia, ACE Bahia, sindicato ACS ACE, saúde pública Bahia, trabalhadores da saúde Bahia, direitos dos agentes de saúde, sindicato saúde Bahia, categoria ACS ACE, luta sindical Bahia, representação sindical saúde, agentes comunitários Bahia, agentes endemias Bahia, sindicato dos agentes Bahia">
+    <title>CristoNet</title>
     <meta property="og:url" content="https://www.sindacsba.org.br">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Sindicato de agentes comunitários de saúde e agentes de combate as endemias da Bahia.">
-    <meta property="og:description" content="O Sindacs Bahia é o sindicato que representa os Agentes Comunitários de Saúde (ACS) e Agentes de Combate às Endemias (ACE) da Bahia, lutando por direitos, valorização profissional e melhores condições de trabalho.">
+    <meta property="og:description" content="O CristoNet é o sindicato que representa os Agentes Comunitários de Saúde (ACS) e Agentes de Combate às Endemias (ACE) da Bahia, lutando por direitos, valorização profissional e melhores condições de trabalho.">
     <meta name="twitter:card" content=summary_large_image>
     <meta name="twitter:url" content=https://www.sindacsba.org.br>
     <meta name="twitter:title" content="Sindicato de agentes comunitários de saúde e agentes de combate as endemias da Bahia.">
-    <meta name="twitter:description" content="O Sindacs Bahia é o sindicato que representa os Agentes Comunitários de Saúde (ACS) e Agentes de Combate às Endemias (ACE) da Bahia, lutando por direitos, valorização profissional e melhores condições de trabalho.">
+    <meta name="twitter:description" content="O CristoNet é o sindicato que representa os Agentes Comunitários de Saúde (ACS) e Agentes de Combate às Endemias (ACE) da Bahia, lutando por direitos, valorização profissional e melhores condições de trabalho.">
     <meta name="twitter:image" content=https://www.sindacsba.org.br/assets/images/logo.png>
     <link rel="canonical" href="{{ url()->current() }}">
     <meta name="copyright" content="Direitos reservados WHI">
@@ -47,12 +47,12 @@
             "@context": "https://schema.org",
             "@type": "Organization",
             "@id": "https://www.sindacsba.org.br/#organization",
-            "name": "Sindacs Bahia",
+            "name": "CristoNet",
             "legalName": "Sindicato de agentes comunitários de saúde e agentes de combate as endemias da Bahia.",
             "url": "https://www.sindacsba.org.br",
             "logo": "https://www.sindacsba.org.br/assets/images/logo.png",
             "image": "https://www.sindacsba.org.br/assets/images/logo.png",
-            "description": "O Sindacs Bahia é o sindicato que representa os Agentes Comunitários de Saúde (ACS) e Agentes de Combate às Endemias (ACE) da Bahia, lutando por direitos, valorização profissional e melhores condições de trabalho.",
+            "description": "O CristoNet é o sindicato que representa os Agentes Comunitários de Saúde (ACS) e Agentes de Combate às Endemias (ACE) da Bahia, lutando por direitos, valorização profissional e melhores condições de trabalho.",
             "foundingDate": "2003",
             "email": "sindacsbahia@gmail.com",
             "telephone": "+55 71 3017-4112",
@@ -90,9 +90,9 @@
                 "propertyID": "CNPJ",
                 "value": "06.953.941/0001-26"
             },
-            "slogan": "Sindacs Bahia",
+            "slogan": "CristoNet",
             "keywords": [
-                "Sindacs Bahia",
+                "CristoNet",
                 "Sindicato Bahia",
                 "agentes comunitários de saúde",
                 "agentes de combate às endemias",
