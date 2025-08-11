@@ -328,7 +328,7 @@
                                             </div>
                                         @endif
                                         <div class="title">
-                                            <h5 class="subtitle-plan montserrat-bold font-18 mb-0 text-center">{{$product->title}}</h5>
+                                            <h4 class="subtitle-plan montserrat-bold font-18 mb-0 text-center">{{$product->title}}</h4>
                                         </div>
                                     </div>
                                     <div class="description p-0 mt-4">                                                                           
@@ -544,8 +544,7 @@
                 @if ($contact->maps)                    
                     <div class="col-11 col-lg-5 animate-on-scroll" data-animation="animate__fadeInDown">
                         <div class="ratio ratio-4x3">
-                            <iframe src="{{ $contact->maps}}" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
-                            </iframe>
+                            <iframe src="{{ $contact->maps }}" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" title="Mapa de localização"></iframe>
                         </div>
                     </div>
                 @endif
