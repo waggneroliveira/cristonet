@@ -315,7 +315,7 @@
                         }
                     </script>
 
-                    <div class="swiper-wrapper align-items-center">   
+                    <div class="swiper-wrapper align-items-start">   
                         @foreach($products as $product)     
                             @php
                                 $priceformated = $product->price;
@@ -461,7 +461,7 @@
                             }
                         }
                     </script>
-                    <div class="swiper-wrapper align-items-center">
+                    <div class="swiper-wrapper align-items-start">
                         @foreach($depoiments as $depoiment)                        
                             <div class="swiper-slide">
                                 <div class="project-list-item dark-background px-3 py-4 rounded-4">
