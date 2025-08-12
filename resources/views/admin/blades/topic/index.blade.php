@@ -94,9 +94,9 @@
                                                 </td>
                                                 <td class="table-topic text-start">
                                                     @if ($topic->path_image)
-                                                        <img src="{{ asset('storage/'.$topic->path_image) }}" alt="table-topic" class="me-2 rounded-circle" style="width: 40px; height: 40px;">
+                                                        <img src="{{ asset('storage/'.$topic->path_image) }}" alt="table-topic" class="me-2 rounded-circle" style="width: 40px; height: 40px;object-fit:contain;">
                                                         @else      
-                                                        <img src="{{asset('build/admin/images/topics/topic-3.jpg')}}" alt="table-topic" class="me-2 rounded-circle">
+                                                        <img src="{{asset('build/admin/images/whi.png')}}" alt="table-product" class="me-2 rounded-circle" style="width: 40px; height:40px;object-fit:contain;">   
                                                     @endif
                                                 </td>                                               
                                                 <td>

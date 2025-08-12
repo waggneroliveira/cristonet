@@ -40,10 +40,14 @@
         allowedContent: false,
         toolbar: [
             { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript'] },
-            { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
-            { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize'] },
             { name: 'tools', items: ['Maximize'] }
         ],
         height: 260
     });
 </script>
+
+<style>
+    .cke_chrome{
+        width: 100%;
+    }
+</style>

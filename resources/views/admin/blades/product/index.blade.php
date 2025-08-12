@@ -152,9 +152,9 @@
                                                 </td>
                                                 <td class="table-product text-start">
                                                     @if ($product->path_image)
-                                                        <img src="{{ asset('storage/'.$product->path_image) }}" alt="table-product" class="me-2 rounded-circle" style="width: 40px; height: 40px;">
+                                                        <img src="{{ asset('storage/'.$product->path_image) }}"  alt="table-product" class="me-2 rounded-circle" style="width: 40px; height: 40px;object-fit:contain;">
                                                         @else      
-                                                        <img src="{{asset('build/admin/images/products/product-3.jpg')}}" alt="table-product" class="me-2 rounded-circle">
+                                                        <img src="{{asset('build/admin/images/whi.png')}}" alt="table-product" class="me-2 rounded-circle" style="width: 40px; height:40px;object-fit:contain;">
                                                     @endif
                                                 </td>                                               
                                                 <td>

@@ -96,10 +96,11 @@
                                                 </td>                                                
                                                 <td class="table-slide text-start">
                                                     @if ($slide->path_image_mobile)
-                                                        <img src="{{ asset('storage/'.$slide->path_image_mobile) }}" alt="table-slide" class="me-2 rounded-circle" style="width: 40px; height: 40px;">
+                                                        <img src="{{ asset('storage/'.$slide->path_image_mobile) }}" alt="table-slide" class="me-2 rounded-circle" style="width: 40px; height: 40px;object-fit:contain;">
                                                         @else      
-                                                        <img src="{{asset('build/admin/images/slides/slide-3.jpg')}}" alt="table-slide" class="me-2 rounded-circle">                                                        
+                                                        <img src="{{asset('build/admin/images/whi.png')}}" alt="table-product" class="me-2 rounded-circle" style="width: 40px; height:40px;object-fit:contain;">                                                      
                                                     @endif
+                                                    
                                                 </td>                                                
                                                 <td>
                                                     @php

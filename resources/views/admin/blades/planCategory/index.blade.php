@@ -77,6 +77,7 @@
                                                 </th>
                                                 {{-- <th>Link</th> --}}
                                                 <th>Título</th>
+                                                <th>Imagem</th>
                                                 <th>Status</th>
                                                 <th style="width: 85px;">Ações</th>
                                             </tr>
@@ -90,6 +91,13 @@
                                                         <label><input data-index="{{$key}}" name="btnSelectItem" class="btnSelectItem" type="checkbox" value="{{$planCategory->id}}"></label>
                                                     </td>
                                                     <td>{{$planCategory->title}}</td>
+                                                    <td>
+                                                        @if ($planCategory->path_image)
+                                                            <img src="{{ asset('storage/'.$planCategory->path_image) }}" alt="table-user" class="me-2 rounded-circle" style="width: 40px; height:40px;object-fit:contain;">
+                                                            @else      
+                                                            <img src="{{asset('build/admin/images/whi.png')}}" alt="table-product" class="me-2 rounded-circle" style="width: 40px; height:40px;object-fit:contain;">   
+                                                        @endif
+                                                    </td>
                                                     <td>
                                                         @switch($planCategory->active)
                                                             @case(0) <span class="badge bg-danger">Inativo</span> @break

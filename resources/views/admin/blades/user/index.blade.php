@@ -95,9 +95,9 @@
                                                 </td>
                                                 <td class="table-user">
                                                     @if ($user->path_image)
-                                                        <img src="{{ asset('storage/'.$user->path_image) }}" alt="table-user" class="me-2 rounded-circle">
+                                                        <img src="{{ asset('storage/'.$user->path_image) }}" alt="table-user" class="me-2 rounded-circle" style="width: 40px; height:40px;object-fit:contain;">
                                                         @else      
-                                                        <img src="{{asset('build/admin/images/users/user-3.jpg')}}" alt="table-user" class="me-2 rounded-circle">
+                                                        <img src="{{asset('build/admin/images/whi.png')}}" alt="table-product" class="me-2 rounded-circle" style="width: 40px; height:40px;object-fit:contain;">   
                                                     @endif
                                                     <a href="javascript:void(0);" class="text-body fw-semibold">{{$user->name}}</a>
                                                 </td>
