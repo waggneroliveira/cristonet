@@ -244,7 +244,7 @@
             </div>
             <div class="col-12 col-md-8">
                 <p class="montserrat-regular font-15 mt-2 mt-md-3">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                    CristoNet leva até você tecnologia de ponta, produtos de excelência, serviços eficientes e a qualidade que inspira confiança.
                 </p>
             </div>
         </div>
