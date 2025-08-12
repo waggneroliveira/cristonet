@@ -41,6 +41,8 @@
     <noscript>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     </noscript>
+    <link href="{{ asset('build/client/lgpd/style.css') }}" rel="stylesheet" type="text/css" />
+    
 
     <script type=application/ld+json>
         {
@@ -514,6 +516,7 @@
         </div>
     </div>
 
+    @include('client/includes/lgpd/lgpd')
     <main>
         <div  class="mt-0">
             @include('client.includes.announcement')
@@ -545,7 +548,7 @@
                     <li><a href="{{route('index')}}#products" class="nav-link montserrat-regular font-16 mb-3">Produtos</a></li>
                     <li><a href="{{route('index')}}#depoiment" class="nav-link montserrat-regular font-16 mb-3">Depoimentos</a></li>
                     <li class="montserrat-regular font-16 mb-3"><a href="{{route('index')}}#contact" class="nav-link montserrat-regular font-16 mb-3">Contato</a></li>
-                    <li><a href="#" class="nav-link montserrat-regular font-16 mb-3">Política de privacidade</a></li>
+                    <li><a href="https://policies.google.com/privacy?hl=pt-BR" rel="noopener noreferrer" target="_blank" class="nav-link montserrat-regular font-16 mb-3">Política de privacidade</a></li>
                 </ul>
                 <div class="d-flex justify-content-end flex-column w-auto montserrat-semiBold">
                     <span>
@@ -601,7 +604,9 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script src="{{ asset('build/client/css/bootstrap/js/bootstrap.bundle.js') }}"></script>
     <script src="{{ asset('build/admin/js/libs/sweetalert2/sweetalert2.min.js') }}"></script>
+    <script src="{{ asset('build/client/lgpd/script.js') }}"></script>
     <script src="{{ asset('build/client/js/default.js') }}"></script>
+    
     <script defer>
         // Ativa a classe manualmente com base na rolagem ou clique
         document.querySelectorAll('.nav-link').forEach(link => {
