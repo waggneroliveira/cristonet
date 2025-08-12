@@ -59,7 +59,7 @@ Route::middleware([AuthClientMiddleware::class])->group(function () {
 });
 Route::get('/', [HomePageController::class, 'index'])
 ->name('index');
-Route::get('planos/categoria/{id}', [HomePageController::class, 'getPlansByCategory']);
+Route::get('projetos/planos/categoria/{id}', [HomePageController::class, 'getPlansByCategory']);
 Route::get('contato', [ContactPageController::class, 'index'])
 ->name('contact');
 
