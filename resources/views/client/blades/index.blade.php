@@ -520,7 +520,7 @@
 
                     <div class="d-flex align-items-center mb-4">
                         @if ($contact->mention)                            
-                            <span class="me-3 montserrat-regular font-15"><i class="bi bi-instagram me-2"></i> {{ '@' .$contact->mention}}</span>
+                            <span class="me-3 montserrat-regular font-15"><a href="{{ isset($contact->link_insta) ? $contact->link_insta : '' }}" target="_blank" rel="noopener noreferrer"><i class="bi bi-instagram me-2"></i> {{ '@' .$contact->mention}}</a></span>
                         @endif
                         @if ($contact->phone_one)                        
                             <span class="montserrat-regular font-15"><i class="bi bi-whatsapp me-2"></i> {{ $contact->phone_one }}</span>
@@ -577,7 +577,7 @@
 
                 const startTime = new Date().getTime();
 
-                fetch(`/projetos/cristonet/planos/categoria/${categoryId}`)
+                fetch(`planos/categoria/${categoryId}`)
                     .then(response => response.json())
                     .then(data => {
                         const elapsedTime = new Date().getTime() - startTime;
