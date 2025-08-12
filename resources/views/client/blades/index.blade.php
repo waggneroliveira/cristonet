@@ -23,14 +23,14 @@
         <div class="col-12 topics">
             <div class="row text-white text-center">
                 @foreach ($topics as $topic)                
-                    <div class="box-topic col-md-4 grey-background p-3 p-lg-4 d-flex justify-content-between align-items-center">
+                    <div class="box-topic col-md-4 grey-background p-4 d-flex justify-content-between align-items-center">
                         <div class="mb-3">
                             @if (isset($topic->path_image) && $topic->path_image <> null)                                
                                 <img src="{{asset('storage/'.$topic->path_image)}}" alt="Ícone {{$topic->title}}" loading="lazy">
                             @endif
                         </div>
                         <div class="description text-start col-10">
-                            <h5 class="montserrat-bold font-25">{{$topic->title}}</h5>
+                            <h5 class="montserrat-bold font-20">{{$topic->title}}</h5>
                             <p class="mb-0 montserrat-regular font-15 text-white">
                                 {{$topic->description}}
                             </p>
