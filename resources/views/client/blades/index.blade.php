@@ -508,9 +508,9 @@
                 <!-- Coluna Esquerda - Formulário -->
                 <div class="col-11 col-lg-5 mb-4 mb-lg-0 animate-on-scroll" data-animation="animate__fadeInUp">
                     @if ($contact->name_section)                        
-                        <h4 class="title mb-0 text-uppercase font-32 montserrat-semiBold before">
+                        <h5 class="title mb-0 text-uppercase font-32 montserrat-semiBold before">
                             {{$contact->name_section}}
-                        </h4>
+                        </h5>
                     @endif
                     <p class="mt-4 montserrat-regular text-white font-15">
                         {{$contact->text}}
