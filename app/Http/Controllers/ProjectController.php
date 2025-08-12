@@ -61,52 +61,66 @@ class ProjectController extends Controller
 
     public function update(Request $request, Project $project)
     {
-        $data = $request->all();
-        $helper = new HelperArchive();
+        $data = $request->except(['path_image']);
         $manager = new ImageManager(GdDriver::class);
 
-        $path_image = $helper->renameArchiveUpload($request, 'path_image', $this->pathUpload, true);
-        if ($path_image) {
-            $data['path_image'] = $this->pathUpload . $path_image;
-            $file = $request->file('path_image');
-            $mime = $file->getMimeType();
-            if ($mime === 'image/svg+xml') {
-                Storage::putFileAs($this->pathUpload, $file, $path_image);
-            } else {
-                // Compressão webp com qualidade 75 para reduzir o peso
-                $image = $manager->read($file)->toWebp(quality: 75)->toString();
-                Storage::put($this->pathUpload . $path_image, $image);
+        $request->validate([
+            'path_image' => ['nullable', 'file', 'image', 'max:2048', 'mimes:jpg,jpeg,png,gif'],
+        ]);
+
+        // ===============================
+        // Remover imagem antiga
+        // ===============================
+        if ($request->filled('delete_path_image')) {
+            if (!empty($project->path_image)) {
+                Storage::delete($project->path_image);
             }
-            Storage::delete(isset($project->path_image)?$project->path_image:'');
-        }
-        if(isset($request->delete_path_image) && !$path_image){
-            $inputFile = $request->delete_path_image;
-            Storage::delete($project->$inputFile);
             $data['path_image'] = null;
         }
 
-                try {
+        // ===============================
+        // Upload de nova imagem
+        // ===============================
+        if ($request->hasFile('path_image')) {
+            // Remove a antiga antes de salvar a nova
+            if (!empty($project->path_image)) {
+                Storage::delete($project->path_image);
+            }
+
+            $file = $request->file('path_image');
+            $mime = $file->getMimeType();
+            $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '.webp';
+
+            if ($mime === 'image/svg+xml') {
+                Storage::putFileAs($this->pathUpload, $file, $filename);
+            } else {
+                $image = $manager->read($file)
+                    ->resize(null, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                        $constraint->upsize();
+                    })
+                    ->toWebp(quality: 95)
+                    ->toString();
+
+                Storage::put($this->pathUpload . $filename, $image);
+            }
+
+            $data['path_image'] = $this->pathUpload . $filename;
+        }
+
+        $data['active'] = $request->boolean('active');
+
+        try {
             DB::beginTransaction();
-                $data['active'] = $request->active ? 1 : 0;
-                
-                $project->fill($data)->save();
-
-                //project desktop 
-                if ($path_image) {
-                    Storage::delete($this->pathUpload . $path_image);
-                }
-                if ($path_image) {
-                    $request->file('path_image')->storeAs($this->pathUpload, $path_image);
-                }
-
+            $project->fill($data)->save();
             DB::commit();
             session()->flash('success', __('dashboard.response_item_update'));
-            return redirect()->back();
         } catch (\Exception $e) {
             DB::rollBack();
             Alert::error('Erro', __('dashboard.response_item_error_update'));
-            return redirect()->back();
         }
+
+        return redirect()->back();
     }
 
     public function destroy(Project $project)

@@ -1,27 +1,29 @@
 @extends('client.core.client')
 @section('content')
-<section id="hero" class="hero position-relative d-flex flex-column section dark-background overflow-hidden">
-    <div class="swiper hero-swiper">
-        <div class="swiper-wrapper">
-            @foreach ($slides as $slide)
-                <div class="swiper-slide">
-                    <picture>
-                        <source srcset="{{ asset('storage/' . $slide->path_image_mobile) }}" media="(max-width: 885px)">
-                        <img src="{{ asset('storage/' . $slide->path_image) }}" alt="Banner Hero" title="Banner Hero" class="image-hero w-100">
-                    </picture>
-                </div>
-            @endforeach
+@if (!empty($slides))
+    <section id="hero" class="hero position-relative d-flex flex-column section dark-background overflow-hidden">
+        <div class="swiper hero-swiper">
+            <div class="swiper-wrapper">
+                @foreach ($slides as $slide)
+                    <div class="swiper-slide">
+                        <picture>
+                            <source srcset="{{ asset('storage/' . $slide->path_image_mobile) }}" media="(max-width: 885px)">
+                            <img src="{{ asset('storage/' . $slide->path_image) }}" alt="Banner Hero" title="Banner Hero" class="image-hero w-100">
+                        </picture>
+                    </div>
+                @endforeach
+            </div>
+            <!-- Paginação opcional -->
+            <div class="swiper-pagination"></div>
         </div>
-        <!-- Paginação opcional -->
-        <div class="swiper-pagination"></div>
-    </div>
-</section>
+    </section>
+@endif
 @if (!empty($topics))
     <section id="topics" class="animate-on-scroll" data-animation="animate__fadeInUp">
         <div class="col-12 topics">
             <div class="row text-white text-center">
                 @foreach ($topics as $topic)                
-                    <div class="box-topic col-md-4 grey-background p-4 d-flex justify-content-between align-items-center">
+                    <div class="box-topic col-md-4 grey-background p-3 p-lg-4 d-flex justify-content-between align-items-center">
                         <div class="mb-3">
                             @if (isset($topic->path_image) && $topic->path_image <> null)                                
                                 <img src="{{asset('storage/'.$topic->path_image)}}" alt="Ícone {{$topic->title}}" loading="lazy">
@@ -66,7 +68,7 @@
             @if (!empty($partners))
                 <div class="partners animate-on-scroll" data-animation="animate__fadeInUp">
                     <div class="container py-5">
-                        <div class="row g-3 justify-content-start">
+                        <div class="col-11 col-lg-12 m-auto row g-3 justify-content-start">
                             @foreach ($partners as $partner)                        
                                 <div class="col-6 col-sm-4 col-md-2">
                                     <div class="partner-card border rounded-2 d-flex justify-content-center align-items-center">
@@ -105,7 +107,7 @@
                                         class="border-transparent shadow-none border-none montserrat-medium font-15 text-white background-red py-2 px-3 rounded-5 d-flex w-100 justify-content-center gap-3 align-items-center btn-filter-category" 
                                         data-id="{{ $planCategory->id }}">
                                         @if (isset($planCategory->path_image) && $planCategory->path_image <> null)                                            
-                                            <img src="{{ asset('storage/' . $planCategory->path_image) }}" alt="Imagem da categoria" loading="lazy">
+                                            <img src="{{ asset('storage/' . $planCategory->path_image) }}" alt="Imagem da categoria" class="imagem-da-categoria" loading="lazy">
                                         @endif
                                         {{ $planCategory->title }}
                                 </button>
@@ -142,7 +144,7 @@
                                 },
                                 "breakpoints": {
                                     "320": {
-                                        "slidesPerView": 1.2,
+                                        "slidesPerView": 1.3,
                                         "spaceBetween": 5
                                     },
                                     "515": {
@@ -290,7 +292,7 @@
                             },
                             "breakpoints": {
                                 "320": {
-                                    "slidesPerView": 1.2,
+                                    "slidesPerView": 1.3,
                                     "spaceBetween": 5
                                 },
                                 "513": {
@@ -469,12 +471,12 @@
 
                                     <div class="row">
                                         <div class="content position-relative">
-                                            <div class="depoiment-text m-auto mt-2">
+                                            <div class="depoiment-text m-auto mt-2 font-15 montserrat-regular">
                                                 {!! $depoiment->text !!}
                                             </div>                                          
                                         </div>
 
-                                        <div class="client-info d-flex flex-column m-auto mt-4 gap-1">
+                                        <div class="client-info d-flex flex-column m-auto mt-4 gap-1 p-0">
                                             <span class="font-16 montserrat-medium">{{ $depoiment->title }}</span>
                                             <span class="font-12 montserrat-regular text-white">{{ $depoiment->time }}</span>
                                             <div class="image-rating">

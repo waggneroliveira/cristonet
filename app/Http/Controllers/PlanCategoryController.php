@@ -76,8 +76,25 @@ class PlanCategoryController extends Controller
         $data = $request->all();
         $manager = new ImageManager(GdDriver::class);
 
-        // PlanCategory desktop
+        // ===============================
+        // Remover imagem antiga
+        // ===============================
+        if ($request->filled('delete_path_image')) {
+            if (!empty($planCategory->path_image)) {
+                Storage::delete($planCategory->path_image);
+            }
+            $data['path_image'] = null;
+        }
+
+        // ===============================
+        // Upload de nova imagem
+        // ===============================
         if ($request->hasFile('path_image')) {
+            // Remove a antiga
+            if (!empty($planCategory->path_image)) {
+                Storage::delete($planCategory->path_image);
+            }
+
             $file = $request->file('path_image');
             $mime = $file->getMimeType();
             $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '.webp';
@@ -96,18 +113,12 @@ class PlanCategoryController extends Controller
                 Storage::put($this->pathUpload . $filename, $image);
             }
 
-            Storage::delete(isset($planCategory->path_image)??$planCategory->path_image);
             $data['path_image'] = $this->pathUpload . $filename;
         }
 
-        if (isset($request->delete_path_image)) {
-            Storage::delete(isset($planCategory->path_image)??$planCategory->path_image);
-            $data['path_image'] = null;
-        }
-
-        $data['active'] = $request->active ? 1 : 0;
+        $data['active'] = $request->boolean('active');
         $data['slug'] = Str::slug($request->title);
-        
+
         try {
             DB::beginTransaction();
             $planCategory->fill($data)->save();
@@ -120,6 +131,7 @@ class PlanCategoryController extends Controller
 
         return redirect()->back();
     }
+
 
     public function destroy(PlanCategory $planCategory)
     {

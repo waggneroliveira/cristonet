@@ -71,11 +71,32 @@ class PartnerController extends Controller
 
     public function update(Request $request, Partner $partner)
     {
-        $data = $request->all();
+        $data = $request->except(['path_image']);
         $manager = new ImageManager(GdDriver::class);
 
-        // partner desktop
+        $request->validate([
+            'path_image' => ['nullable', 'file', 'image', 'max:2048', 'mimes:jpg,jpeg,png,gif'],
+        ]);
+
+        // ===============================
+        // Remover imagem antiga
+        // ===============================
+        if ($request->filled('delete_path_image')) {
+            if (!empty($partner->path_image)) {
+                Storage::delete($partner->path_image);
+            }
+            $data['path_image'] = null;
+        }
+
+        // ===============================
+        // Upload de nova imagem
+        // ===============================
         if ($request->hasFile('path_image')) {
+            // Remove a antiga antes de salvar a nova
+            if (!empty($partner->path_image)) {
+                Storage::delete($partner->path_image);
+            }
+
             $file = $request->file('path_image');
             $mime = $file->getMimeType();
             $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '.webp';
@@ -94,16 +115,10 @@ class PartnerController extends Controller
                 Storage::put($this->pathUpload . $filename, $image);
             }
 
-            Storage::delete(isset($partner->path_image)??$partner->path_image);
             $data['path_image'] = $this->pathUpload . $filename;
         }
 
-        if (isset($request->delete_path_image)) {
-            Storage::delete(isset($partner->path_image)??$partner->path_image);
-            $data['path_image'] = null;
-        }
-
-        $data['active'] = $request->active ? 1 : 0;
+        $data['active'] = $request->boolean('active');
 
         try {
             DB::beginTransaction();

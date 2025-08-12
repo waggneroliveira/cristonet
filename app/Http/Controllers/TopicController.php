@@ -75,8 +75,21 @@ class TopicController extends Controller
         $data = $request->all();
         $manager = new ImageManager(GdDriver::class);
 
-        // topic desktop
+        // Se marcou para remover a imagem antiga
+        if ($request->filled('delete_path_image')) {
+            if (!empty($topic->path_image)) {
+                Storage::delete($topic->path_image);
+            }
+            $data['path_image'] = null;
+        }
+
+        // Se enviou uma nova imagem
         if ($request->hasFile('path_image')) {
+            // Remove a antiga primeiro
+            if (!empty($topic->path_image)) {
+                Storage::delete($topic->path_image);
+            }
+
             $file = $request->file('path_image');
             $mime = $file->getMimeType();
             $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '.webp';
@@ -95,16 +108,10 @@ class TopicController extends Controller
                 Storage::put($this->pathUpload . $filename, $image);
             }
 
-            Storage::delete(isset($topic->path_image)??$topic->path_image);
             $data['path_image'] = $this->pathUpload . $filename;
         }
 
-        if (isset($request->delete_path_image)) {
-            Storage::delete(isset($topic->path_image)??$topic->path_image);
-            $data['path_image'] = null;
-        }
-
-        $data['active'] = $request->active ? 1 : 0;
+        $data['active'] = $request->boolean('active');
 
         try {
             DB::beginTransaction();
