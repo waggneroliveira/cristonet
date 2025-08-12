@@ -253,7 +253,7 @@
 @if ((!empty($productSection) && ($productSection->title || $productSection->subtitle || $productSection->text)) ||
     (!empty($products) && count($products) > 0)) 
     <section id="products" class="background-plan py-5 products position-relative">
-        <div class="content m-auto me-0 justify-content-end d-flex flex-wrap flex-column flex-md-row">
+        <div class="content m-auto me-0 justify-content-end align-content-center d-flex flex-wrap flex-column flex-md-row" style="min-height: 512px;">
             <aside class="col-12 col-md-4">
                 @if (isset($productSection->title) || isset($productSection->subtitle))                    
                     <div class="w-100 animate-on-scroll" data-animation="animate__fadeInLeft">
