@@ -49,7 +49,7 @@
                                             <th class="bs-checkbox">
                                                 <label><input name="btnSelectAll" type="checkbox"></label>
                                             </th>
-                                            <th>E-mail</th>
+                                            <th>Telefone</th>
                                             <th>Enviado em</th>
                                             <th style="width: 85px;">{{__('dashboard.action')}}</th>
                                         </tr>
@@ -61,7 +61,7 @@
                                                     <label><input data-index="{{$key}}" name="btnSelectItem" class="btnSelectItem" type="checkbox" value="{{$newsletter->id}}"></label>
                                                 </td>
                                                 <td>
-                                                   {!!isset($newsletter->email)?$newsletter->email:'-'!!}
+                                                   {!!isset($newsletter->phone)?$newsletter->phone:'-'!!}
                                                 </td>                                               
                                                 <td>
                                                     @php
