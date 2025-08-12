@@ -577,7 +577,7 @@
 
                 const startTime = new Date().getTime();
 
-                fetch(`/planos/categoria/${categoryId}`)
+                fetch(`/projetos/cristonet/planos/categoria/${categoryId}`)
                     .then(response => response.json())
                     .then(data => {
                         const elapsedTime = new Date().getTime() - startTime;
