@@ -577,7 +577,7 @@
             width: 52px;
             height: 52px;
             }
-            .whatsapp-float svg{ width: 26px; height: 26px; }
+            .whatsapp-float svg{ width: 35px; height: 35px; }
         }
         /* Não mostrar na impressão */
         @media print{
@@ -589,7 +589,7 @@
             .whatsapp-float:hover{ transform: translateY(-50%); }
         }
     </style>
-    
+
     <main>
         <div  class="mt-0">
             @include('client.includes.announcement')
