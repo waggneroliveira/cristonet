@@ -51,6 +51,7 @@ class HomePageController extends Controller
 
     public function getPlansByCategory($id)
     {
+        $contact = Contact::first();
         $plans = Plan::select(
         'plans.plan_category',
         'plans.title',
@@ -64,7 +65,7 @@ class HomePageController extends Controller
         )->where('plan_category', $id)
         ->active()->sorting()->get();
 
-        $html = view('client.blades.ajax.plan', compact('plans'))->render();
+        $html = view('client.blades.ajax.plan', compact('plans', 'contact'))->render();
 
         return response()->json(['html' => $html]);
     }
