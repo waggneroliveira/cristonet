@@ -100,7 +100,7 @@
                     </div>
                 @endif
                 @if (!empty($planCategories))                
-                    <ul class="d-flex justify-content-center align-items-start gap-4 flex-column p-0 mt-5 col-12 col-md-6">
+                    <ul class="d-flex justify-content-center align-items-start gap-4 flex-column p-0 mt-5 col-12 col-md-7">
                         @foreach ($planCategories as $planCategory)                    
                             <li class="list-unstyled pb-4 col-12">
                                 <button type="button" 

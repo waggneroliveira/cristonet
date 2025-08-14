@@ -10,19 +10,19 @@
     <meta name="description" content="CristoNet - Provedor de internet rápida e estável. Planos de fibra óptica com alta velocidade e suporte de qualidade para sua casa ou empresa.">
     <meta name="keywords" content="CristoNet, provedor de internet, internet fibra óptica, planos de internet, internet rápida, internet residencial, internet empresarial, Wi-Fi, banda larga, internet veloz, provedor de fibra, internet estável, internet para empresas, internet de qualidade">
     <title>CristoNet</title>
-    <meta property="og:url" content="https://whi.dev.br/projetos/cristonet">
+    <meta property="og:url" content="https://www.cristonettelecom.com.br">
     <meta property="og:type" content="website">
     <meta property="og:title" content="CristoNet">
     <meta property="og:description" content="CristoNet - Provedor de internet rápida e estável. Planos de fibra óptica com alta velocidade e suporte de qualidade para sua casa ou empresa.">
     <meta name="twitter:card" content=summary_large_image>
-    <meta name="twitter:url" content=https://whi.dev.br/projetos/cristonet>
+    <meta name="twitter:url" content=https://www.cristonettelecom.com.br>
     <meta name="twitter:title" content="CristoNet">
     <meta name="twitter:description" content="CristoNet - Provedor de internet rápida e estável. Planos de fibra óptica com alta velocidade e suporte de qualidade para sua casa ou empresa.">
-    <meta name="twitter:image" content=https://whi.dev.br/projetos/cristonet/assets/images/logo.png>
+    <meta name="twitter:image" content=https://www.cristonettelecom.com.br/build/client/images/logo.svg>
     <link rel="canonical" href="{{ url()->current() }}">
     <meta name="copyright" content="Direitos reservados WHI">
     <meta name="author" content="WHI">
-    <link rel="shortcut icon" href="https://whi.dev.br/projetos/cristonet/assets/images/favicon.svg">
+    <link rel="shortcut icon" href="https://www.cristonettelecom.com.br/build/client/images/favicon.svg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    
@@ -48,12 +48,12 @@
         {
             "@context": "https://schema.org",
             "@type": "Organization",
-            "@id": "https://whi.dev.br/projetos/cristonet/#organization",
+            "@id": "https://www.cristonettelecom.com.br/#organization",
             "name": "CristoNet",
             "legalName": "CristoNet",
-            "url": "https://whi.dev.br/projetos/cristonet",
-            "logo": "https://whi.dev.br/projetos/cristonet/assets/images/logo.png",
-            "image": "https://whi.dev.br/projetos/cristonet/assets/images/logo.png",
+            "url": "https://www.cristonettelecom.com.br",
+            "logo": "https://www.cristonettelecom.com.br/build/client/images/logo.svg",
+            "image": "https://www.cristonettelecom.com.br/build/client/images/logo.svg",
             "description": "CristoNet - Provedor de internet rápida e estável. Planos de fibra óptica com alta velocidade e suporte de qualidade para sua casa ou empresa.",
             "foundingDate": "2007",
             "email": "Jrdinario@hotmail.com",
@@ -664,7 +664,7 @@
                     </script>
                 </div>
                 <div class=credits>
-                    <a href="https://whi.dev.br/projetos/cristonet/" target=_blank rel="noopener noreferrer">
+                    <a href="https://www.cristonettelecom.com.br/" target=_blank rel="noopener noreferrer">
                         <img src="{{asset('build/client/images/developed.svg')}}"  alt="WHI - Web de Alta Inovação" title="WHI - Web de Alta Inovação" loading=lazy>
                     </a>
                 </div>
