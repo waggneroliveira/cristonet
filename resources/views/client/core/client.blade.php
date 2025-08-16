@@ -653,9 +653,7 @@
                 </div>
             </div>
             <div class="d-flex justify-content-between align-items-center mt-5">
-                <div class="text-center"> 
-                    <p class="montserrat-regular font-12 text-start text-white mb-0">Dinario Pereira da Silva Junior <br> CNPJ: 46.645.660/0001-20 </p>                                       
-                </div>
+                <div class="text-center"></div>
                 <div class="copyright">
                     <p id="footer-text" class="montserrat-regular font-16 text-start text-white mb-0"></p>  
                     <script defer>
@@ -664,7 +662,7 @@
                     </script>
                 </div>
                 <div class=credits>
-                    <a href="https://www.cristonettelecom.com.br/" target=_blank rel="noopener noreferrer">
+                    <a href="https://www.whi.dev.br/" target=_blank rel="noopener noreferrer">
                         <img src="{{asset('build/client/images/developed.svg')}}"  alt="WHI - Web de Alta Inovação" title="WHI - Web de Alta Inovação" loading=lazy>
                     </a>
                 </div>
