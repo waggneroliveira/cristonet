@@ -68,6 +68,7 @@ class PlanController extends Controller
             DB::commit();
             session()->flash('success', __('dashboard.response_item_create'));
         } catch (\Exception $e) {
+            dd($e);
             DB::rollback();
             Alert::error('Erro', __('dashboard.response_item_error_create'));
         }
